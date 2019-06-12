@@ -1,7 +1,10 @@
 package controllers;
 
+import models.Toggle;
 import play.mvc.Controller;
 import play.mvc.Result;
+
+import java.util.LinkedList;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -29,6 +32,10 @@ public class TogglesController extends Controller {
     }
 
     public Result create () {
+        return ok(views.html.index.render());
+    }
+
+    public Result index () {
         return ok(views.html.index.render());
     }
 }

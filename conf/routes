@@ -1,0 +1,34 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+### NoDocs ###
+GET   /docs/swagger-ui/*file        controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+### NoDocs ###
+GET   /assets/*file                 controllers.Assets.versioned(path="/public", file: Asset)
+
+# An example controller showing a sample home page
+
+### NoDocs ###
+GET     /                           controllers.HomeController.index
+
+# Map static resources from the /public folder to the /assets URL path
+
+### NoDocs ###
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Add Toggle
+PUT     /toggles                    controllers.TogglesController.create()
+
+# Get Toggle Status
+GET     /toggles/:id                controllers.TogglesController.get(id:String)
+
+# Edit Toggle Status
+POST    /toggles/:id                controllers.TogglesController.edit(id:String)
+
+# Delete Toggle
+DELETE  /toggles/:id                controllers.TogglesController.delete(id:String)
+
+# Get all toggles
+GET     /toggles                    controllers.TogglesController.index()

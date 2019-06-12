@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  mongodb:
+    container_name: mongo_toggles
+    image: mongo:3.6.0
+    ports:
+      - 27019:27017
+    environment:
+      - "MONGO_INITDB_ROOT_USERNAME=admin"
+      - "MONGO_INITDB_ROOT_PASSWORD=34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p92874983724rhqwelrhqweiuryoiqwerhlqwhjeflkawejrp9023475823y4rjhelkjrheiouryi"
+    volumes:
+      - ./volumes/mongo:/data/db
+    command: mongod --smallfiles --bind_ip_all
