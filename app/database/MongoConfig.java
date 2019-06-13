@@ -1,4 +1,4 @@
-package models;
+package database;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
@@ -23,7 +23,7 @@ public class MongoConfig {
     }
 
     public static void initDatastore() {
-
+        System.out.println("Initializing MongoDB Connection");
         final Morphia morphia = new Morphia();
 
         // Tell Morphia where to find our models
@@ -31,7 +31,7 @@ public class MongoConfig {
 
         ServerAddress serverAddress = new ServerAddress(ConfigFactory.load().getString("mongodb.host"), ConfigFactory.load().getInt("mongodb.port"));
 
-        MongoCredential credential = MongoCredential.createPlainCredential(
+        MongoCredential credential = MongoCredential.createScramSha1Credential(
                 ConfigFactory.load().getString("mongodb.username"),
                 ConfigFactory.load().getString("mongodb.auth_database"),
                 ConfigFactory.load().getString("mongodb.password").toCharArray()
@@ -47,6 +47,8 @@ public class MongoConfig {
                 mongoClient, ConfigFactory.load().getString("mongodb.database"));
 
         datastore.ensureIndexes();
+        datastore.ensureCaps();
+        System.out.println("MongoDB Connection Successfully Initialized.");
     }
 
 }

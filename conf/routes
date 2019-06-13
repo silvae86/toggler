@@ -5,6 +5,7 @@
 ### NoDocs ###
 GET   /docs/swagger-ui/*file        controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
 
+# Map static resources from the /public folder to the /assets URL path
 ### NoDocs ###
 GET   /assets/*file                 controllers.Assets.versioned(path="/public", file: Asset)
 
@@ -15,20 +16,17 @@ GET     /                           controllers.HomeController.index
 
 # Map static resources from the /public folder to the /assets URL path
 
-### NoDocs ###
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-
 # Add Toggle
-PUT     /toggles                    controllers.TogglesController.create()
+PUT     /toggles                    controllers.TogglesController.create(request: Request)
 
 # Get Toggle Status
-GET     /toggles/:id                controllers.TogglesController.get(id:String)
+GET     /toggles/:name                controllers.TogglesController.get(name:String)
 
 # Edit Toggle Status
-POST    /toggles/:id                controllers.TogglesController.edit(id:String)
+POST    /toggles/:name                controllers.TogglesController.edit(name:String)
 
 # Delete Toggle
-DELETE  /toggles/:id                controllers.TogglesController.delete(id:String)
+DELETE  /toggles/:name                controllers.TogglesController.delete(name:String)
 
 # Get all toggles
 GET     /toggles                    controllers.TogglesController.index()

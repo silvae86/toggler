@@ -21,4 +21,9 @@ public class Toggle {
 
     @Reference
     public Permission permissionRequired;
+
+    public Toggle(String name, boolean value) {
+        this.name = name;
+        this.value = value;
+    }
 }
