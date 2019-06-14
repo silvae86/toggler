@@ -14,19 +14,157 @@ GET   /assets/*file                 controllers.Assets.versioned(path="/public",
 ### NoDocs ###
 GET     /                           controllers.HomeController.index
 
-# Map static resources from the /public folder to the /assets URL path
+# Toggles
 
-# Add Toggle
+###
+#  summary: Creates a new toggle
+#  description: Creates a new toggle with name "name" in the system
+#  tags:
+#    - Toggle Endpoints
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: name
+#      required: true
+#      type: string
+#      example: isButtonBlue
+#      default: isButtonBlue
+#      description: Name of the toggle to modify.
+#    - in: body
+#      name: value
+#      required: true
+#      type: boolean
+#      example: true
+#      default: true
+#      description: Name of the toggle to modify.
+#  security:
+#    - APIKeyQueryParam: []
+#  responses:
+#    200:
+#       description: OK
+###
 PUT     /toggles/:name                    controllers.TogglesController.create(name:String)
 
-# Get Toggle Status
+###
+#  summary: Get toggle value
+#  description: Retrieves the value (true/false) of the toggle with name "name" if it exists in the system
+#  tags:
+#    - Toggle Endpoints
+#  parameters:
+#    - in: path
+#      name: name
+#      required: true
+#      type: string
+#      example: isButtonBlue
+#      default: isButtonBlue
+#      description: Name of the toggle to retrieve.
+#  produces:
+#    - application/json
+#  security:
+#    - APIKeyQueryParam: []
+#  responses:
+#    200:
+#       description: OK
+###
 GET     /toggles/:name                controllers.TogglesController.get(name:String)
 
-# Edit Toggle Status
+###
+#  summary: Set toggle value
+#  description: Sets the value (true/false) of a toggle in the system
+#  tags:
+#    - Toggle Endpoints
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: name
+#      required: true
+#      type: string
+#      example: isButtonBlue
+#      default: isButtonBlue
+#      description: Name of the toggle to modify.
+#    - in: body
+#      name: value
+#      required: true
+#      type: boolean
+#      example: true
+#      default: true
+#      description: Name of the toggle to modify.
+#  security:
+#    - APIKeyQueryParam: []
+#  responses:
+#    200:
+#       description: OK
+###
 POST    /toggles/:name                controllers.TogglesController.set(name:String)
 
-# Delete Toggle
+###
+#  summary: Delete toggle
+#  description: Deletes the toggle with name "name" if it exists in the system
+#  tags:
+#    - Toggle Endpoints
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: name
+#      required: true
+#      type: string
+#      example: isButtonBlue
+#      default: isButtonBlue
+#      description: Name of the toggle to modify.
+#  security:
+#    - APIKeyQueryParam: []
+#  responses:
+#    200:
+#       description: OK
+###
 DELETE  /toggles/:name                controllers.TogglesController.delete(name:String)
 
-# Get all toggles
+###
+#  summary: Get all toggles value
+#  description: Retrieves all toggles present in the system
+#  tags:
+#    - Toggle Endpoints
+#  produces:
+#    - application/json
+#  security:
+#    - APIKeyQueryParam: []
+#  responses:
+#    200:
+#       description: OK
+###
 GET     /toggles                    controllers.TogglesController.index()
+
+# Users and Authentication
+
+###
+#  summary: Authenticate user or service
+#  description: Authenticates a user or a service
+#  tags:
+#    - User and Service Authentication Endpoints
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: body
+#      name: username
+#      required: true
+#      type: string
+#      example: demouser1
+#      default: demouser1
+#      description: Username of the user or service
+#    - in: body
+#      name: password
+#      required: true
+#      type: string
+#      example: s3cretP4ssword
+#      default: s3cretP4ssword
+#      description: Password of the user or service
+#  responses:
+#    200:
+#      description: OK
+#    401:
+#      description: Invalid username or password
+###
+GET     /login                    controllers.UsersController.login()

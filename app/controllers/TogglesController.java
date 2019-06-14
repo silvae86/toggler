@@ -2,9 +2,7 @@ package controllers;
 
 import com.google.inject.Inject;
 import database.MongoConfig;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.*;
 import models.Toggle;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
@@ -21,38 +19,44 @@ import java.util.List;
 
 @Api
 public class TogglesController extends Controller {
-
-    /**
-     * An action that renders an HTML page with a welcome message.
-     * The configuration in the <code>routes</code> file means that
-     * this method will be called when the application receives a
-     * <code>GET</code> request with a path of <code>/</code>.
-     */
-
     @Inject play.data.FormFactory formFactory;
 
     public Result delete (String name) {
-        return ok(views.html.index.render());
+        try {
+            Toggle toggle = Toggle.findByName(name);
+            if(toggle == null)
+            {
+                return notFound();
+            }
+            else
+            {
+                MongoConfig.datastore().delete(toggle);
+                return ok(Json.toJson(toggle));
+            }
+        }
+        catch(Exception e)
+        {
+            return internalServerError();
+        }
     }
-
 
     public Result get (String name) {
-        final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
-                .field("name").equal(name)
-                .asList();
-
-        return ok(Json.toJson(toggles));
+        try {
+            Toggle toggle = Toggle.findByName(name);
+            if(toggle == null)
+            {
+                return notFound();
+            }
+            else
+            {
+                return ok(Json.toJson(toggle));
+            }
+        }
+        catch(Exception e)
+        {
+            return internalServerError();
+        }
     }
-
-    @ApiImplicitParams(
-            @ApiImplicitParam(
-                    value = "(Required) New value of the toggle",
-                    name = "value",
-                    required = true,
-                    dataType = "boolean", // complete path
-                    paramType = "body"
-            )
-    )
 
     public Result set (String name) {
         // using deprecated method because passing request conflicts with Swagger for now
@@ -66,7 +70,7 @@ public class TogglesController extends Controller {
             play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "value");
             boolean value = Boolean.parseBoolean(data.get("value"));
 
-            Toggle toggle = toggles.get(1);
+            Toggle toggle = toggles.get(0);
             toggle.setValue(value);
 
             return ok(Json.toJson(toggles));
@@ -76,17 +80,6 @@ public class TogglesController extends Controller {
             return notFound();
         }
     }
-
-    @ApiImplicitParams({
-            @ApiImplicitParam(
-                    value = "(Required) Initial value of the toggle",
-                    name = "value",
-                    required = true,
-                    dataType = "boolean", // complete path
-                    paramType = "body"
-            ),
-    })
-
 
     public Result create (String name) {
         Http.Request request = request();
