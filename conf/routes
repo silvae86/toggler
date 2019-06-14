@@ -17,13 +17,13 @@ GET     /                           controllers.HomeController.index
 # Map static resources from the /public folder to the /assets URL path
 
 # Add Toggle
-PUT     /toggles                    controllers.TogglesController.create(request: Request)
+PUT     /toggles/:name                    controllers.TogglesController.create(name:String)
 
 # Get Toggle Status
 GET     /toggles/:name                controllers.TogglesController.get(name:String)
 
 # Edit Toggle Status
-POST    /toggles/:name                controllers.TogglesController.edit(name:String)
+POST    /toggles/:name                controllers.TogglesController.set(name:String)
 
 # Delete Toggle
 DELETE  /toggles/:name                controllers.TogglesController.delete(name:String)

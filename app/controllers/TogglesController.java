@@ -2,6 +2,9 @@ package controllers;
 
 import com.google.inject.Inject;
 import database.MongoConfig;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import models.Toggle;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
@@ -16,7 +19,7 @@ import java.util.List;
  * to the Toggles Service
  */
 
-
+@Api
 public class TogglesController extends Controller {
 
     /**
@@ -32,6 +35,7 @@ public class TogglesController extends Controller {
         return ok(views.html.index.render());
     }
 
+
     public Result get (String name) {
         final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
                 .field("name").equal(name)
@@ -40,14 +44,53 @@ public class TogglesController extends Controller {
         return ok(Json.toJson(toggles));
     }
 
-    public Result edit (String name) {
-        return ok(views.html.index.render());
+    @ApiImplicitParams(
+            @ApiImplicitParam(
+                    value = "(Required) New value of the toggle",
+                    name = "value",
+                    required = true,
+                    dataType = "boolean", // complete path
+                    paramType = "body"
+            )
+    )
+
+    public Result set (String name) {
+        // using deprecated method because passing request conflicts with Swagger for now
+        Http.Request request = request();
+        final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
+                .field("name").equal(name)
+                .limit(1).asList();
+
+        if(toggles.size() == 1)
+        {
+            play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "value");
+            boolean value = Boolean.parseBoolean(data.get("value"));
+
+            Toggle toggle = toggles.get(1);
+            toggle.setValue(value);
+
+            return ok(Json.toJson(toggles));
+        }
+        else
+        {
+            return notFound();
+        }
     }
 
-    public Result create (Http.Request request) {
-        play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "name", "value");
+    @ApiImplicitParams({
+            @ApiImplicitParam(
+                    value = "(Required) Initial value of the toggle",
+                    name = "value",
+                    required = true,
+                    dataType = "boolean", // complete path
+                    paramType = "body"
+            ),
+    })
 
-        String name = data.get("name");
+
+    public Result create (String name) {
+        Http.Request request = request();
+        play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "value");
         boolean value = Boolean.parseBoolean(data.get("value"));
 
         final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)

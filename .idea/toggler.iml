@@ -170,5 +170,6 @@
     <orderEntry type="library" name="sbt: io.swagger:swagger-scala-module_2.12:1.0.5:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.commons:commons-lang3:3.2.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.yaml:snakeyaml:1.23:jar" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="sbt: org.projectlombok:lombok:1.18.8:jar" level="project" />
   </component>
 </module>

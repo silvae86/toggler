@@ -1,5 +1,7 @@
 package models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 
@@ -9,6 +11,8 @@ import org.mongodb.morphia.annotations.*;
         @Index(fields = @Field("name"))
 )
 
+@Getter
+@Setter
 public class Toggle {
     @Id
     private ObjectId id;
