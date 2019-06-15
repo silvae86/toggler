@@ -24,14 +24,14 @@ GET     /                           controllers.HomeController.index
 #  produces:
 #    - application/json
 #  parameters:
-#    - in: path
+#    - in: formData
 #      name: name
 #      required: true
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
 #      description: Name of the toggle to modify.
-#    - in: body
+#    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
@@ -44,7 +44,7 @@ GET     /                           controllers.HomeController.index
 #    200:
 #       description: OK
 ###
-PUT     /toggles/:name                    controllers.TogglesController.create(name:String)
+PUT     /toggles/:name                    controllers.TogglesController.create(request: Request, name:String)
 
 ###
 #  summary: Get toggle value
@@ -84,7 +84,7 @@ GET     /toggles/:name                controllers.TogglesController.get(name:Str
 #      example: isButtonBlue
 #      default: isButtonBlue
 #      description: Name of the toggle to modify.
-#    - in: body
+#    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
@@ -97,7 +97,7 @@ GET     /toggles/:name                controllers.TogglesController.get(name:Str
 #    200:
 #       description: OK
 ###
-POST    /toggles/:name                controllers.TogglesController.set(name:String)
+POST    /toggles/:name                controllers.TogglesController.set(request: Request, name:String)
 
 ###
 #  summary: Delete toggle
@@ -120,7 +120,7 @@ POST    /toggles/:name                controllers.TogglesController.set(name:Str
 #    200:
 #       description: OK
 ###
-DELETE  /toggles/:name                controllers.TogglesController.delete(name:String)
+DELETE  /toggles/:name                controllers.TogglesController.delete(request: Request, name:String)
 
 ###
 #  summary: Get all toggles value
@@ -147,14 +147,14 @@ GET     /toggles                    controllers.TogglesController.index()
 #  produces:
 #    - application/json
 #  parameters:
-#    - in: body
+#    - in: formData
 #      name: username
 #      required: true
 #      type: string
 #      example: demouser1
 #      default: demouser1
 #      description: Username of the user or service
-#    - in: body
+#    - in: formData
 #      name: password
 #      required: true
 #      type: string
@@ -167,4 +167,4 @@ GET     /toggles                    controllers.TogglesController.index()
 #    401:
 #      description: Invalid username or password
 ###
-GET     /login                    controllers.UsersController.login()
+GET     /login                    controllers.UsersController.login(request: Request)

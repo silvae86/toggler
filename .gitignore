@@ -30,3 +30,6 @@ target
 tmp
 dist
 .cache
+
+# ignore docker volumes
+volumes/

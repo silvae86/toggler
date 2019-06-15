@@ -25,9 +25,8 @@ swaggerDomainNameSpaces := Seq("models")
 // https://mvnrepository.com/artifact/org.mindrot/jbcrypt
 libraryDependencies += "org.mindrot" % "jbcrypt" % "0.4"
 
-
-
-
+libraryDependencies += "org.pac4j" % "pac4j" % "3.7.0"
+libraryDependencies += "org.pac4j" % "pac4j-http" % "3.7.0"
 
 
 

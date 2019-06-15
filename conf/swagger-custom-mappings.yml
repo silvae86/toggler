@@ -1,0 +1,5 @@
+---
+  - type: play\.mvc\.Http\.Request
+    specAsParameter: []   #this hides the type from query and path parameter
+  - type: request
+    specAsParameter: []   #this hides the type from query and path parameter

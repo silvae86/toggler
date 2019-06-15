@@ -7,15 +7,13 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 
-public class UsersController extends Controller {
-    @Inject
-    play.data.FormFactory formFactory;
+import java.util.Map;
 
-    public Result login() {
-        Http.Request request = request();
-        play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "username", "password");
-        String username = data.get("username");
-        String password = data.get("password");
+public class UsersController extends Controller {
+    public Result login(Http.Request request) {
+        Map<String, String[]> data = request.body().asFormUrlEncoded();
+        String username = data.get("username").toString();
+        String password = data.get("password").toString();
 
         User authenticatingUser = MongoConfig.datastore().find(User.class)
                 .field("username").equal(username)

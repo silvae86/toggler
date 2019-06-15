@@ -21,7 +21,7 @@ import java.util.List;
 public class TogglesController extends Controller {
     @Inject play.data.FormFactory formFactory;
 
-    public Result delete (String name) {
+    public Result delete (Http.Request request, String name) {
         try {
             Toggle toggle = Toggle.findByName(name);
             if(toggle == null)
@@ -58,9 +58,7 @@ public class TogglesController extends Controller {
         }
     }
 
-    public Result set (String name) {
-        // using deprecated method because passing request conflicts with Swagger for now
-        Http.Request request = request();
+    public Result set (Http.Request request, String name) {
         final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
                 .field("name").equal(name)
                 .limit(1).asList();
@@ -81,8 +79,7 @@ public class TogglesController extends Controller {
         }
     }
 
-    public Result create (String name) {
-        Http.Request request = request();
+    public Result create (Http.Request request, String name) {
         play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "value");
         boolean value = Boolean.parseBoolean(data.get("value"));
 
