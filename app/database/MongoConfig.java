@@ -22,6 +22,11 @@ public class MongoConfig {
         return datastore;
     }
 
+    public static void dropDatabase()
+    {
+        datastore().getDB().dropDatabase();
+    }
+
     public static void initDatastore() {
         System.out.println("Initializing MongoDB Connection");
         final Morphia morphia = new Morphia();

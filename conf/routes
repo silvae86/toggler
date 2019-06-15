@@ -25,13 +25,6 @@ GET     /                           controllers.HomeController.index
 #    - application/json
 #  parameters:
 #    - in: formData
-#      name: name
-#      required: true
-#      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
-#      description: Name of the toggle to modify.
-#    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
@@ -42,7 +35,9 @@ GET     /                           controllers.HomeController.index
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
-#       description: OK
+#       description: Toggle created
+#    409:
+#       description: A toggle with that name already exists
 ###
 PUT     /toggles/:name                    controllers.TogglesController.create(request: Request, name:String)
 
@@ -66,6 +61,8 @@ PUT     /toggles/:name                    controllers.TogglesController.create(r
 #  responses:
 #    200:
 #       description: OK
+#    404:
+#       description: There is no toggle with that name
 ###
 GET     /toggles/:name                controllers.TogglesController.get(name:String)
 
@@ -96,6 +93,8 @@ GET     /toggles/:name                controllers.TogglesController.get(name:Str
 #  responses:
 #    200:
 #       description: OK
+#    404:
+#       description: There is no toggle with that name
 ###
 POST    /toggles/:name                controllers.TogglesController.set(request: Request, name:String)
 
@@ -119,6 +118,8 @@ POST    /toggles/:name                controllers.TogglesController.set(request:
 #  responses:
 #    200:
 #       description: OK
+#    404:
+#       description: There is no toggle with that name
 ###
 DELETE  /toggles/:name                controllers.TogglesController.delete(request: Request, name:String)
 

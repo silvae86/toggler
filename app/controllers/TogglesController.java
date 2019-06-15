@@ -2,7 +2,7 @@ package controllers;
 
 import com.google.inject.Inject;
 import database.MongoConfig;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
 import models.Toggle;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
@@ -11,6 +11,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -26,7 +27,7 @@ public class TogglesController extends Controller {
             Toggle toggle = Toggle.findByName(name);
             if(toggle == null)
             {
-                return notFound();
+                return notFound(Json.toJson("Toggle with " + name + " not found."));
             }
             else
             {
@@ -36,7 +37,7 @@ public class TogglesController extends Controller {
         }
         catch(Exception e)
         {
-            return internalServerError();
+            return internalServerError(Json.toJson(e.getMessage()));
         }
     }
 
@@ -45,7 +46,7 @@ public class TogglesController extends Controller {
             Toggle toggle = Toggle.findByName(name);
             if(toggle == null)
             {
-                return notFound();
+                return notFound(Json.toJson("Toggle with " + name + " not found."));
             }
             else
             {
@@ -54,7 +55,7 @@ public class TogglesController extends Controller {
         }
         catch(Exception e)
         {
-            return internalServerError();
+            return internalServerError(Json.toJson(e.getMessage()));
         }
     }
 
@@ -65,17 +66,35 @@ public class TogglesController extends Controller {
 
         if(toggles.size() == 1)
         {
-            play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "value");
-            boolean value = Boolean.parseBoolean(data.get("value"));
+            Map<String, String[]> data = request.body().asFormUrlEncoded();
+
+            if(data.get("value") == null)
+            {
+                return badRequest("Missing value parameter.");
+            }
+
+            if(data.get("value").length != 1)
+            {
+                return badRequest("value field must be either \"true\" or \"false\"");
+            }
+
+            boolean value = Boolean.parseBoolean(data.get("value")[0]);
 
             Toggle toggle = toggles.get(0);
             toggle.setValue(value);
+            MongoConfig.datastore().save(toggle);
 
-            return ok(Json.toJson(toggles));
+            try{
+                return ok(Json.toJson(Toggle.findByName(name)));
+            }
+            catch(Exception e)
+            {
+                return internalServerError(e.getMessage());
+            }
         }
         else
         {
-            return notFound();
+            return notFound(Json.toJson("Toggle with name " + name + " not found."));
         }
     }
 
@@ -83,20 +102,19 @@ public class TogglesController extends Controller {
         play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "value");
         boolean value = Boolean.parseBoolean(data.get("value"));
 
-        final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
-                .field("name").equal(name)
-                .limit(1)
-                .asList();
+        final Toggle toggleWithSameName = MongoConfig.datastore().createQuery(Toggle.class)
+                .field("name").equal(name).get();
 
         // toggle already exists
-        if (toggles.size() == 1)
+        if (toggleWithSameName != null)
         {
             return status(409, Json.toJson("A toggle with id " + name + " already exists."));
         }
         else
         {
             Toggle newToggle = new Toggle(name, value);
-            return ok(Json.toJson("A toggle with id " + name + " already exists."));
+            MongoConfig.datastore().save(newToggle);
+            return ok(Json.toJson("New toggle with " + name + " created."));
         }
     }
 
