@@ -14,6 +14,39 @@ GET   /assets/*file                 controllers.Assets.versioned(path="/public",
 ### NoDocs ###
 GET     /                           controllers.HomeController.index
 
+
+# Users and Authentication
+
+###
+#  summary: Authenticate user or service
+#  description: Authenticates a user or a service
+#  tags:
+#    - Authentication
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: formData
+#      name: username
+#      required: true
+#      type: string
+#      example: demouser1
+#      default: demouser1
+#      description: Username of the user or service
+#    - in: formData
+#      name: password
+#      required: true
+#      type: string
+#      example: s3cretP4ssword
+#      default: s3cretP4ssword
+#      description: Password of the user or service
+#  responses:
+#    200:
+#      description: OK
+#    401:
+#      description: Invalid username or password
+###
+GET     /login                    controllers.UsersController.login(request: Request)
+
 # Toggles
 
 ###
@@ -39,7 +72,7 @@ GET     /                           controllers.HomeController.index
 #    409:
 #       description: A toggle with that name already exists
 ###
-PUT     /toggles/:name                    controllers.TogglesController.create(request: Request, name:String)
+PUT     /toggles/:name                    controllers.TogglesController.create(name:String)
 
 ###
 #  summary: Get toggle value
@@ -124,7 +157,7 @@ POST    /toggles/:name                controllers.TogglesController.set(request:
 DELETE  /toggles/:name                controllers.TogglesController.delete(request: Request, name:String)
 
 ###
-#  summary: Get all toggles value
+#  summary: Get all toggles
 #  description: Retrieves all toggles present in the system
 #  tags:
 #    - Toggles
@@ -137,39 +170,6 @@ DELETE  /toggles/:name                controllers.TogglesController.delete(reque
 #       description: OK
 ###
 GET     /toggles                    controllers.TogglesController.index()
-
-# Users and Authentication
-
-###
-#  summary: Authenticate user or service
-#  description: Authenticates a user or a service
-#  tags:
-#    - Authentication
-#  produces:
-#    - application/json
-#  parameters:
-#    - in: formData
-#      name: username
-#      required: true
-#      type: string
-#      example: demouser1
-#      default: demouser1
-#      description: Username of the user or service
-#    - in: formData
-#      name: password
-#      required: true
-#      type: string
-#      example: s3cretP4ssword
-#      default: s3cretP4ssword
-#      description: Password of the user or service
-#  responses:
-#    200:
-#      description: OK
-#    401:
-#      description: Invalid username or password
-###
-GET     /login                    controllers.UsersController.login(request: Request)
-
 
 ###
 #  summary: Get Service data
@@ -199,7 +199,7 @@ GET     /login                    controllers.UsersController.login(request: Req
 #    404:
 #      description: Service and/or version of service not found
 ###
-GET     /services/get/:service_name/:version                    controllers.ServicesController.get(service_name: String, version: String)
+GET     /services/:service_name/:version                    controllers.ServicesController.get(service_name: String, version: String)
 
 ###
 #  summary: Edit service toggle status
@@ -209,27 +209,13 @@ GET     /services/get/:service_name/:version                    controllers.Serv
 #  produces:
 #    - application/json
 #  parameters:
-#    - in: path
-#      name: service_name
-#      required: true
-#      type: string
-#      example: ABC
-#      default: ABC
-#      description: Unique name of the service
-#    - in: path
-#      name: version
-#      required: true
-#      type: string
-#      example: 1.0.0
-#      default: 1.0.0
-#      description: Unique name of the version
 #    - in: body
 #      name: new_config
 #      required: true
 #      type: string
 #      example: 1.0.0
 #      default: 1.0.0
-#      description: New service configuration
+#      description: New service and toggle configuration
 #  responses:
 #    200:
 #      description: OK

@@ -26,9 +26,6 @@ public class Toggle {
     @Property("value")
     private boolean value;
 
-    @Reference
-    public Permission permissionRequired;
-
     public Toggle(){}
 
     public Toggle(String name, boolean value) {

@@ -23,7 +23,7 @@ import java.util.Map;
 public class TogglesController extends Controller {
     @Inject play.data.FormFactory formFactory;
 
-    public Result delete (Http.Request request, String name) {
+    public Result delete (String name) {
         try {
             Toggle toggle = Toggle.findByName(name);
             if(toggle == null)
