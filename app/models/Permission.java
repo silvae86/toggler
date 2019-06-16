@@ -1,5 +1,7 @@
 package models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -9,6 +11,8 @@ import org.mongodb.morphia.annotations.Reference;
 import java.util.LinkedList;
 
 @Entity("permissions")
+@Getter
+@Setter
 public class Permission {
     @Id
     private ObjectId id;

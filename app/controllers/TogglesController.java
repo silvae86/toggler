@@ -9,6 +9,7 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
+import utils.RequestProcessor;
 
 import java.util.List;
 import java.util.Map;
@@ -66,19 +67,16 @@ public class TogglesController extends Controller {
 
         if(toggles.size() == 1)
         {
-            Map<String, String[]> data = request.body().asFormUrlEncoded();
-
-            if(data.get("value") == null)
+            Map<String, String> data;
+            try{
+                data = RequestProcessor.extractSingleValueParameters(request, "value");
+            }
+            catch(Exception e)
             {
-                return badRequest("Missing value parameter.");
+                return badRequest(e.getMessage());
             }
 
-            if(data.get("value").length != 1)
-            {
-                return badRequest("value field must be either \"true\" or \"false\"");
-            }
-
-            boolean value = Boolean.parseBoolean(data.get("value")[0]);
+            boolean value = Boolean.parseBoolean(data.get("value"));
 
             Toggle toggle = toggles.get(0);
             toggle.setValue(value);
@@ -99,7 +97,15 @@ public class TogglesController extends Controller {
     }
 
     public Result create (Http.Request request, String name) {
-        play.data.DynamicForm data = formFactory.form().bindFromRequest(request, "value");
+        Map<String, String> data;
+        try{
+            data = RequestProcessor.extractSingleValueParameters(request, "value");
+        }
+        catch(Exception e)
+        {
+            return badRequest(e.getMessage());
+        }
+
         boolean value = Boolean.parseBoolean(data.get("value"));
 
         final Toggle toggleWithSameName = MongoConfig.datastore().createQuery(Toggle.class)

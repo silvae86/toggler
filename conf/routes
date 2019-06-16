@@ -20,7 +20,7 @@ GET     /                           controllers.HomeController.index
 #  summary: Creates a new toggle
 #  description: Creates a new toggle with name "name" in the system
 #  tags:
-#    - Toggle Endpoints
+#    - Toggles
 #  produces:
 #    - application/json
 #  parameters:
@@ -45,7 +45,7 @@ PUT     /toggles/:name                    controllers.TogglesController.create(r
 #  summary: Get toggle value
 #  description: Retrieves the value (true/false) of the toggle with name "name" if it exists in the system
 #  tags:
-#    - Toggle Endpoints
+#    - Toggles
 #  parameters:
 #    - in: path
 #      name: name
@@ -70,7 +70,7 @@ GET     /toggles/:name                controllers.TogglesController.get(name:Str
 #  summary: Set toggle value
 #  description: Sets the value (true/false) of a toggle in the system
 #  tags:
-#    - Toggle Endpoints
+#    - Toggles
 #  produces:
 #    - application/json
 #  parameters:
@@ -102,7 +102,7 @@ POST    /toggles/:name                controllers.TogglesController.set(request:
 #  summary: Delete toggle
 #  description: Deletes the toggle with name "name" if it exists in the system
 #  tags:
-#    - Toggle Endpoints
+#    - Toggles
 #  produces:
 #    - application/json
 #  parameters:
@@ -127,7 +127,7 @@ DELETE  /toggles/:name                controllers.TogglesController.delete(reque
 #  summary: Get all toggles value
 #  description: Retrieves all toggles present in the system
 #  tags:
-#    - Toggle Endpoints
+#    - Toggles
 #  produces:
 #    - application/json
 #  security:
@@ -144,7 +144,7 @@ GET     /toggles                    controllers.TogglesController.index()
 #  summary: Authenticate user or service
 #  description: Authenticates a user or a service
 #  tags:
-#    - User and Service Authentication Endpoints
+#    - Authentication
 #  produces:
 #    - application/json
 #  parameters:
@@ -169,3 +169,75 @@ GET     /toggles                    controllers.TogglesController.index()
 #      description: Invalid username or password
 ###
 GET     /login                    controllers.UsersController.login(request: Request)
+
+
+###
+#  summary: Get Service data
+#  description: Retrieves information about a service, including the current active toggles
+#  tags:
+#    - Services
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: service_name
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Unique name of the service
+#    - in: path
+#      name: version
+#      required: true
+#      type: string
+#      example: 1.0.0
+#      default: 1.0.0
+#      description: Unique version of the service
+#  responses:
+#    200:
+#      description: OK
+#    404:
+#      description: Service and/or version of service not found
+###
+GET     /services/get/:service_name/:version                    controllers.ServicesController.get(service_name: String, version: String)
+
+###
+#  summary: Edit service toggle status
+#  description: Edits service toggle configurations
+#  tags:
+#    - Services
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: service_name
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Unique name of the service
+#    - in: path
+#      name: version
+#      required: true
+#      type: string
+#      example: 1.0.0
+#      default: 1.0.0
+#      description: Unique name of the version
+#    - in: body
+#      name: new_config
+#      required: true
+#      type: string
+#      example: 1.0.0
+#      default: 1.0.0
+#      description: New service configuration
+#  responses:
+#    200:
+#      description: OK
+#    403:
+#      description: You tried to edit toggles for which the service has no access permission
+#    404:
+#      description: Service and/or version of service not found
+#    400:
+#      description: New service configuration is invalid
+###
+POST     /permissions/get/:service_name/:version                    controllers.ServicesController.create(service_name: String, version: String)

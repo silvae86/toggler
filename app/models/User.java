@@ -1,5 +1,7 @@
 package models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.mindrot.jbcrypt.BCrypt;
 import org.mongodb.morphia.annotations.Entity;
@@ -8,6 +10,8 @@ import org.mongodb.morphia.annotations.Id;
 import java.util.HashSet;
 
 @Entity("users")
+@Getter
+@Setter
 public class User {
     @Id
     private ObjectId id;

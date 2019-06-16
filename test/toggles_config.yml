@@ -1,0 +1,43 @@
+---
+permissionDefinitions:
+  - default:
+      services: []
+      toggles:
+        - isButtonBlue:
+            value: true
+      decision: deny
+  - allowAllToAccessisButtonBlue:
+      services: []
+      toggles:
+        - isButtonBlue:
+            value: true
+      decision: allow
+  - allowOnlyABCToAccessisButtonBlue:
+      services:
+        - ABC:
+            version: 1.0.0
+      toggles:
+        - isButtonBlue:
+            value: true
+      decision: allow
+      overrides: default
+  - allowOnlyABCToAccessisButtonGreen:
+      services:
+        - ABC:
+            version: 1.0.0
+      type: allow
+      toggles:
+        - isButtonGreen:
+            value: true
+      decision: allow
+      overrides: default
+  - allowOnlyABCToAccessisButtonRed:
+      services:
+        - ABC:
+            version: 1.0.0
+      type: allow
+      toggles:
+        - isButtonRed:
+            value: true
+      decision: deny
+      overrides: default
