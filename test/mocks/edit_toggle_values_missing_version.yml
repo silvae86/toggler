@@ -1,0 +1,11 @@
+---
+configs:
+  - allowOnlyABCToAccessisButtonBlue:
+      services:
+        - ABC:
+            version: 1000000.0.0
+      toggles:
+        - isButtonBlue:
+            value: true
+      decision: allow
+      overrides: default

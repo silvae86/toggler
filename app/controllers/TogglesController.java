@@ -42,7 +42,7 @@ public class TogglesController extends Controller {
         }
     }
 
-    public Result get (String name) {
+    public Result get (String name, String serviceName, String serviceVersion) {
         try {
             Toggle toggle = Toggle.findByName(name);
             if(toggle == null)

@@ -16,7 +16,7 @@ public class RequestProcessor {
              ) {
             if(data.get(param) != null)
             {
-                if(data.get(param).length != 1)
+                if(data.get(param).length == 1)
                 {
                     extractedParameters.put(param, data.get(param)[0]);
                 }

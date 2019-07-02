@@ -1,0 +1,8 @@
+---
+configs:
+  - default:
+      services: []
+      toggles:
+        - missingToggle:
+            value: true
+      decision: deny

@@ -35,7 +35,7 @@ public class ServicesController extends Controller {
         }
     }
 
-    public Result get (String name, String version) {
+    public Result get (String name, String service_name, String version) {
         try {
             Service service = Service.findByNameAndVersion(name, version);
             if(service == null)

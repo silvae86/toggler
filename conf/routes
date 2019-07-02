@@ -51,7 +51,7 @@ GET     /login                    controllers.UsersController.login(request: Req
 
 ###
 #  summary: Creates a new toggle
-#  description: Creates a new toggle with name "name" in the system
+#  description: Creates a new toggle with name "name" in the system, and value specified as the "value" field in the PUT request body.
 #  tags:
 #    - Toggles
 #  produces:
@@ -76,7 +76,7 @@ PUT     /toggles/:name                    controllers.TogglesController.create(r
 
 ###
 #  summary: Get toggle value
-#  description: Retrieves the value (true/false) of the toggle with name "name" if it exists in the system
+#  description: Retrieves the value (true/false) of the toggle with name "name", when applied to version "version" of service "service"
 #  tags:
 #    - Toggles
 #  parameters:
@@ -87,21 +87,32 @@ PUT     /toggles/:name                    controllers.TogglesController.create(r
 #      example: isButtonBlue
 #      default: isButtonBlue
 #      description: Name of the toggle to retrieve.
-#  produces:
-#    - application/json
-#  security:
-#    - APIKeyQueryParam: []
+#    - in: path
+#      name: service
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Unique name of the service
+#    - in: path
+#      name: version
+#      required: true
+#      type: string
+#      example: 1.0.0
+#      default: 1.0.0
+#      description: Unique version of the service
 #  responses:
 #    200:
-#       description: OK
+#      description: OK
 #    404:
-#       description: There is no toggle with that name
+#      description: Service and/or version of service not found
 ###
-GET     /toggles/:name                controllers.TogglesController.get(name:String)
+GET     /toggles/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
+
 
 ###
 #  summary: Set toggle value
-#  description: Sets the value (true/false) of a toggle in the system
+#  description: Sets the value (true/false) of a toggle in the system, for a specific service
 #  tags:
 #    - Toggles
 #  produces:
@@ -114,13 +125,20 @@ GET     /toggles/:name                controllers.TogglesController.get(name:Str
 #      example: isButtonBlue
 #      default: isButtonBlue
 #      description: Name of the toggle to modify.
+#    - in: path
+#      name: service
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Name of the service to which the new value of the toggle will apply.
 #    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
 #      example: true
 #      default: true
-#      description: Name of the toggle to modify.
+#      description: New value for the toggle
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
@@ -129,11 +147,11 @@ GET     /toggles/:name                controllers.TogglesController.get(name:Str
 #    404:
 #       description: There is no toggle with that name
 ###
-POST    /toggles/:name                controllers.TogglesController.set(request: Request, name:String)
+POST     /toggles/:name/:service/:version                    controllers.TogglesController.set(name: String, service: String, version: String)
 
 ###
 #  summary: Delete toggle
-#  description: Deletes the toggle with name "name" if it exists in the system
+#  description: Deletes the toggle with name "name" if it exists in the system, for all versions of all services.
 #  tags:
 #    - Toggles
 #  produces:
@@ -172,38 +190,8 @@ DELETE  /toggles/:name                controllers.TogglesController.delete(name:
 GET     /toggles                    controllers.TogglesController.index()
 
 ###
-#  summary: Get Service data
-#  description: Retrieves information about a service, including the current active toggles
-#  tags:
-#    - Services
-#  produces:
-#    - application/json
-#  parameters:
-#    - in: path
-#      name: service_name
-#      required: true
-#      type: string
-#      example: ABC
-#      default: ABC
-#      description: Unique name of the service
-#    - in: path
-#      name: version
-#      required: true
-#      type: string
-#      example: 1.0.0
-#      default: 1.0.0
-#      description: Unique version of the service
-#  responses:
-#    200:
-#      description: OK
-#    404:
-#      description: Service and/or version of service not found
-###
-GET     /services/:service_name/:version                    controllers.ServicesController.get(service_name: String, version: String)
-
-###
-#  summary: Edit service toggle status
-#  description: Edits service toggle configurations
+#  summary: Edit service toggle configuration
+#  description: Edits the toggles (and respective values) available to each service version
 #  tags:
 #    - Services
 #  produces:
@@ -215,7 +203,7 @@ GET     /services/:service_name/:version                    controllers.Services
 #      type: string
 #      example: 1.0.0
 #      default: 1.0.0
-#      description: New service and toggle configuration
+#      description: New toggle configuration
 #  responses:
 #    200:
 #      description: OK
@@ -226,4 +214,24 @@ GET     /services/:service_name/:version                    controllers.Services
 #    400:
 #      description: New service configuration is invalid
 ###
-POST     /permissions/get/:service_name/:version                    controllers.ServicesController.create(service_name: String, version: String)
+POST     /config                    controllers.ConfigsController.update(request: Request)
+
+
+###
+#  summary: Fetch entire service toggle configuration
+#  description: Retrieves the configuration of all the toggles (and respective values), for all services and versions
+#  tags:
+#    - Services
+#  produces:
+#    - application/json
+#  responses:
+#    200:
+#      description: OK
+#    403:
+#      description: You have no permission to access this endpoint. Only Admins can retrieve this data.
+#    404:
+#      description: Service and/or version of service not found
+#    400:
+#      description: New service configuration is invalid
+###
+GET     /config                    controllers.ConfigsController.update(request: Request)

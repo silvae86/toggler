@@ -9,10 +9,12 @@ import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
 
+import java.util.Date;
+
 @Entity("permissions")
 @Getter
 @Setter
-public class Config {
+public class ConfigChange {
     @Id
     private ObjectId id;
 
@@ -22,20 +24,26 @@ public class Config {
     @Reference("user")
     public User creator;
 
+    @Reference("date_applied")
+    public Date dateApplied;
 
-    public Config()
+    @Reference("date_received")
+    public Date dateReceived;
+
+
+    public ConfigChange()
     {
 
     }
 
-    public Config(String content)
+    public ConfigChange(String content)
     {
         this.content = content;
     }
 
-    public static Config getLatestConfig()
+    public static ConfigChange getLatestConfig()
     {
-        return MongoConfig.datastore().createQuery(Config.class)
+        return MongoConfig.datastore().createQuery(ConfigChange.class)
                 .order("-ts").limit(1).get();
     }
 
