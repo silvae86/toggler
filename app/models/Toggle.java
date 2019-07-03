@@ -11,7 +11,7 @@ import java.util.List;
 @Entity("toggles")
 
 @Indexes(
-        @Index(fields = @Field("name"))
+        @Index(fields = {@Field("name")})
 )
 
 @Getter
@@ -24,32 +24,43 @@ public class Toggle {
     private String name;
 
     @Property("value")
-    private boolean value;
+    private Boolean value;
+
+    @Reference("service")
+    private Service service;
 
     public Toggle(){}
 
-    public Toggle(String name, boolean value) {
+    public Toggle(String name) {
         this.name = name;
-        this.value = value;
     }
 
-    public static Toggle findByName(String name) throws Exception
-    {
-        final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
+    public static List<Toggle> findByName(String name) {
+        return MongoConfig.datastore().createQuery(Toggle.class)
                 .field("name").equal(name)
                 .asList();
+    }
 
-        if(toggles.size() == 1)
-        {
+    public static List<Toggle> findByNameAndServiceName(String name, String serviceName) {
+        return MongoConfig.datastore().createQuery(Toggle.class)
+                .field("name").equal(name)
+                .filter("service.name", serviceName)
+                .asList();
+    }
+
+    public static Toggle findByNameServiceNameAndVersion(String name, String serviceName, String versionName) throws Exception {
+        final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
+                .field("name").equal(name)
+                .filter("service.name", serviceName)
+                .filter("service.version", serviceName)
+                .asList();
+
+        if (toggles.size() == 1) {
             return toggles.get(0);
-        }
-        else if(toggles.size() == 0)
-        {
+        } else if (toggles.size() == 0) {
             return null;
-        }
-        else
-        {
-            throw new Exception("More than one toggle with name " + name + " present in the database!");
+        } else {
+            throw new Exception("More than one toggle with name " + name + ", applied to service " + serviceName + " and version " + versionName + " in the database!");
         }
     }
 }

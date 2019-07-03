@@ -18,3 +18,60 @@ securityDefinitions:
     type: apiKey
     in: header
     name: X-API-Key
+
+#
+#    - default:
+#        services: []
+#        toggles:
+#          - isButtonBlue:
+#              value: true
+#        decision: deny
+
+definitions:
+  Toggle:
+    type: object
+    properties:
+      name:
+        type: string
+      value:
+        type: boolean
+  Service:
+    type: object
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+  Config:
+    type: object
+    required:
+      - services
+      - toggles
+      - decision
+    properties:
+      services:
+        type: array
+        items:
+          type: object
+          schema:
+            $ref: '#/definitions/Service'
+      toggles:
+        type: array
+        items:
+          type: object
+          schema:
+            $ref: '#/definitions/Toggle'
+      decision:
+        type: string
+    example:
+      services:
+        - name: "ABC"
+          version: "1.0.0"
+        - name: "BCA"
+          version: "1.0.1"
+      toggles:
+        - name: "isButtonBlue"
+          value: "false"
+        - name: "isButtonGreen"
+          value: "true"
+      decision: "allow"

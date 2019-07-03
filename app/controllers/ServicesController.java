@@ -4,11 +4,7 @@ import database.MongoConfig;
 import models.Service;
 import play.libs.Json;
 import play.mvc.Controller;
-import play.mvc.Http;
 import play.mvc.Result;
-import utils.RequestProcessor;
-
-import java.util.Map;
 
 public class ServicesController extends Controller {
 
@@ -35,7 +31,7 @@ public class ServicesController extends Controller {
         }
     }
 
-    public Result get (String name, String service_name, String version) {
+    public Result get(String name, String version) {
         try {
             Service service = Service.findByNameAndVersion(name, version);
             if(service == null)

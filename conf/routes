@@ -57,6 +57,13 @@ GET     /login                    controllers.UsersController.login(request: Req
 #  produces:
 #    - application/json
 #  parameters:
+#    - in: body
+#      name: new_toggle_data
+#      required: true
+#      type: string
+#      example: 1.0.0
+#      default: 1.0.0
+#      description: New toggle configuration
 #    - in: formData
 #      name: value
 #      required: true
@@ -72,10 +79,10 @@ GET     /login                    controllers.UsersController.login(request: Req
 #    409:
 #       description: A toggle with that name already exists
 ###
-PUT     /toggles/:name                    controllers.TogglesController.create(request: Request, name:String)
+PUT     /toggles                    controllers.TogglesController.create(request: Request)
 
 ###
-#  summary: Get toggle value
+#  summary: Get toggle value for a specific version of a service
 #  description: Retrieves the value (true/false) of the toggle with name "name", when applied to version "version" of service "service"
 #  tags:
 #    - Toggles
@@ -109,9 +116,8 @@ PUT     /toggles/:name                    controllers.TogglesController.create(r
 ###
 GET     /toggles/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
 
-
 ###
-#  summary: Set toggle value
+#  summary: Set toggle value for a specific version of a service
 #  description: Sets the value (true/false) of a toggle in the system, for a specific service
 #  tags:
 #    - Toggles
@@ -147,7 +153,7 @@ GET     /toggles/:name/:service/:version                    controllers.TogglesC
 #    404:
 #       description: There is no toggle with that name
 ###
-POST     /toggles/:name/:service/:version                    controllers.TogglesController.set(name: String, service: String, version: String)
+POST     /toggles/:name/:service/:version                    controllers.TogglesController.set(request: Request, name: String, service: String, version: String)
 
 ###
 #  summary: Delete toggle
@@ -193,22 +199,28 @@ GET     /toggles                    controllers.TogglesController.index()
 #  summary: Edit service toggle configuration
 #  description: Edits the toggles (and respective values) available to each service version
 #  tags:
-#    - Services
+#    - Configurations
 #  produces:
 #    - application/json
 #  parameters:
 #    - in: body
 #      name: new_config
 #      required: true
-#      type: string
-#      example: 1.0.0
-#      default: 1.0.0
-#      description: New toggle configuration
+#      schema:
+#        $ref: '#/definitions/Config'
+#      description: The configuration for the toggles and services that can access their value
+#    - in: body
+#      name: create_new
+#      required: true
+#      type: boolean
+#      example: true
+#      default: true
+#      description: Create new toggles if they do not exist
 #  responses:
 #    200:
 #      description: OK
 #    403:
-#      description: You tried to edit toggles for which the service has no access permission
+#      description: You have no permission to access this endpoint. Only Admins can retrieve this data.
 #    404:
 #      description: Service and/or version of service not found
 #    400:
@@ -218,10 +230,10 @@ POST     /config                    controllers.ConfigsController.update(request
 
 
 ###
-#  summary: Fetch entire service toggle configuration
+#  summary: Fetch configuration of all toggles for all services and versions
 #  description: Retrieves the configuration of all the toggles (and respective values), for all services and versions
 #  tags:
-#    - Services
+#    - Configurations
 #  produces:
 #    - application/json
 #  responses:
@@ -234,4 +246,38 @@ POST     /config                    controllers.ConfigsController.update(request
 #    400:
 #      description: New service configuration is invalid
 ###
-GET     /config                    controllers.ConfigsController.update(request: Request)
+GET     /config                    controllers.ConfigsController.get()
+
+###
+#  summary: Fetch toggles for service version
+#  description: Fetch configuration of all toggles for version "version" of a service "service_name",
+#  tags:
+#    - Services
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: service_name
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Name of the service for whom the current toggle configuration should be fetched
+#    - in: path
+#      name: version
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Name of the service for whom the current toggle configuration should be fetched
+#  responses:
+#    200:
+#      description: OK
+#    403:
+#      description: You have no permission to access this endpoint. Only Admins can retrieve this data.
+#    404:
+#      description: Service and/or version of service not found
+#    400:
+#      description: New service configuration is invalid
+###
+GET     /service/:service_name/:version                    controllers.ServicesController.get(service_name: String, version: String)

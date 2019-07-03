@@ -19,17 +19,16 @@ public class ConfigChange {
     private ObjectId id;
 
     @Property("content")
-    public String content;
+    private String content;
+
+    @Property("date_applied")
+    private Date dateApplied;
+
+    @Property("date_received")
+    private Date dateReceived;
 
     @Reference("user")
-    public User creator;
-
-    @Reference("date_applied")
-    public Date dateApplied;
-
-    @Reference("date_received")
-    public Date dateReceived;
-
+    private User creator;
 
     public ConfigChange()
     {
@@ -39,6 +38,7 @@ public class ConfigChange {
     public ConfigChange(String content)
     {
         this.content = content;
+        this.dateReceived = new Date();
     }
 
     public static ConfigChange getLatestConfig()
@@ -47,4 +47,8 @@ public class ConfigChange {
                 .order("-ts").limit(1).get();
     }
 
+    public void apply() {
+        this.dateApplied = new Date();
+        MongoConfig.datastore().save(this);
+    }
 }

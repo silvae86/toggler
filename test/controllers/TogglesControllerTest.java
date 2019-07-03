@@ -11,10 +11,11 @@ import play.mvc.Http;
 import play.mvc.Result;
 import play.test.Helpers;
 import play.test.WithApplication;
+import utils.Permutation;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,8 +24,12 @@ import static play.test.Helpers.*;
 
 public class TogglesControllerTest extends WithApplication {
 
-    private int howManyTogglesToCreate = 3000;
-    private int howManyTogglesToDelete = 500;
+    private int howManyTogglesToCreate = 30;
+    private int howManyTogglesToDelete = 5;
+
+    private String charactersOfServicesToCreate = "ABCDEFG";
+    private int versionsOfServicesToCreate = 60;
+
     private Application fakeApp;
 
     @Override
@@ -45,24 +50,40 @@ public class TogglesControllerTest extends WithApplication {
         assert(o.isArray());
         assertEquals(o.size(), 0);
 
-        for (int i = 0; i < howManyTogglesToCreate; i++) {
-            String newToggleName = UUID.randomUUID().toString().replace("-", "");
+        for (JsonNode aToggle : o) {
+            assertTrue("Node should have a name text property", aToggle.get("name").isTextual());
 
-            request = new Http.RequestBuilder()
-                    .method(PUT)
-                    .header("Accept", "application/json")
-                    .uri("/toggles/"+ newToggleName);
+            HashSet<String> serviceNames = Permutation.permute(charactersOfServicesToCreate);
+            for (String serviceName : serviceNames) {
+                for (int versionNumber = 0; versionNumber < versionsOfServicesToCreate; versionNumber++) {
+                    String fullUri = "/toggles/" + aToggle.get("name").asText() + "/" + serviceName + "/" + "v0.0." + versionNumber;
+                    request = new Http.RequestBuilder()
+                            .method(PUT)
+                            .header("Accept", "application/json")
+                            .uri(fullUri);
 
-            HashMap<String, String> payload = new HashMap<>();
+                    HashMap<String, String> payload = new HashMap<>();
 
-            payload.put("name", newToggleName);
-            payload.put("value", "false");
-            request.bodyForm(payload);
+                    payload.put("value", "true");
+                    request.bodyForm(payload);
 
-            result = route(fakeApp,request);
-            assertEquals(OK, result.status());
+                    result = route(fakeApp, request);
+                    assertEquals(OK, result.status());
+
+                    request = new Http.RequestBuilder()
+                            .method(GET)
+                            .header("Accept", "application/json")
+                            .uri("/toggles/" + aToggle.get("name").asText());
+
+
+                    result = route(fakeApp, request);
+                    o = Json.parse(contentAsString(result));
+
+                    assertEquals("true", o.get("value").asText());
+                }
+
+            }
         }
-
         return fakeApp;
     }
 
@@ -75,7 +96,6 @@ public class TogglesControllerTest extends WithApplication {
 
         Result result = route(fakeApp, request);
         JsonNode o = Json.parse(contentAsString(result));
-
         assert(o.isArray());
         assertEquals(o.size(), howManyTogglesToCreate);
     }
@@ -95,35 +115,39 @@ public class TogglesControllerTest extends WithApplication {
         assert(o.isArray());
         assertEquals(o.size(), howManyTogglesToCreate);
 
-        for(Iterator<JsonNode> it = o.iterator(); it.hasNext();)
-        {
-            JsonNode aToggle = it.next();
-
+        for (JsonNode aToggle : o) {
             assertTrue("Node should have a name text property", aToggle.get("name").isTextual());
 
-            request = new Http.RequestBuilder()
-                    .method(POST)
-                    .header("Accept", "application/json")
-                    .uri("/toggles/"+ aToggle.get("name").asText());
+            HashSet<String> serviceNames = Permutation.permute(charactersOfServicesToCreate);
+            for (String serviceName : serviceNames) {
+                for (int versionNumber = 0; versionNumber < versionsOfServicesToCreate; versionNumber++) {
+                    String fullUri = "/toggles/" + aToggle.get("name").asText() + "/" + serviceName + "/" + "v0.0." + versionNumber;
+                    request = new Http.RequestBuilder()
+                            .method(POST)
+                            .header("Accept", "application/json")
+                            .uri(fullUri);
 
-            HashMap<String, String> payload = new HashMap<>();
+                    HashMap<String, String> payload = new HashMap<>();
 
-            payload.put("value", "true");
-            request.bodyForm(payload);
+                    payload.put("value", "true");
+                    request.bodyForm(payload);
 
-            result = route(fakeApp,request);
-            assertEquals(OK, result.status());
+                    result = route(fakeApp, request);
+                    assertEquals(OK, result.status());
 
-            request = new Http.RequestBuilder()
-                    .method(GET)
-                    .header("Accept", "application/json")
-                    .uri("/toggles/"+ aToggle.get("name").asText());
+                    request = new Http.RequestBuilder()
+                            .method(GET)
+                            .header("Accept", "application/json")
+                            .uri("/toggles/" + aToggle.get("name").asText());
 
 
-            result = route(fakeApp,request);
-            o = Json.parse(contentAsString(result));
+                    result = route(fakeApp, request);
+                    o = Json.parse(contentAsString(result));
 
-            assertEquals("true", o.get("value").asText());
+                    assertEquals("true", o.get("value").asText());
+                }
+
+            }
         }
     }
 
@@ -196,27 +220,24 @@ public class TogglesControllerTest extends WithApplication {
         assert(o.isArray());
         assertEquals(o.size(), howManyTogglesToCreate);
 
-        for(Iterator<JsonNode> it = o.iterator(); it.hasNext();)
-        {
-            JsonNode aToggle = it.next();
-
+        for (JsonNode aToggle : o) {
             assertTrue("Node should have a name text property", aToggle.get("name").isTextual());
 
             request = new Http.RequestBuilder()
                     .method(DELETE)
                     .header("Accept", "application/json")
-                    .uri("/toggles/"+ aToggle.get("name").asText());
+                    .uri("/toggles/" + aToggle.get("name").asText());
 
-            result = route(fakeApp,request);
+            result = route(fakeApp, request);
             assertEquals(OK, result.status());
 
             request = new Http.RequestBuilder()
                     .method(GET)
                     .header("Accept", "application/json")
-                    .uri("/toggles/"+ aToggle.get("name").asText());
+                    .uri("/toggles/" + aToggle.get("name").asText());
 
 
-            result = route(fakeApp,request);
+            result = route(fakeApp, request);
             assertEquals(NOT_FOUND, result.status());
         }
 

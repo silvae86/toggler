@@ -14,6 +14,15 @@ import java.util.LinkedList;
 public class MongoConfig {
 
     private static Datastore datastore;
+    private static Morphia morphia;
+
+
+    public static Morphia morphia() {
+        if (morphia == null) {
+            morphia = new Morphia();
+        }
+        return morphia;
+    }
 
     public static Datastore datastore() {
         if (datastore == null) {
@@ -29,7 +38,7 @@ public class MongoConfig {
 
     public static void initDatastore() {
         System.out.println("Initializing MongoDB Connection");
-        final Morphia morphia = new Morphia();
+        morphia = morphia();
 
         // Tell Morphia where to find our models
         morphia.mapPackage("models");

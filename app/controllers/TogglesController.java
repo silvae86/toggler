@@ -1,8 +1,10 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import database.MongoConfig;
 import io.swagger.annotations.Api;
+import models.Service;
 import models.Toggle;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
@@ -25,15 +27,18 @@ public class TogglesController extends Controller {
 
     public Result delete (String name) {
         try {
-            Toggle toggle = Toggle.findByName(name);
-            if(toggle == null)
+            List<Toggle> allTogglesWithName = Toggle.findByName(name);
+            if (allTogglesWithName.size() == 0)
             {
                 return notFound(Json.toJson("Toggle with " + name + " not found."));
             }
             else
             {
-                MongoConfig.datastore().delete(toggle);
-                return ok(Json.toJson(toggle));
+                for (Toggle toggle : allTogglesWithName) {
+                    MongoConfig.datastore().delete(toggle);
+                }
+
+                return ok(Json.toJson("All toggles with name " + name + " deleted."));
             }
         }
         catch(Exception e)
@@ -44,14 +49,14 @@ public class TogglesController extends Controller {
 
     public Result get (String name, String serviceName, String serviceVersion) {
         try {
-            Toggle toggle = Toggle.findByName(name);
-            if(toggle == null)
+            Toggle toggleToGet = Toggle.findByNameServiceNameAndVersion(name, serviceName, serviceVersion);
+            if (toggleToGet == null)
             {
                 return notFound(Json.toJson("Toggle with " + name + " not found."));
             }
             else
             {
-                return ok(Json.toJson(toggle));
+                return ok(Json.toJson(toggleToGet));
             }
         }
         catch(Exception e)
@@ -60,67 +65,74 @@ public class TogglesController extends Controller {
         }
     }
 
-    public Result set (Http.Request request, String name) {
-        final List<Toggle> toggles = MongoConfig.datastore().createQuery(Toggle.class)
-                .field("name").equal(name)
-                .limit(1).asList();
+    public Result set(Http.Request request, String toggleName, String serviceName, String serviceVersion) {
 
-        if(toggles.size() == 1)
+        Toggle toggleToChange;
+
+        try {
+            toggleToChange = Toggle.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion);
+        } catch (Exception e)
         {
-            Map<String, String> data;
-            try{
-                data = RequestProcessor.extractSingleValueParameters(request, "value");
-            }
-            catch(Exception e)
-            {
-                return badRequest(e.getMessage());
-            }
-
-            boolean value = Boolean.parseBoolean(data.get("value"));
-
-            Toggle toggle = toggles.get(0);
-            toggle.setValue(value);
-            MongoConfig.datastore().save(toggle);
-
-            try{
-                return ok(Json.toJson(Toggle.findByName(name)));
-            }
-            catch(Exception e)
-            {
-                return internalServerError(e.getMessage());
-            }
+            return notFound("Toggle with name " + toggleName + " does not exist.");
         }
-        else
-        {
-            return notFound(Json.toJson("Toggle with name " + name + " not found."));
+
+        try {
+            Service.findByNameAndVersion(toggleName, serviceVersion);
+        } catch (Exception e) {
+            return notFound("Service with name " + serviceName + " does not exist.");
+        }
+
+
+        Map<String, String> data;
+        try {
+            data = RequestProcessor.extractSingleValueParameters(request, "value");
+        } catch (Exception e) {
+            return badRequest(e.getMessage());
+        }
+
+        boolean newValue = Boolean.parseBoolean(data.get("value"));
+
+        if (toggleToChange != null) {
+            toggleToChange.setValue(newValue);
+            MongoConfig.datastore().save(toggleToChange);
+        }
+
+        try {
+            return ok(Json.toJson(Toggle.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion)));
+        } catch (Exception e) {
+            return internalServerError(e.getMessage());
         }
     }
 
-    public Result create (Http.Request request, String name) {
-        Map<String, String> data;
+    public Result create(Http.Request request) {
+        Map<String, String> newToggleData;
         try{
-            data = RequestProcessor.extractSingleValueParameters(request, "value");
+            newToggleData = RequestProcessor.extractSingleValueParameters(request, "new_toggle_data");
         }
         catch(Exception e)
         {
             return badRequest(e.getMessage());
         }
 
-        boolean value = Boolean.parseBoolean(data.get("value"));
+        JsonNode newToggleDataJson = Json.parse(newToggleData.get("new_toggle_data"));
+        String toggleName = newToggleData.get("name");
+        String services = newToggleData.get("services");
+        String decision = newToggleData.get("decision");
 
         final Toggle toggleWithSameName = MongoConfig.datastore().createQuery(Toggle.class)
-                .field("name").equal(name).get();
+                .field("name").equal(toggleName)
+                .get();
 
         // toggle already exists
         if (toggleWithSameName != null)
         {
-            return status(409, Json.toJson("A toggle with id " + name + " already exists."));
+            return status(409, Json.toJson("A toggle with id " + toggleName + " already exists."));
         }
         else
         {
-            Toggle newToggle = new Toggle(name, value);
+            Toggle newToggle = new Toggle(toggleName);
             MongoConfig.datastore().save(newToggle);
-            return ok(Json.toJson("New toggle with " + name + " created."));
+            return ok(Json.toJson("New toggle with " + newToggle + " created."));
         }
     }
 

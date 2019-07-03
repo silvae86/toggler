@@ -5,8 +5,7 @@ import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
 
 @Entity("services")
@@ -21,18 +20,34 @@ public class Service {
     @Property("version")
     private String version;
 
-    @Embedded("toggles")
-    private LinkedList<Toggle> toggles;
+    @Reference("toggles")
+    private HashSet<Toggle> toggles;
 
     public static Service findByNameAndVersion(String name, String version)
     {
         Query<Service> query = MongoConfig.datastore().find(Service.class);
-        query.or(
+        query.and(
                 query.criteria("name").equal(name),
                 query.criteria("version").equal(version)
         );
 
         return query.get();
+    }
+
+    public static List<Service> findByName(String name) {
+        Query<Service> query = MongoConfig.datastore().find(Service.class);
+        query.criteria("name").equal(name);
+        return query.asList();
+    }
+
+    public void updateToggleValue(Toggle toggleToUpdate, Boolean newValue) {
+        if (toggles.contains(toggleToUpdate)) {
+            toggleToUpdate.setValue(newValue);
+            MongoConfig.datastore().save(toggleToUpdate);
+        } else {
+            toggles.add(toggleToUpdate);
+        }
+
     }
 
     public Service(String name, String version)
