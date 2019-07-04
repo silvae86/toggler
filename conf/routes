@@ -209,13 +209,6 @@ GET     /toggles                    controllers.TogglesController.index()
 #      schema:
 #        $ref: '#/definitions/Config'
 #      description: The configuration for the toggles and services that can access their value
-#    - in: body
-#      name: create_new
-#      required: true
-#      type: boolean
-#      example: true
-#      default: true
-#      description: Create new toggles if they do not exist
 #  responses:
 #    200:
 #      description: OK

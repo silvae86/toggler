@@ -50,6 +50,10 @@ public class Service {
 
     }
 
+    public Service() {
+
+    }
+
     public Service(String name, String version)
     {
         this.name = name;

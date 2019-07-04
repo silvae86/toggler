@@ -1,13 +1,12 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.mongodb.DBObject;
-import com.mongodb.util.JSON;
 import database.MongoConfig;
 import models.ConfigChange;
 import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
+
+import java.util.Optional;
 
 import static play.mvc.Results.*;
 
@@ -68,8 +67,7 @@ public class ConfigsController {
     public Result update (Http.Request request) {
 
         try {
-            JsonNode jn = request.body().asJson();
-            ConfigChange newConfigChange = MongoConfig.morphia().fromDBObject(MongoConfig.datastore(), ConfigChange.class, (DBObject) JSON.parse(jn.toString()));
+            Optional<ConfigChange> newConfigChange = request.body().parseJson(ConfigChange.class);
 
             MongoConfig.datastore().save(newConfigChange);
             return ok(Json.toJson(newConfigChange));

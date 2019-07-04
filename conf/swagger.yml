@@ -61,8 +61,8 @@ definitions:
           type: object
           schema:
             $ref: '#/definitions/Toggle'
-      decision:
-        type: string
+      allow_access:
+        type: boolean
     example:
       services:
         - name: "ABC"
@@ -74,4 +74,4 @@ definitions:
           value: "false"
         - name: "isButtonGreen"
           value: "true"
-      decision: "allow"
+      allow_access: true
