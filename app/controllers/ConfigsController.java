@@ -22,7 +22,7 @@ public class ConfigsController {
 //
 //        boolean value = Boolean.parseBoolean(data.get("value"));
 //
-//        final ToggleInstance toggleWithSameName = MongoConfig.datastore().createQuery(ToggleInstance.class)
+//        final PermissionNode toggleWithSameName = MongoConfig.datastore().createQuery(PermissionNode.class)
 //                .field("name").equal(name).get();
 //
 //        // toggle already exists
@@ -32,15 +32,15 @@ public class ConfigsController {
 //        }
 //        else
 //        {
-//            ToggleInstance newToggle = new ToggleInstance(name, value);
+//            PermissionNode newToggle = new PermissionNode(name, value);
 //            MongoConfig.datastore().save(newToggle);
 //            return ok(Json.toJson("New toggle with " + name + " created."));
 //        }
 //    }
 //
 //    public Result index () {
-//        final Query<ToggleInstance> query = MongoConfig.datastore().createQuery(ToggleInstance.class);
-//        final List<ToggleInstance> toggleInstances = query.asList();
+//        final Query<PermissionNode> query = MongoConfig.datastore().createQuery(PermissionNode.class);
+//        final List<PermissionNode> toggleInstances = query.asList();
 //        return ok(Json.toJson(toggleInstances));
 //    }
 

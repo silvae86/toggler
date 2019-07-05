@@ -50,8 +50,8 @@ GET     /login                    controllers.UsersController.login(request: Req
 # Toggles
 
 ###
-#  summary: Creates a new toggleInstance
-#  description: Creates a new toggleInstance with name "name" in the system, and value specified as the "value" field in the PUT request body.
+#  summary: Creates a new permissionNode
+#  description: Creates a new permissionNode with name "name" in the system, and value specified as the "value" field in the PUT request body.
 #  tags:
 #    - Toggles
 #  produces:
@@ -63,27 +63,27 @@ GET     /login                    controllers.UsersController.login(request: Req
 #      type: string
 #      example: 1.0.0
 #      default: 1.0.0
-#      description: New toggleInstance configuration
+#      description: New permissionNode configuration
 #    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
 #      example: true
 #      default: true
-#      description: Name of the toggleInstance to modify.
+#      description: Name of the permissionNode to modify.
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
-#       description: ToggleInstance created
+#       description: PermissionNode created
 #    409:
-#       description: A toggleInstance with that name already exists
+#       description: A permissionNode with that name already exists
 ###
-PUT     /toggleInstances                    controllers.TogglesController.create(request: Request)
+PUT     /permissionNodes                    controllers.TogglesController.create(request: Request)
 
 ###
-#  summary: Get toggleInstance value for a specific version of a service
-#  description: Retrieves the value (true/false) of the toggleInstance with name "name", when applied to version "version" of service "service"
+#  summary: Get permissionNode value for a specific version of a service
+#  description: Retrieves the value (true/false) of the permissionNode with name "name", when applied to version "version" of service "service"
 #  tags:
 #    - Toggles
 #  parameters:
@@ -93,7 +93,7 @@ PUT     /toggleInstances                    controllers.TogglesController.create
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
-#      description: Name of the toggleInstance to retrieve.
+#      description: Name of the permissionNode to retrieve.
 #    - in: path
 #      name: service
 #      required: true
@@ -114,11 +114,11 @@ PUT     /toggleInstances                    controllers.TogglesController.create
 #    404:
 #      description: Service and/or version of service not found
 ###
-GET     /toggleInstances/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
+GET     /permissionNodes/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
 
 ###
-#  summary: Set toggleInstance value for a specific version of a service
-#  description: Sets the value (true/false) of a toggleInstance in the system, for a specific service
+#  summary: Set permissionNode value for a specific version of a service
+#  description: Sets the value (true/false) of a permissionNode in the system, for a specific service
 #  tags:
 #    - Toggles
 #  produces:
@@ -130,34 +130,34 @@ GET     /toggleInstances/:name/:service/:version                    controllers.
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
-#      description: Name of the toggleInstance to modify.
+#      description: Name of the permissionNode to modify.
 #    - in: path
 #      name: service
 #      required: true
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Name of the service to which the new value of the toggleInstance will apply.
+#      description: Name of the service to which the new value of the permissionNode will apply.
 #    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
 #      example: true
 #      default: true
-#      description: New value for the toggleInstance
+#      description: New value for the permissionNode
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
 #       description: OK
 #    404:
-#       description: There is no toggleInstance with that name
+#       description: There is no permissionNode with that name
 ###
-POST     /toggleInstances/:name/:service/:version                    controllers.TogglesController.set(request: Request, name: String, service: String, version: String)
+POST     /permissionNodes/:name/:service/:version                    controllers.TogglesController.set(request: Request, name: String, service: String, version: String)
 
 ###
-#  summary: Delete toggleInstance
-#  description: Deletes the toggleInstance with name "name" if it exists in the system, for all versions of all services.
+#  summary: Delete permissionNode
+#  description: Deletes the permissionNode with name "name" if it exists in the system, for all versions of all services.
 #  tags:
 #    - Toggles
 #  produces:
@@ -169,20 +169,20 @@ POST     /toggleInstances/:name/:service/:version                    controllers
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
-#      description: Name of the toggleInstance to modify.
+#      description: Name of the permissionNode to modify.
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
 #       description: OK
 #    404:
-#       description: There is no toggleInstance with that name
+#       description: There is no permissionNode with that name
 ###
-DELETE  /toggleInstances/:name                controllers.TogglesController.delete(name:String)
+DELETE  /permissionNodes/:name                controllers.TogglesController.delete(name:String)
 
 ###
-#  summary: Get all toggleInstances
-#  description: Retrieves all toggleInstances present in the system
+#  summary: Get all permissionNodes
+#  description: Retrieves all permissionNodes present in the system
 #  tags:
 #    - Toggles
 #  produces:
@@ -193,11 +193,11 @@ DELETE  /toggleInstances/:name                controllers.TogglesController.dele
 #    200:
 #       description: OK
 ###
-GET     /toggleInstances                    controllers.TogglesController.index()
+GET     /permissionNodes                    controllers.TogglesController.index()
 
 ###
-#  summary: Edit service toggleInstance configuration
-#  description: Edits the toggleInstances (and respective values) available to each service version
+#  summary: Edit service permissionNode configuration
+#  description: Edits the permissionNodes (and respective values) available to each service version
 #  tags:
 #    - Configurations
 #  produces:
@@ -208,7 +208,7 @@ GET     /toggleInstances                    controllers.TogglesController.index(
 #      required: true
 #      schema:
 #        $ref: '#/definitions/Config'
-#      description: The configuration for the toggleInstances and services that can access their value
+#      description: The configuration for the permissionNodes and services that can access their value
 #  responses:
 #    200:
 #      description: OK
@@ -223,8 +223,8 @@ POST     /config                    controllers.ConfigsController.update(request
 
 
 ###
-#  summary: Fetch configuration of all toggleInstances for all services and versions
-#  description: Retrieves the configuration of all the toggleInstances (and respective values), for all services and versions
+#  summary: Fetch configuration of all permissionNodes for all services and versions
+#  description: Retrieves the configuration of all the permissionNodes (and respective values), for all services and versions
 #  tags:
 #    - Configurations
 #  produces:
@@ -242,8 +242,8 @@ POST     /config                    controllers.ConfigsController.update(request
 GET     /config                    controllers.ConfigsController.get()
 
 ###
-#  summary: Fetch toggleInstances for service version
-#  description: Fetch configuration of all toggleInstances for version "version" of a service "service_name",
+#  summary: Fetch permissionNodes for service version
+#  description: Fetch configuration of all permissionNodes for version "version" of a service "service_name",
 #  tags:
 #    - Services
 #  produces:
@@ -255,14 +255,14 @@ GET     /config                    controllers.ConfigsController.get()
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Name of the service for whom the current toggleInstance configuration should be fetched
+#      description: Name of the service for whom the current permissionNode configuration should be fetched
 #    - in: path
 #      name: version
 #      required: true
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Name of the service for whom the current toggleInstance configuration should be fetched
+#      description: Name of the service for whom the current permissionNode configuration should be fetched
 #  responses:
 #    200:
 #      description: OK

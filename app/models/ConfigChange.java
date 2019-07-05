@@ -9,6 +9,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
+import utils.PermissionsMap;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,7 +23,7 @@ public class ConfigChange {
 
     @Reference("toggles")
     @JsonAlias("toggles")
-    private HashSet<ToggleInstance> toggles;
+    private HashSet<PermissionNode> toggles;
 
     @Property("date_applied")
     private Date dateApplied;
@@ -32,6 +33,8 @@ public class ConfigChange {
 
     @Reference("user")
     private User creator;
+
+    private PermissionsMap permissions;
 
     public ConfigChange()
     {
@@ -53,6 +56,10 @@ public class ConfigChange {
         this.dateReceived = new Date();
         MongoConfig.datastore().save(this);
 
+        this.permissions = new PermissionsMap();
+        for (PermissionNode toggle : toggles) {
+            permissions.combine(toggle.calculatePermissions());
+        }
 
         this.dateApplied = new Date();
         MongoConfig.datastore().save(this);

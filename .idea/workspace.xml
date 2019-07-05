@@ -1,41 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="Work in progress in the Configs Controller">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/ServiceToggle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/concepts/Toggle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/utils/GateKeeper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/utils/GatekeeperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/toggler-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/toggler-build.iml" afterDir="false" />
+    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="§">
+      <change afterPath="$PROJECT_DIR$/app/utils/PermissionsMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/ConfigsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ConfigsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ServicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ServicesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/TogglesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/TogglesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/ConfigChange.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ConfigChange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/concepts/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/Toggle.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ToggleInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ServiceToggle.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Toggle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ToggleInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/PermissionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/concepts/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/concepts/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/GateKeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/GateKeeper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/application.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf/swagger.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/swagger.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mongo/init/001_mongo_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/mongo/init/001_mongo_users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mongo/init/002_toggles.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/mongo/init/002_toggles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mongo/init/003_permissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/mongo/init/003_permissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mongo/init/004_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/mongo/init/004_users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/TogglesControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/TogglesControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mocks/base_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/mocks/base_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mocks/edit_toggle_values_correct.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mocks/edit_toggle_values_missing_service.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mocks/edit_toggle_values_missing_toggle.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/mocks/edit_toggle_values_missing_version.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/Permutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_utils/Permutation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_utils/Utils.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -95,25 +73,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/ToggleInstance.java">
+        <entry file="file://$PROJECT_DIR$/app/models/PermissionNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="286">
+              <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
               <folding>
-                <element signature="e#2663#2664#0" expanded="true" />
-                <element signature="e#2697#2698#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="79" column="35" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1494#1495#0" expanded="true" />
+                <element signature="e#1521#1522#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/ServiceToggle.java">
+        <entry file="file://$PROJECT_DIR$/app/models/Toggle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="60" column="22" lean-forward="true" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
+            <state relative-caret-position="109">
+              <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#1228#1229#0" expanded="true" />
                 <element signature="e#1253#1254#0" expanded="true" />
               </folding>
@@ -125,7 +115,10 @@
         <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,25 +126,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/ConfigChange.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+            <state relative-caret-position="660">
+              <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/utils/GateKeeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="73" lean-forward="true" selection-start-line="26" selection-start-column="73" selection-end-line="26" selection-end-column="73" />
+            <state relative-caret-position="210">
+              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#468#469#0" expanded="true" />
-                <element signature="e#488#489#0" expanded="true" />
-                <element signature="e#658#659#0" expanded="true" />
-                <element signature="e#682#683#0" expanded="true" />
-                <element signature="e#762#763#0" expanded="true" />
-                <element signature="e#788#789#0" expanded="true" />
                 <element signature="e#861#862#0" expanded="true" />
                 <element signature="e#892#893#0" expanded="true" />
               </folding>
@@ -160,10 +147,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/database/MongoConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/utils/GatekeeperTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+            <state relative-caret-position="540">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,22 +170,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/concepts/Toggle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state relative-caret-position="270">
+              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#379#380#0" expanded="true" />
                 <element signature="e#398#399#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_utils/Utils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -216,6 +203,7 @@
     <findStrings>
       <find>configChange</find>
       <find>allow</find>
+      <find>LinkedList</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -228,19 +216,23 @@
         <option value="$PROJECT_DIR$/gatekeeper/src/main.java" />
         <option value="$PROJECT_DIR$/gatekeeper/src/Gatekeeper.java" />
         <option value="$PROJECT_DIR$/gatekeeper/pom.xml" />
-        <option value="$PROJECT_DIR$/app/models/Toggle.java" />
         <option value="$PROJECT_DIR$/app/models/Service.java" />
         <option value="$PROJECT_DIR$/gatekeeper/src/main/java/Gatekeeper.java" />
         <option value="$PROJECT_DIR$/test/utils/HomeControllerTest.java" />
         <option value="$PROJECT_DIR$/app/controllers/TogglesController.java" />
         <option value="$PROJECT_DIR$/test/mocks/base_config.yml" />
-        <option value="$PROJECT_DIR$/app/models/ServiceToggle.java" />
         <option value="$PROJECT_DIR$/app/models/concepts/Toggle.java" />
         <option value="$PROJECT_DIR$/test/utils/GatekeeperTest.java" />
-        <option value="$PROJECT_DIR$/app/models/ToggleInstance.java" />
         <option value="$PROJECT_DIR$/app/models/concepts/Service.java" />
         <option value="$PROJECT_DIR$/app/models/ConfigChange.java" />
         <option value="$PROJECT_DIR$/app/utils/GateKeeper.java" />
+        <option value="$PROJECT_DIR$/app/models/ServiceToggle.java" />
+        <option value="$PROJECT_DIR$/app/models/ToggleInstance.java" />
+        <option value="$PROJECT_DIR$/app/models/ToggleSetting.java" />
+        <option value="$PROJECT_DIR$/app/models/ToggleValue.java" />
+        <option value="$PROJECT_DIR$/app/models/Toggle.java" />
+        <option value="$PROJECT_DIR$/app/models/PermissionNode.java" />
+        <option value="$PROJECT_DIR$/app/utils/PermissionsMap.java" />
       </list>
     </option>
   </component>
@@ -310,6 +302,13 @@
               <item name="toggler" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="concepts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
@@ -518,8 +517,16 @@
       <workItem from="1562284922880" duration="616000" />
       <workItem from="1562285566116" duration="1127000" />
       <workItem from="1562336326509" duration="21000" />
-      <workItem from="1562336392657" duration="10909000" />
+      <workItem from="1562336392657" duration="15425000" />
     </task>
+    <task id="LOCAL-00001" summary="Work in progress in the Configs Controller">
+      <created>1562347712262</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1562347712262</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -555,7 +562,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13299000" />
+    <option name="totallyTimeSpent" value="17815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1057" extended-state="0" />
@@ -671,7 +678,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Work in progress in the Configs Controller" />
     <option name="LAST_COMMIT_MESSAGE" value="Work in progress in the Configs Controller" />
@@ -684,25 +691,25 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/controllers/ConfigsController.java</url>
-          <line>74</line>
+          <line>72</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/controllers/ConfigsController.java</url>
-          <line>76</line>
+          <line>74</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/controllers/ConfigsController.java</url>
-          <line>71</line>
+          <line>69</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/utils/GatekeeperTest.java</url>
-          <line>40</line>
+          <line>26</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
@@ -800,13 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/MongoConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -897,10 +897,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concepts/Toggle.java">
+    <entry file="file://$PROJECT_DIR$/test/mocks/base_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/utils/GatekeeperTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/MongoConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/GateKeeper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+            <element signature="e#892#893#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ConfigChange.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/PermissionNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/concepts/Toggle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#379#380#0" expanded="true" />
@@ -909,74 +972,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/mocks/base_config.yml">
+    <entry file="file://$PROJECT_DIR$/app/models/Toggle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ToggleInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="109">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
           <folding>
-            <element signature="e#2663#2664#0" expanded="true" />
-            <element signature="e#2697#2698#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ServiceToggle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="60" column="22" lean-forward="true" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#1228#1229#0" expanded="true" />
             <element signature="e#1253#1254#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
+    <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ConfigChange.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/utils/GatekeeperTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="540">
+          <caret line="79" column="35" selection-start-line="79" selection-start-column="35" selection-end-line="79" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/utils/GateKeeper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="73" lean-forward="true" selection-start-line="26" selection-start-column="73" selection-end-line="26" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
-            <element signature="e#488#489#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#788#789#0" expanded="true" />
-            <element signature="e#861#862#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
+            <element signature="e#1494#1495#0" expanded="true" />
+            <element signature="e#1521#1522#0" expanded="true" />
           </folding>
         </state>
       </provider>

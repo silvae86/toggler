@@ -21,27 +21,29 @@ import java.io.IOException;
 })
 @Getter
 @Setter
-@JsonDeserialize(using = ServiceToggle.Deserializer.class)
-public class ServiceToggle {
+@JsonDeserialize(using = Toggle.Deserializer.class)
+public class Toggle {
 
+    @Reference("service")
     @JsonAlias("name")
     private Service appliesTo;
+
     @Reference("value")
     private boolean value;
 
-    public static class Deserializer extends StdDeserializer<ServiceToggle> {
+    public static class Deserializer extends StdDeserializer<Toggle> {
 
         public Deserializer() {
-            super(ServiceToggle.class);
+            super(Toggle.class);
         }
 
         @Override
-        public ServiceToggle deserialize(JsonParser jp, DeserializationContext ctxt)
+        public Toggle deserialize(JsonParser jp, DeserializationContext ctxt)
                 throws IOException, JsonProcessingException {
 
             JsonNode node = jp.getCodec().readTree(jp);
             Service service = new Service();
-            ServiceToggle st = new ServiceToggle();
+            Toggle st = new Toggle();
 
             String name = node.get("name").textValue();
             service.setName(name);

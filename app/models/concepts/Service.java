@@ -3,7 +3,7 @@ package models.concepts;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
-import models.ToggleInstance;
+import models.PermissionNode;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
@@ -26,7 +26,7 @@ public class Service {
     private String version;
 
     @Reference("toggles")
-    private HashSet<ToggleInstance> toggles;
+    private HashSet<PermissionNode> toggles;
 
     public Service() {
 

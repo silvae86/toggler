@@ -60,7 +60,7 @@ definitions:
         items:
           type: object
           schema:
-            $ref: '#/definitions/ToggleInstance'
+            $ref: '#/definitions/PermissionNode'
       allow_access:
         type: boolean
     example:
