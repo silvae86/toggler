@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/toggler.iml" filepath="$PROJECT_DIR$/.idea/modules/toggler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/toggler-build.iml" filepath="$PROJECT_DIR$/.idea/modules/toggler-build.iml" />
     </modules>
   </component>
 </project>
