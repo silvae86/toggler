@@ -22,7 +22,7 @@ securityDefinitions:
 #
 #    - default:
 #        services: []
-#        toggles:
+#        toggleInstances:
 #          - isButtonBlue:
 #              value: true
 #        decision: deny
@@ -46,7 +46,7 @@ definitions:
     type: object
     required:
       - services
-      - toggles
+      - toggleInstances
       - decision
     properties:
       services:
@@ -60,7 +60,7 @@ definitions:
         items:
           type: object
           schema:
-            $ref: '#/definitions/Toggle'
+            $ref: '#/definitions/ToggleInstance'
       allow_access:
         type: boolean
     example:

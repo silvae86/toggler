@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.inject.Inject;
 import database.MongoConfig;
 import io.swagger.annotations.Api;
-import models.Service;
-import models.Toggle;
+import models.ToggleInstance;
+import models.concepts.Service;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -27,18 +27,18 @@ public class TogglesController extends Controller {
 
     public Result delete (String name) {
         try {
-            List<Toggle> allTogglesWithName = Toggle.findByName(name);
+            List<ToggleInstance> allTogglesWithName = ToggleInstance.findByName(name);
             if (allTogglesWithName.size() == 0)
             {
-                return notFound(Json.toJson("Toggle with " + name + " not found."));
+                return notFound(Json.toJson("ToggleInstance with " + name + " not found."));
             }
             else
             {
-                for (Toggle toggle : allTogglesWithName) {
-                    MongoConfig.datastore().delete(toggle);
+                for (ToggleInstance toggleInstance : allTogglesWithName) {
+                    MongoConfig.datastore().delete(toggleInstance);
                 }
 
-                return ok(Json.toJson("All toggles with name " + name + " deleted."));
+                return ok(Json.toJson("All toggleInstances with name " + name + " deleted."));
             }
         }
         catch(Exception e)
@@ -49,14 +49,14 @@ public class TogglesController extends Controller {
 
     public Result get (String name, String serviceName, String serviceVersion) {
         try {
-            Toggle toggleToGet = Toggle.findByNameServiceNameAndVersion(name, serviceName, serviceVersion);
-            if (toggleToGet == null)
+            ToggleInstance toggleInstanceToGet = ToggleInstance.findByNameServiceNameAndVersion(name, serviceName, serviceVersion);
+            if (toggleInstanceToGet == null)
             {
-                return notFound(Json.toJson("Toggle with " + name + " not found."));
+                return notFound(Json.toJson("ToggleInstance with " + name + " not found."));
             }
             else
             {
-                return ok(Json.toJson(toggleToGet));
+                return ok(Json.toJson(toggleInstanceToGet));
             }
         }
         catch(Exception e)
@@ -67,13 +67,13 @@ public class TogglesController extends Controller {
 
     public Result set(Http.Request request, String toggleName, String serviceName, String serviceVersion) {
 
-        Toggle toggleToChange;
+        ToggleInstance toggleInstanceToChange;
 
         try {
-            toggleToChange = Toggle.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion);
+            toggleInstanceToChange = ToggleInstance.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion);
         } catch (Exception e)
         {
-            return notFound("Toggle with name " + toggleName + " does not exist.");
+            return notFound("ToggleInstance with name " + toggleName + " does not exist.");
         }
 
         try {
@@ -92,13 +92,13 @@ public class TogglesController extends Controller {
 
         boolean newValue = Boolean.parseBoolean(data.get("value"));
 
-        if (toggleToChange != null) {
-            toggleToChange.setValue(newValue);
-            MongoConfig.datastore().save(toggleToChange);
+        if (toggleInstanceToChange != null) {
+            toggleInstanceToChange.setDefaultValue(newValue);
+            MongoConfig.datastore().save(toggleInstanceToChange);
         }
 
         try {
-            return ok(Json.toJson(Toggle.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion)));
+            return ok(Json.toJson(ToggleInstance.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion)));
         } catch (Exception e) {
             return internalServerError(e.getMessage());
         }
@@ -119,26 +119,27 @@ public class TogglesController extends Controller {
         String services = newToggleData.get("services");
         String decision = newToggleData.get("decision");
 
-        final Toggle toggleWithSameName = MongoConfig.datastore().createQuery(Toggle.class)
+        final ToggleInstance toggleInstanceWithSameName = MongoConfig.datastore().createQuery(ToggleInstance.class)
                 .field("name").equal(toggleName)
                 .get();
 
         // toggle already exists
-        if (toggleWithSameName != null)
+        if (toggleInstanceWithSameName != null)
         {
             return status(409, Json.toJson("A toggle with id " + toggleName + " already exists."));
         }
         else
         {
-            Toggle newToggle = new Toggle(toggleName);
-            MongoConfig.datastore().save(newToggle);
-            return ok(Json.toJson("New toggle with " + newToggle + " created."));
+            ToggleInstance newToggleInstance = new ToggleInstance();
+            //newToggleInstance.setService();
+            MongoConfig.datastore().save(newToggleInstance);
+            return ok(Json.toJson("New toggle with " + newToggleInstance + " created."));
         }
     }
 
     public Result index () {
-        final Query<Toggle> query = MongoConfig.datastore().createQuery(Toggle.class);
-        final List<Toggle> toggles = query.asList();
-        return ok(Json.toJson(toggles));
+        final Query<ToggleInstance> query = MongoConfig.datastore().createQuery(ToggleInstance.class);
+        final List<ToggleInstance> toggleInstances = query.asList();
+        return ok(Json.toJson(toggleInstances));
     }
 }

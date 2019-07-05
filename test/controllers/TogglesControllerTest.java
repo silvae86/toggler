@@ -11,7 +11,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 import play.test.Helpers;
 import play.test.WithApplication;
-import utils.Permutation;
+import test_utils.Permutation;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,7 +40,7 @@ public class TogglesControllerTest extends WithApplication {
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .header("Accept", "application/json")
                 .method(GET)
-                .uri("/toggles");
+                .uri("/toggleInstances");
 
         Result result = route(fakeApp, request);
         assertEquals(OK, result.status());
@@ -56,7 +56,7 @@ public class TogglesControllerTest extends WithApplication {
             HashSet<String> serviceNames = Permutation.permute(charactersOfServicesToCreate);
             for (String serviceName : serviceNames) {
                 for (int versionNumber = 0; versionNumber < versionsOfServicesToCreate; versionNumber++) {
-                    String fullUri = "/toggles/" + aToggle.get("name").asText() + "/" + serviceName + "/" + "v0.0." + versionNumber;
+                    String fullUri = "/toggleInstances/" + aToggle.get("name").asText() + "/" + serviceName + "/" + "v0.0." + versionNumber;
                     request = new Http.RequestBuilder()
                             .method(PUT)
                             .header("Accept", "application/json")
@@ -73,7 +73,7 @@ public class TogglesControllerTest extends WithApplication {
                     request = new Http.RequestBuilder()
                             .method(GET)
                             .header("Accept", "application/json")
-                            .uri("/toggles/" + aToggle.get("name").asText());
+                            .uri("/toggleInstances/" + aToggle.get("name").asText());
 
 
                     result = route(fakeApp, request);
@@ -92,7 +92,7 @@ public class TogglesControllerTest extends WithApplication {
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .method(GET)
                 .header("Accept", "application/json")
-                .uri("/toggles");
+                .uri("/toggleInstances");
 
         Result result = route(fakeApp, request);
         JsonNode o = Json.parse(contentAsString(result));
@@ -105,7 +105,7 @@ public class TogglesControllerTest extends WithApplication {
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .header("Accept", "application/json")
                 .method(GET)
-                .uri("/toggles");
+                .uri("/toggleInstances");
 
         Result result = route(fakeApp, request);
         assertEquals(OK, result.status());
@@ -121,7 +121,7 @@ public class TogglesControllerTest extends WithApplication {
             HashSet<String> serviceNames = Permutation.permute(charactersOfServicesToCreate);
             for (String serviceName : serviceNames) {
                 for (int versionNumber = 0; versionNumber < versionsOfServicesToCreate; versionNumber++) {
-                    String fullUri = "/toggles/" + aToggle.get("name").asText() + "/" + serviceName + "/" + "v0.0." + versionNumber;
+                    String fullUri = "/toggleInstances/" + aToggle.get("name").asText() + "/" + serviceName + "/" + "v0.0." + versionNumber;
                     request = new Http.RequestBuilder()
                             .method(POST)
                             .header("Accept", "application/json")
@@ -138,7 +138,7 @@ public class TogglesControllerTest extends WithApplication {
                     request = new Http.RequestBuilder()
                             .method(GET)
                             .header("Accept", "application/json")
-                            .uri("/toggles/" + aToggle.get("name").asText());
+                            .uri("/toggleInstances/" + aToggle.get("name").asText());
 
 
                     result = route(fakeApp, request);
@@ -156,7 +156,7 @@ public class TogglesControllerTest extends WithApplication {
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .header("Accept", "application/json")
                 .method(GET)
-                .uri("/toggles");
+                .uri("/toggleInstances");
 
         Result result = route(fakeApp, request);
         assertEquals(OK, result.status());
@@ -176,7 +176,7 @@ public class TogglesControllerTest extends WithApplication {
             request = new Http.RequestBuilder()
                     .method(DELETE)
                     .header("Accept", "application/json")
-                    .uri("/toggles/"+ aToggle.get("name").asText());
+                    .uri("/toggleInstances/" + aToggle.get("name").asText());
 
             result = route(fakeApp,request);
             assertEquals(OK, result.status());
@@ -184,7 +184,7 @@ public class TogglesControllerTest extends WithApplication {
             request = new Http.RequestBuilder()
                     .method(GET)
                     .header("Accept", "application/json")
-                    .uri("/toggles/"+ aToggle.get("name").asText());
+                    .uri("/toggleInstances/" + aToggle.get("name").asText());
 
 
             result = route(fakeApp,request);
@@ -194,7 +194,7 @@ public class TogglesControllerTest extends WithApplication {
         request = new Http.RequestBuilder()
                 .header("Accept", "application/json")
                 .method(GET)
-                .uri("/toggles");
+                .uri("/toggleInstances");
 
         result = route(fakeApp, request);
         assertEquals(OK, result.status());
@@ -210,7 +210,7 @@ public class TogglesControllerTest extends WithApplication {
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .header("Accept", "application/json")
                 .method(GET)
-                .uri("/toggles");
+                .uri("/toggleInstances");
 
         Result result = route(fakeApp, request);
         assertEquals(OK, result.status());
@@ -226,7 +226,7 @@ public class TogglesControllerTest extends WithApplication {
             request = new Http.RequestBuilder()
                     .method(DELETE)
                     .header("Accept", "application/json")
-                    .uri("/toggles/" + aToggle.get("name").asText());
+                    .uri("/toggleInstances/" + aToggle.get("name").asText());
 
             result = route(fakeApp, request);
             assertEquals(OK, result.status());
@@ -234,7 +234,7 @@ public class TogglesControllerTest extends WithApplication {
             request = new Http.RequestBuilder()
                     .method(GET)
                     .header("Accept", "application/json")
-                    .uri("/toggles/" + aToggle.get("name").asText());
+                    .uri("/toggleInstances/" + aToggle.get("name").asText());
 
 
             result = route(fakeApp, request);
@@ -244,7 +244,7 @@ public class TogglesControllerTest extends WithApplication {
         request = new Http.RequestBuilder()
                 .header("Accept", "application/json")
                 .method(GET)
-                .uri("/toggles");
+                .uri("/toggleInstances");
 
         result = route(fakeApp, request);
         assertEquals(OK, result.status());

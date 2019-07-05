@@ -1,8 +1,9 @@
-package models;
+package models.concepts;
 
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
+import models.ToggleInstance;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
@@ -25,7 +26,16 @@ public class Service {
     private String version;
 
     @Reference("toggles")
-    private HashSet<Toggle> toggles;
+    private HashSet<ToggleInstance> toggles;
+
+    public Service() {
+
+    }
+
+    public Service(String name, String version) {
+        this.name = name;
+        this.version = version;
+    }
 
     public static Service findByNameAndVersion(String name, String version)
     {
@@ -42,25 +52,5 @@ public class Service {
         Query<Service> query = MongoConfig.datastore().find(Service.class);
         query.criteria("name").equal(name);
         return query.asList();
-    }
-
-    public void updateToggleValue(Toggle toggleToUpdate, Boolean newValue) {
-        if (toggles.contains(toggleToUpdate)) {
-            toggleToUpdate.setValue(newValue);
-            MongoConfig.datastore().save(toggleToUpdate);
-        } else {
-            toggles.add(toggleToUpdate);
-        }
-
-    }
-
-    public Service() {
-
-    }
-
-    public Service(String name, String version)
-    {
-        this.name = name;
-        this.version = version;
     }
 }

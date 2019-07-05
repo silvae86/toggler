@@ -50,8 +50,8 @@ GET     /login                    controllers.UsersController.login(request: Req
 # Toggles
 
 ###
-#  summary: Creates a new toggle
-#  description: Creates a new toggle with name "name" in the system, and value specified as the "value" field in the PUT request body.
+#  summary: Creates a new toggleInstance
+#  description: Creates a new toggleInstance with name "name" in the system, and value specified as the "value" field in the PUT request body.
 #  tags:
 #    - Toggles
 #  produces:
@@ -63,27 +63,27 @@ GET     /login                    controllers.UsersController.login(request: Req
 #      type: string
 #      example: 1.0.0
 #      default: 1.0.0
-#      description: New toggle configuration
+#      description: New toggleInstance configuration
 #    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
 #      example: true
 #      default: true
-#      description: Name of the toggle to modify.
+#      description: Name of the toggleInstance to modify.
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
-#       description: Toggle created
+#       description: ToggleInstance created
 #    409:
-#       description: A toggle with that name already exists
+#       description: A toggleInstance with that name already exists
 ###
-PUT     /toggles                    controllers.TogglesController.create(request: Request)
+PUT     /toggleInstances                    controllers.TogglesController.create(request: Request)
 
 ###
-#  summary: Get toggle value for a specific version of a service
-#  description: Retrieves the value (true/false) of the toggle with name "name", when applied to version "version" of service "service"
+#  summary: Get toggleInstance value for a specific version of a service
+#  description: Retrieves the value (true/false) of the toggleInstance with name "name", when applied to version "version" of service "service"
 #  tags:
 #    - Toggles
 #  parameters:
@@ -93,7 +93,7 @@ PUT     /toggles                    controllers.TogglesController.create(request
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
-#      description: Name of the toggle to retrieve.
+#      description: Name of the toggleInstance to retrieve.
 #    - in: path
 #      name: service
 #      required: true
@@ -114,11 +114,11 @@ PUT     /toggles                    controllers.TogglesController.create(request
 #    404:
 #      description: Service and/or version of service not found
 ###
-GET     /toggles/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
+GET     /toggleInstances/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
 
 ###
-#  summary: Set toggle value for a specific version of a service
-#  description: Sets the value (true/false) of a toggle in the system, for a specific service
+#  summary: Set toggleInstance value for a specific version of a service
+#  description: Sets the value (true/false) of a toggleInstance in the system, for a specific service
 #  tags:
 #    - Toggles
 #  produces:
@@ -130,34 +130,34 @@ GET     /toggles/:name/:service/:version                    controllers.TogglesC
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
-#      description: Name of the toggle to modify.
+#      description: Name of the toggleInstance to modify.
 #    - in: path
 #      name: service
 #      required: true
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Name of the service to which the new value of the toggle will apply.
+#      description: Name of the service to which the new value of the toggleInstance will apply.
 #    - in: formData
 #      name: value
 #      required: true
 #      type: boolean
 #      example: true
 #      default: true
-#      description: New value for the toggle
+#      description: New value for the toggleInstance
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
 #       description: OK
 #    404:
-#       description: There is no toggle with that name
+#       description: There is no toggleInstance with that name
 ###
-POST     /toggles/:name/:service/:version                    controllers.TogglesController.set(request: Request, name: String, service: String, version: String)
+POST     /toggleInstances/:name/:service/:version                    controllers.TogglesController.set(request: Request, name: String, service: String, version: String)
 
 ###
-#  summary: Delete toggle
-#  description: Deletes the toggle with name "name" if it exists in the system, for all versions of all services.
+#  summary: Delete toggleInstance
+#  description: Deletes the toggleInstance with name "name" if it exists in the system, for all versions of all services.
 #  tags:
 #    - Toggles
 #  produces:
@@ -169,20 +169,20 @@ POST     /toggles/:name/:service/:version                    controllers.Toggles
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
-#      description: Name of the toggle to modify.
+#      description: Name of the toggleInstance to modify.
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
 #       description: OK
 #    404:
-#       description: There is no toggle with that name
+#       description: There is no toggleInstance with that name
 ###
-DELETE  /toggles/:name                controllers.TogglesController.delete(name:String)
+DELETE  /toggleInstances/:name                controllers.TogglesController.delete(name:String)
 
 ###
-#  summary: Get all toggles
-#  description: Retrieves all toggles present in the system
+#  summary: Get all toggleInstances
+#  description: Retrieves all toggleInstances present in the system
 #  tags:
 #    - Toggles
 #  produces:
@@ -193,11 +193,11 @@ DELETE  /toggles/:name                controllers.TogglesController.delete(name:
 #    200:
 #       description: OK
 ###
-GET     /toggles                    controllers.TogglesController.index()
+GET     /toggleInstances                    controllers.TogglesController.index()
 
 ###
-#  summary: Edit service toggle configuration
-#  description: Edits the toggles (and respective values) available to each service version
+#  summary: Edit service toggleInstance configuration
+#  description: Edits the toggleInstances (and respective values) available to each service version
 #  tags:
 #    - Configurations
 #  produces:
@@ -208,7 +208,7 @@ GET     /toggles                    controllers.TogglesController.index()
 #      required: true
 #      schema:
 #        $ref: '#/definitions/Config'
-#      description: The configuration for the toggles and services that can access their value
+#      description: The configuration for the toggleInstances and services that can access their value
 #  responses:
 #    200:
 #      description: OK
@@ -223,8 +223,8 @@ POST     /config                    controllers.ConfigsController.update(request
 
 
 ###
-#  summary: Fetch configuration of all toggles for all services and versions
-#  description: Retrieves the configuration of all the toggles (and respective values), for all services and versions
+#  summary: Fetch configuration of all toggleInstances for all services and versions
+#  description: Retrieves the configuration of all the toggleInstances (and respective values), for all services and versions
 #  tags:
 #    - Configurations
 #  produces:
@@ -242,8 +242,8 @@ POST     /config                    controllers.ConfigsController.update(request
 GET     /config                    controllers.ConfigsController.get()
 
 ###
-#  summary: Fetch toggles for service version
-#  description: Fetch configuration of all toggles for version "version" of a service "service_name",
+#  summary: Fetch toggleInstances for service version
+#  description: Fetch configuration of all toggleInstances for version "version" of a service "service_name",
 #  tags:
 #    - Services
 #  produces:
@@ -255,14 +255,14 @@ GET     /config                    controllers.ConfigsController.get()
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Name of the service for whom the current toggle configuration should be fetched
+#      description: Name of the service for whom the current toggleInstance configuration should be fetched
 #    - in: path
 #      name: version
 #      required: true
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Name of the service for whom the current toggle configuration should be fetched
+#      description: Name of the service for whom the current toggleInstance configuration should be fetched
 #  responses:
 #    200:
 #      description: OK

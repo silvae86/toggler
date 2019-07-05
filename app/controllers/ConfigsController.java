@@ -6,8 +6,6 @@ import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
 
-import java.util.Optional;
-
 import static play.mvc.Results.*;
 
 public class ConfigsController {
@@ -24,7 +22,7 @@ public class ConfigsController {
 //
 //        boolean value = Boolean.parseBoolean(data.get("value"));
 //
-//        final Toggle toggleWithSameName = MongoConfig.datastore().createQuery(Toggle.class)
+//        final ToggleInstance toggleWithSameName = MongoConfig.datastore().createQuery(ToggleInstance.class)
 //                .field("name").equal(name).get();
 //
 //        // toggle already exists
@@ -34,16 +32,16 @@ public class ConfigsController {
 //        }
 //        else
 //        {
-//            Toggle newToggle = new Toggle(name, value);
+//            ToggleInstance newToggle = new ToggleInstance(name, value);
 //            MongoConfig.datastore().save(newToggle);
 //            return ok(Json.toJson("New toggle with " + name + " created."));
 //        }
 //    }
 //
 //    public Result index () {
-//        final Query<Toggle> query = MongoConfig.datastore().createQuery(Toggle.class);
-//        final List<Toggle> toggles = query.asList();
-//        return ok(Json.toJson(toggles));
+//        final Query<ToggleInstance> query = MongoConfig.datastore().createQuery(ToggleInstance.class);
+//        final List<ToggleInstance> toggleInstances = query.asList();
+//        return ok(Json.toJson(toggleInstances));
 //    }
 
     public Result get () {
@@ -67,9 +65,11 @@ public class ConfigsController {
     public Result update (Http.Request request) {
 
         try {
-            Optional<ConfigChange> newConfigChange = request.body().parseJson(ConfigChange.class);
+            ConfigChange newConfigChange = request.body().parseJson(ConfigChange.class).get();
 
             MongoConfig.datastore().save(newConfigChange);
+            newConfigChange.apply();
+
             return ok(Json.toJson(newConfigChange));
         }
         catch(Exception e)

@@ -1,13 +1,17 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.*;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;
 
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.HashSet;
 
 @Entity("permissions")
 @Getter
@@ -16,11 +20,9 @@ public class ConfigChange {
     @Id
     private ObjectId id;
 
-    @Embedded("services")
-    private LinkedList<Service> services;
-
-    @Embedded("toggles")
-    private LinkedList<Toggle> toggles;
+    @Reference("toggles")
+    @JsonAlias("toggles")
+    private HashSet<ToggleInstance> toggles;
 
     @Property("date_applied")
     private Date dateApplied;
@@ -30,9 +32,6 @@ public class ConfigChange {
 
     @Reference("user")
     private User creator;
-
-    @Property("allow_access")
-    private Boolean allow_access;
 
     public ConfigChange()
     {
@@ -55,5 +54,7 @@ public class ConfigChange {
         MongoConfig.datastore().save(this);
 
 
+        this.dateApplied = new Date();
+        MongoConfig.datastore().save(this);
     }
 }
