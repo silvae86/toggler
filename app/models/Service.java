@@ -1,6 +1,8 @@
 package models;
 
 import database.MongoConfig;
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Entity("services")
 @Indexes(@Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)))
+@Getter
+@Setter
 public class Service {
     @Id
     private ObjectId id;
