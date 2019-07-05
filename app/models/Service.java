@@ -14,6 +14,8 @@ import java.util.List;
 @Getter
 @Entity("services")
 @Indexes(@Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)))
+@Getter
+@Setter
 public class Service {
     @Id
     private ObjectId id;
