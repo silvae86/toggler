@@ -9,7 +9,7 @@ import org.mongodb.morphia.annotations.*;
 import java.util.Date;
 import java.util.LinkedList;
 
-@Entity("permissions")
+@Entity("config_changes")
 @Getter
 @Setter
 public class ConfigChange {
@@ -55,5 +55,8 @@ public class ConfigChange {
         MongoConfig.datastore().save(this);
 
 
+
+        this.dateApplied = new Date();
+        MongoConfig.datastore().save(this);
     }
 }

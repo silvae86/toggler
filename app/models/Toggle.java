@@ -9,13 +9,7 @@ import org.mongodb.morphia.annotations.*;
 import java.util.List;
 
 @Entity("toggles")
-
-@Indexes(
-        @Index(fields = {@Field("name")})
-)
-
-@Getter
-@Setter
+@Indexes(@Index(fields = {@Field("name")}, options = @IndexOptions(unique = false)))
 public class Toggle {
     @Id
     private ObjectId id;
@@ -24,15 +18,17 @@ public class Toggle {
     private String name;
 
     @Property("value")
-    private Boolean value;
-
-    @Reference("service")
-    private Service service;
+    private boolean value;
 
     public Toggle(){}
 
     public Toggle(String name) {
         this.name = name;
+    }
+
+    public Toggle(String name, boolean value ) {
+        this.name = name;
+        this.value = value;
     }
 
     public static List<Toggle> findByName(String name) {

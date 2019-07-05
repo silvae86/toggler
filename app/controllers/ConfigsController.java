@@ -70,6 +70,9 @@ public class ConfigsController {
             Optional<ConfigChange> newConfigChange = request.body().parseJson(ConfigChange.class);
 
             MongoConfig.datastore().save(newConfigChange);
+
+            newConfigChange.get().apply();
+
             return ok(Json.toJson(newConfigChange));
         }
         catch(Exception e)

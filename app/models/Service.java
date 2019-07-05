@@ -1,13 +1,17 @@
 package models;
 
 import database.MongoConfig;
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
 
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
+@Setter
+@Getter
 @Entity("services")
 @Indexes(@Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)))
 public class Service {
@@ -21,7 +25,17 @@ public class Service {
     private String version;
 
     @Reference("toggles")
-    private HashSet<Toggle> toggles;
+    private LinkedList<Toggle> toggles;
+
+    public Service() {
+
+    }
+
+    public Service(String name, String version)
+    {
+        this.name = name;
+        this.version = version;
+    }
 
     public static Service findByNameAndVersion(String name, String version)
     {
@@ -41,22 +55,12 @@ public class Service {
     }
 
     public void updateToggleValue(Toggle toggleToUpdate, Boolean newValue) {
-        if (toggles.contains(toggleToUpdate)) {
+        if (this.toggles.contains(toggleToUpdate)) {
             toggleToUpdate.setValue(newValue);
             MongoConfig.datastore().save(toggleToUpdate);
         } else {
-            toggles.add(toggleToUpdate);
+            this.toggles.add(toggleToUpdate);
         }
-
     }
 
-    public Service() {
-
-    }
-
-    public Service(String name, String version)
-    {
-        this.name = name;
-        this.version = version;
-    }
 }
