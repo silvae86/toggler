@@ -19,7 +19,7 @@ public class PermissionsMap {
     }
 
     public PermissionsMap(HashSet<Toggle> allowed, HashSet<Toggle> denied) {
-        this.allowed = allowed;
+        this.allowed = allowed; 
         this.denied = denied;
     }
 
