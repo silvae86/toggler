@@ -8,7 +8,6 @@ toggles:
         allow:
           - name: ABC
             value: false
-            value: true
         unless:
           - allow:
               - name: BCA

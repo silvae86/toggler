@@ -1,15 +1,15 @@
 package utils;
 
 import lombok.Getter;
-import models.Toggle;
 import models.concepts.Service;
+import models.concepts.Toggle;
 
 import java.util.HashSet;
 
 @Getter
 public class PermissionsMap {
-    private HashSet<Toggle> allowed;
-    private HashSet<Toggle> denied;
+    private HashSet<Service> allowed;
+    private HashSet<Service> denied;
 
     private Boolean allAllowed = false;
     private Boolean allDenied = true;
@@ -18,16 +18,14 @@ public class PermissionsMap {
 
     }
 
-    public PermissionsMap(HashSet<Toggle> allowed, HashSet<Toggle> denied) {
+    public PermissionsMap(HashSet<Service> allowed, HashSet<Service> denied) {
         this.allowed = allowed; 
         this.denied = denied;
     }
 
-    ;
-
     public PermissionsMap combine(PermissionsMap map) {
-        HashSet<Toggle> allowed = map.allowed;
-        HashSet<Toggle> denied = map.denied;
+        HashSet<Service> allowed = map.allowed;
+        HashSet<Service> denied = map.denied;
 
         if (allowed != null) {
             if (allowed.size() > 0) {
@@ -54,22 +52,21 @@ public class PermissionsMap {
 
     public boolean canAccess(Service service, Toggle toggle) throws Exception {
         if (this.allDenied && this.allAllowed) {
-            throw new Exception("All allowed and all denied!");
+            throw new Exception("All allowed and all denied! This is a configuration error.");
         } else if (this.allDenied) {
             return false;
         } else if (this.allAllowed) {
             return true;
         } else {
-            for (Toggle t : this.allowed) {
-                // TODO I was here.
-                if (t.getAppliesTo() == service) {
+            for (Service t : this.allowed) {
+                if (service == t) {
                     return true;
                 }
             }
 
-            for (Toggle t : this.denied) {
-                if (t.getAppliesTo() == service) {
-                    return false;
+            for (Service t : this.denied) {
+                if (service == t) {
+                    return true;
                 }
             }
 

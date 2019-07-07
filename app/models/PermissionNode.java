@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
+import models.concepts.Toggle;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import utils.PermissionsMap;

@@ -15,7 +15,7 @@ import java.util.List;
 @Indexes(@Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)))
 @Getter
 @Setter
-public class Service {
+public class Service implements Comparable<Service> {
     @Id
     private ObjectId id;
 
@@ -52,5 +52,12 @@ public class Service {
         Query<Service> query = MongoConfig.datastore().find(Service.class);
         query.criteria("name").equal(name);
         return query.asList();
+    }
+
+    public int compareTo(Service s) {
+        if (this.name.equals(s.name)) {
+            return this.version.compareTo(s.version);
+        } else
+            return this.name.compareTo(s.name);
     }
 }

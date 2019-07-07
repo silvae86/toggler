@@ -2,7 +2,6 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -10,6 +9,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import lombok.Getter;
 import lombok.Setter;
 import models.concepts.Service;
+import models.concepts.Toggle;
 import org.mongodb.morphia.annotations.*;
 
 import java.io.IOException;
@@ -21,8 +21,8 @@ import java.io.IOException;
 })
 @Getter
 @Setter
-@JsonDeserialize(using = Toggle.Deserializer.class)
-public class Toggle {
+@JsonDeserialize(using = ServiceAndValue.Deserializer.class)
+public class ServiceAndValue {
 
     @Reference("service")
     @JsonAlias("name")
@@ -31,19 +31,19 @@ public class Toggle {
     @Reference("value")
     private boolean value;
 
-    public static class Deserializer extends StdDeserializer<Toggle> {
+    public static class Deserializer extends StdDeserializer<ServiceAndValue> {
 
         public Deserializer() {
             super(Toggle.class);
         }
 
         @Override
-        public Toggle deserialize(JsonParser jp, DeserializationContext ctxt)
-                throws IOException, JsonProcessingException {
+        public ServiceAndValue deserialize(JsonParser jp, DeserializationContext ctxt)
+                throws IOException {
 
             JsonNode node = jp.getCodec().readTree(jp);
             Service service = new Service();
-            Toggle st = new Toggle();
+            ServiceAndValue st = new ServiceAndValue();
 
             String name = node.get("name").textValue();
             service.setName(name);

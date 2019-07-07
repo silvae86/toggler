@@ -26,14 +26,12 @@ public class GatekeeperTest {
 
             ConfigChange configChange = mapper.readValue(new File(s), ConfigChange.class);
             System.out.println(ReflectionToStringBuilder.toString(configChange, ToStringStyle.MULTI_LINE_STYLE));
-            GateKeeper gk = new GateKeeper();
-
-            gk.addConfigChange(configChange);
+            PermissionsMap pm = new PermissionsMap();
 
             Service serviceThatShouldBeAllowed = new Service("ABC", "1.0.0");
             Toggle isButtonBlue = new Toggle("isButtonBlue");
 
-            Assert.assertTrue(gk.canAccess(serviceThatShouldBeAllowed, isButtonBlue));
+            Assert.assertTrue(gk. (serviceThatShouldBeAllowed, isButtonBlue));
 
 
             Service serviceThatShouldBeDenied = new Service("ABC", "1.0.0");
