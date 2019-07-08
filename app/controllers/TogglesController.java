@@ -1,10 +1,9 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.inject.Inject;
 import database.MongoConfig;
 import io.swagger.annotations.Api;
-import models.PermissionNode;
+import models.ConfigNode;
 import models.concepts.Service;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
@@ -23,18 +22,16 @@ import java.util.Map;
 
 @Api
 public class TogglesController extends Controller {
-    @Inject play.data.FormFactory formFactory;
-
     public Result delete (String name) {
         try {
-            List<PermissionNode> allTogglesWithName = PermissionNode.findByName(name);
+            List<ConfigNode> allTogglesWithName = ConfigNode.findByName(name);
             if (allTogglesWithName.size() == 0)
             {
-                return notFound(Json.toJson("PermissionNode with " + name + " not found."));
+                return notFound(Json.toJson("ConfigNode with " + name + " not found."));
             }
             else
             {
-                for (PermissionNode permissionNode : allTogglesWithName) {
+                for (ConfigNode permissionNode : allTogglesWithName) {
                     MongoConfig.datastore().delete(permissionNode);
                 }
 
@@ -49,10 +46,10 @@ public class TogglesController extends Controller {
 
     public Result get (String name, String serviceName, String serviceVersion) {
         try {
-            PermissionNode permissionNodeToGet = PermissionNode.findByNameServiceNameAndVersion(name, serviceName, serviceVersion);
+            ConfigNode permissionNodeToGet = ConfigNode.findByNameServiceNameAndVersion(name, serviceName, serviceVersion);
             if (permissionNodeToGet == null)
             {
-                return notFound(Json.toJson("PermissionNode with " + name + " not found."));
+                return notFound(Json.toJson("ConfigNode with " + name + " not found."));
             }
             else
             {
@@ -67,13 +64,13 @@ public class TogglesController extends Controller {
 
     public Result set(Http.Request request, String toggleName, String serviceName, String serviceVersion) {
 
-        PermissionNode permissionNodeToChange;
+        ConfigNode permissionNodeToChange;
 
         try {
-            permissionNodeToChange = PermissionNode.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion);
+            permissionNodeToChange = ConfigNode.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion);
         } catch (Exception e)
         {
-            return notFound("PermissionNode with name " + toggleName + " does not exist.");
+            return notFound("ConfigNode with name " + toggleName + " does not exist.");
         }
 
         try {
@@ -98,7 +95,7 @@ public class TogglesController extends Controller {
         }
 
         try {
-            return ok(Json.toJson(PermissionNode.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion)));
+            return ok(Json.toJson(ConfigNode.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion)));
         } catch (Exception e) {
             return internalServerError(e.getMessage());
         }
@@ -119,7 +116,7 @@ public class TogglesController extends Controller {
         String services = newToggleData.get("services");
         String decision = newToggleData.get("decision");
 
-        final PermissionNode permissionNodeWithSameName = MongoConfig.datastore().createQuery(PermissionNode.class)
+        final ConfigNode permissionNodeWithSameName = MongoConfig.datastore().createQuery(ConfigNode.class)
                 .field("name").equal(toggleName)
                 .get();
 
@@ -130,7 +127,7 @@ public class TogglesController extends Controller {
         }
         else
         {
-            PermissionNode newPermissionNode = new PermissionNode();
+            ConfigNode newPermissionNode = new ConfigNode();
             //newPermissionNode.setService();
             MongoConfig.datastore().save(newPermissionNode);
             return ok(Json.toJson("New toggle with " + newPermissionNode + " created."));
@@ -138,8 +135,8 @@ public class TogglesController extends Controller {
     }
 
     public Result index () {
-        final Query<PermissionNode> query = MongoConfig.datastore().createQuery(PermissionNode.class);
-        final List<PermissionNode> permissionNodes = query.asList();
+        final Query<ConfigNode> query = MongoConfig.datastore().createQuery(ConfigNode.class);
+        final List<ConfigNode> permissionNodes = query.asList();
         return ok(Json.toJson(permissionNodes));
     }
 }

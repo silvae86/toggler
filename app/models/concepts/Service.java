@@ -3,12 +3,10 @@ package models.concepts;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
-import models.PermissionNode;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Entity("services")
@@ -25,16 +23,12 @@ public class Service implements Comparable<Service> {
     @Property("version")
     private String version;
 
-    @Reference("toggles")
-    private HashSet<PermissionNode> toggles;
-
-    public Service() {
-
-    }
-
     public Service(String name, String version) {
         this.name = name;
         this.version = version;
+    }
+
+    public Service() {
     }
 
     public static Service findByNameAndVersion(String name, String version)

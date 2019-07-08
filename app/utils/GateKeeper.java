@@ -1,17 +1,18 @@
 package utils;
 
-import models.ConfigChange;
+import models.Config;
 
 import java.util.LinkedList;
 
 public class GateKeeper {
 
-    private LinkedList<ConfigChange> configs = new LinkedList<>();
+    private LinkedList<Config> configs = new LinkedList<>();
     private PermissionsMap currentPermissions;
 
-    public void addConfigChange(ConfigChange configChange) {
+    public void addConfigChange(Config configChange) {
         configs.add(configChange);
-        this.currentPermissions = configChange.getPermissions();
+        this.currentPermissions = new PermissionsMap();
+        this.currentPermissions.apply(configChange);
     }
 
     public void clearConfigChanges() {

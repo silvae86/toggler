@@ -1,6 +1,9 @@
 package utils;
 
 import lombok.Getter;
+import models.Config;
+import models.ConfigNode;
+import models.ServiceInstance;
 import models.concepts.Service;
 import models.concepts.Toggle;
 
@@ -8,8 +11,8 @@ import java.util.HashSet;
 
 @Getter
 public class PermissionsMap {
-    private HashSet<Service> allowed;
-    private HashSet<Service> denied;
+    private HashSet<ServiceInstance> allowed;
+    private HashSet<ServiceInstance> denied;
 
     private Boolean allAllowed = false;
     private Boolean allDenied = true;
@@ -18,15 +21,12 @@ public class PermissionsMap {
 
     }
 
-    public PermissionsMap(HashSet<Service> allowed, HashSet<Service> denied) {
+    public PermissionsMap(HashSet<ServiceInstance> allowed, HashSet<ServiceInstance> denied) {
         this.allowed = allowed; 
         this.denied = denied;
     }
 
-    public PermissionsMap combine(PermissionsMap map) {
-        HashSet<Service> allowed = map.allowed;
-        HashSet<Service> denied = map.denied;
-
+    private void mergePermissions(HashSet<ServiceInstance> allowed, HashSet<ServiceInstance> denied) {
         if (allowed != null) {
             if (allowed.size() > 0) {
                 this.allowed.addAll(allowed);
@@ -46,7 +46,34 @@ public class PermissionsMap {
                 this.allDenied = true;
             }
         }
+    }
 
+    public PermissionsMap combine(PermissionsMap map) {
+        HashSet<ServiceInstance> allowed = map.allowed;
+        HashSet<ServiceInstance> denied = map.denied;
+        mergePermissions(allowed, denied);
+
+        return this;
+    }
+
+    public PermissionsMap apply(Config change) {
+        this.apply(change.getPermissionNodes());
+        return this;
+    }
+
+    public PermissionsMap apply(HashSet<ConfigNode> nodes) {
+        for (ConfigNode node : nodes) {
+            this.apply(node);
+        }
+
+        return this;
+    }
+
+    public PermissionsMap apply(ConfigNode node) {
+        HashSet<ServiceInstance> allowed = node.getAllow();
+        HashSet<ServiceInstance> denied = node.getDeny();
+
+        this.mergePermissions(allowed, denied);
         return this;
     }
 
@@ -58,14 +85,14 @@ public class PermissionsMap {
         } else if (this.allAllowed) {
             return true;
         } else {
-            for (Service t : this.allowed) {
-                if (service == t) {
+            for (ServiceInstance t : this.allowed) {
+                if (service == t.getService()) {
                     return true;
                 }
             }
 
-            for (Service t : this.denied) {
-                if (service == t) {
+            for (ServiceInstance t : this.denied) {
+                if (service == t.getService()) {
                     return true;
                 }
             }

@@ -75,7 +75,7 @@ GET     /login                    controllers.UsersController.login(request: Req
 #    - APIKeyQueryParam: []
 #  responses:
 #    200:
-#       description: PermissionNode created
+#       description: ConfigNode created
 #    409:
 #       description: A permissionNode with that name already exists
 ###

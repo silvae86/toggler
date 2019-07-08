@@ -1,6 +1,7 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,6 +14,7 @@ import models.concepts.Toggle;
 import org.mongodb.morphia.annotations.*;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 @Entity("service_toggles")
 @Indexes({
@@ -21,29 +23,33 @@ import java.io.IOException;
 })
 @Getter
 @Setter
-@JsonDeserialize(using = ServiceAndValue.Deserializer.class)
-public class ServiceAndValue {
+@JsonDeserialize(using = ServiceInstance.Deserializer.class)
+public class ServiceInstance {
 
     @Reference("service")
     @JsonAlias("name")
-    private Service appliesTo;
+    private Service service;
 
     @Reference("value")
     private boolean value;
 
-    public static class Deserializer extends StdDeserializer<ServiceAndValue> {
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @Reference("permission_nodes")
+    private HashSet<ConfigNode> toggles;
+
+    public static class Deserializer extends StdDeserializer<ServiceInstance> {
 
         public Deserializer() {
             super(Toggle.class);
         }
 
         @Override
-        public ServiceAndValue deserialize(JsonParser jp, DeserializationContext ctxt)
+        public ServiceInstance deserialize(JsonParser jp, DeserializationContext ctxt)
                 throws IOException {
 
             JsonNode node = jp.getCodec().readTree(jp);
             Service service = new Service();
-            ServiceAndValue st = new ServiceAndValue();
+            ServiceInstance st = new ServiceInstance();
 
             String name = node.get("name").textValue();
             service.setName(name);
@@ -58,7 +64,7 @@ public class ServiceAndValue {
                 st.setValue(value);
             }
 
-            st.setAppliesTo(service);
+            st.setService(service);
 
             return st;
         }

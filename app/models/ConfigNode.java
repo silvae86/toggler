@@ -2,10 +2,10 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
-import models.concepts.Toggle;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import utils.PermissionsMap;
@@ -20,7 +20,7 @@ import java.util.List;
 })
 @Getter
 @Setter
-public class PermissionNode {
+public class ConfigNode {
     @Id
     private ObjectId id;
 
@@ -31,38 +31,37 @@ public class PermissionNode {
 
     @Property("allow")
     @JsonAlias("allow")
-    private HashSet<Toggle> allow;
+    private HashSet<ServiceInstance> allow;
 
     @Property("deny")
     @JsonAlias("deny")
-    private HashSet<Toggle> deny;
-
-    @Property("value")
-    @JsonAlias("value")
-    private Boolean defaultValue;
+    private HashSet<ServiceInstance> deny;
 
     @Property("overrides")
     @JsonAlias("unless")
-    private HashSet<PermissionNode> overrides;
+    private HashSet<ConfigNode> overrides;
 
-    public PermissionNode() {
+    @JsonProperty("value")
+    private Boolean defaultValue;
+
+    public ConfigNode() {
     }
 
-    public static List<PermissionNode> findByName(String name) {
-        return MongoConfig.datastore().createQuery(PermissionNode.class)
+    public static List<ConfigNode> findByName(String name) {
+        return MongoConfig.datastore().createQuery(ConfigNode.class)
                 .field("name").equal(name)
                 .asList();
     }
 
-    public static List<PermissionNode> findByNameAndServiceName(String name, String serviceName) {
-        return MongoConfig.datastore().createQuery(PermissionNode.class)
+    public static List<ConfigNode> findByNameAndServiceName(String name, String serviceName) {
+        return MongoConfig.datastore().createQuery(ConfigNode.class)
                 .field("name").equal(name)
                 .filter("service.name", serviceName)
                 .asList();
     }
 
-    public static PermissionNode findByNameServiceNameAndVersion(String name, String serviceName, String versionName) throws Exception {
-        final List<PermissionNode> permissionNodes = MongoConfig.datastore().createQuery(PermissionNode.class)
+    public static ConfigNode findByNameServiceNameAndVersion(String name, String serviceName, String versionName) throws Exception {
+        final List<ConfigNode> permissionNodes = MongoConfig.datastore().createQuery(ConfigNode.class)
                 .field("name").equal(name)
                 .filter("service.name", serviceName)
                 .filter("service.version", serviceName)
@@ -78,10 +77,9 @@ public class PermissionNode {
     }
 
     private PermissionsMap calculatePermissionsHelper(PermissionsMap map) {
-        map.combine(new PermissionsMap(this.allow, this.deny));
 
-        for (PermissionNode override : this.overrides) {
-            map.combine(new PermissionsMap(override.allow, override.deny));
+        for (ConfigNode override : this.overrides) {
+            map.combine(this.calculatePermissionsHelper(new PermissionsMap(override.getAllow(), override.getDeny())));
         }
 
         return map;
