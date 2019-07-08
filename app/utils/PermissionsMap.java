@@ -11,17 +11,17 @@ import java.util.HashSet;
 
 @Getter
 public class PermissionsMap {
-    private HashSet<ServiceInstance> allowed;
-    private HashSet<ServiceInstance> denied;
+    private HashSet<ServiceInstance> allowed = new HashSet<>();
+    private HashSet<ServiceInstance> denied = new HashSet<>();
 
     private Boolean allAllowed = false;
     private Boolean allDenied = true;
 
     public PermissionsMap() {
-
     }
 
     public PermissionsMap(HashSet<ServiceInstance> allowed, HashSet<ServiceInstance> denied) {
+        this();
         this.allowed = allowed; 
         this.denied = denied;
     }
