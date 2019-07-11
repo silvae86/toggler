@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/mocks/simple_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ConfigNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ConfigNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/ServiceInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/ServiceInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/concepts/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/concepts/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/PermissionsMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/PermissionsMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/PermissionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/utils/PermissionsTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
     <ignored path="$PROJECT_DIR$/project/target/" />
@@ -79,23 +69,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="159" column="33" lean-forward="true" selection-start-line="159" selection-start-column="33" selection-end-line="159" selection-end-column="33" />
+            <state relative-caret-position="752">
+              <caret line="151" column="24" lean-forward="true" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
               <folding>
-                <element signature="e#5870#5871#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#5760#5761#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+            <state relative-caret-position="246">
+              <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -113,7 +104,7 @@
         <entry file="file://$PROJECT_DIR$/app/models/ConfigNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="191">
-              <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+              <caret line="35" column="43" lean-forward="true" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -122,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="122">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
             </state>
           </provider>
         </entry>
@@ -131,7 +122,7 @@
         <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -496,7 +487,7 @@
       <workItem from="1562695575048" duration="650000" />
       <workItem from="1562762638534" duration="2950000" />
       <workItem from="1562770149167" duration="694000" />
-      <workItem from="1562851120905" duration="8860000" />
+      <workItem from="1562851120905" duration="9101000" />
     </task>
     <task id="LOCAL-00001" summary="Work in progress in the Configs Controller">
       <created>1562347712262</created>
@@ -533,19 +524,17 @@
       <option name="project" value="LOCAL" />
       <updated>1562606236002</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Improvements to permissions map">
+      <created>1562868130037</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1562868130040</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 42m 50s.xml">
-      <configuration name="Test GateKeeper" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 49m 51s.xml">
-      <configuration name="Test GateKeeper" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 51m 30s.xml">
-      <configuration name="Test GateKeeper" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 52m 16s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
@@ -567,9 +556,18 @@
     <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 59m 40s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Test_GateKeeper - 2019.07.11 at 19h 00m 45s.xml">
+      <configuration name="Test GateKeeper" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test_GateKeeper - 2019.07.11 at 19h 00m 50s.xml">
+      <configuration name="Test GateKeeper" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test_GateKeeper - 2019.07.11 at 19h 00m 58s.xml">
+      <configuration name="Test GateKeeper" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46200000" />
+    <option name="totallyTimeSpent" value="46441000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="853" height="777" extended-state="0" />
@@ -585,16 +583,16 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3280255" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.59874606" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39811912" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39811912" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32779455" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3275862" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50061655" side_tool="true" weight="0.3275862" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32908705" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" weight="0.3275862" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="13" />
       <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="bottom" id="Messages" order="15" weight="0.32779455" />
@@ -613,7 +611,7 @@
       <window_info anchor="right" id="Mongo Explorer" order="12" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" visible="true" weight="0.26263872" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" weight="0.26263872" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -622,7 +620,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.5042463" side_tool="true" weight="0.16719915" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3280255" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.59874606" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.59874606" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39811912" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -630,9 +628,9 @@
       <window_info anchor="bottom" id="Build" order="7" weight="0.32779455" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3275862" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50061655" side_tool="true" visible="true" weight="0.3275862" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32908705" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" visible="true" weight="0.3275862" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="13" />
       <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="bottom" id="Messages" order="15" weight="0.32779455" />
@@ -694,7 +692,8 @@
     <MESSAGE value="Permissions Map in progress." />
     <MESSAGE value="Removed GateKeeper class" />
     <MESSAGE value="Test calling config apply functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test calling config apply functions" />
+    <MESSAGE value="Improvements to permissions map" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improvements to permissions map" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -930,7 +929,7 @@
     <entry file="file://$PROJECT_DIR$/app/models/ConfigNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+          <caret line="35" column="43" lean-forward="true" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -946,7 +945,7 @@
     <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="17" column="25" lean-forward="true" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -960,24 +959,28 @@
     <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="159" column="33" lean-forward="true" selection-start-line="159" selection-start-column="33" selection-end-line="159" selection-end-column="33" />
+        <state relative-caret-position="752">
+          <caret line="151" column="24" lean-forward="true" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
           <folding>
-            <element signature="e#5870#5871#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#5760#5761#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
         </state>
       </provider>
     </entry>
