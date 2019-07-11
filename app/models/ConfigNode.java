@@ -3,12 +3,14 @@ package models;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
-import utils.PermissionsMap;
+import play.libs.Json;
 
 import java.util.HashSet;
 import java.util.List;
@@ -76,17 +78,12 @@ public class ConfigNode {
         }
     }
 
-    private PermissionsMap calculatePermissionsHelper(PermissionsMap map) {
-
-        for (ConfigNode override : this.overrides) {
-            map.combine(this.calculatePermissionsHelper(new PermissionsMap(override.getAllow(), override.getDeny())));
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(Json.toJson(this));
+        } catch (JsonProcessingException e) {
+            return ("Unable to serialize ConfigNode: " + e.getMessage());
         }
-
-        return map;
-    }
-
-    public PermissionsMap calculatePermissions() {
-        PermissionsMap toReturn = new PermissionsMap();
-        return calculatePermissionsHelper(toReturn);
     }
 }

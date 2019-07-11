@@ -3,8 +3,10 @@ package models;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import lombok.Getter;
@@ -12,6 +14,7 @@ import lombok.Setter;
 import models.concepts.Service;
 import models.concepts.Toggle;
 import org.mongodb.morphia.annotations.*;
+import play.libs.Json;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -67,6 +70,15 @@ public class ServiceInstance {
             st.setService(service);
 
             return st;
+        }
+
+        public String toString() {
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(Json.toJson(this));
+            } catch (JsonProcessingException e) {
+                return ("Unable to serialize ServiceInstance: " + e.getMessage());
+            }
         }
     }
 }

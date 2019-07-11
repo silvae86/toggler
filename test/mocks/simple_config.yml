@@ -1,0 +1,32 @@
+---
+toggles:
+  - name: isButtonBlue
+    allow: []
+    unless:
+      - deny: []
+        allow:
+          - name: ABC
+            value: false
+        unless:
+          - allow:
+              - name: BCA
+                version: 1.0.0
+                value: true
+              - name: AGE
+                version: 1.0.0
+                value: true
+              - name: AGE
+                version: 1.0.1
+                value: false
+            deny:
+              - name: K20
+                version: 1.0.2
+                value: false
+            value: false
+            unless:
+              - allow: []
+                deny:
+                  - name: K20
+                    version: 1.0.1
+                    value: false
+              
