@@ -9,14 +9,8 @@
         <outputRelativeToContentRoot value="true" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="gatekeeper" target="11" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf8 -g" />
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="gatekeeper" options="" />
-    </option>
   </component>
 </project>

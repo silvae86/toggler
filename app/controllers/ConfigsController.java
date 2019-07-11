@@ -1,7 +1,7 @@
 package controllers;
 
 import database.MongoConfig;
-import models.ConfigChange;
+import models.Config;
 import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -22,7 +22,7 @@ public class ConfigsController {
 //
 //        boolean value = Boolean.parseBoolean(data.get("value"));
 //
-//        final PermissionNode toggleWithSameName = MongoConfig.datastore().createQuery(PermissionNode.class)
+//        final ConfigNode toggleWithSameName = MongoConfig.datastore().createQuery(ConfigNode.class)
 //                .field("name").equal(name).get();
 //
 //        // toggle already exists
@@ -32,21 +32,21 @@ public class ConfigsController {
 //        }
 //        else
 //        {
-//            PermissionNode newToggle = new PermissionNode(name, value);
+//            ConfigNode newToggle = new ConfigNode(name, value);
 //            MongoConfig.datastore().save(newToggle);
 //            return ok(Json.toJson("New toggle with " + name + " created."));
 //        }
 //    }
 //
 //    public Result index () {
-//        final Query<PermissionNode> query = MongoConfig.datastore().createQuery(PermissionNode.class);
-//        final List<PermissionNode> toggleInstances = query.asList();
+//        final Query<ConfigNode> query = MongoConfig.datastore().createQuery(ConfigNode.class);
+//        final List<ConfigNode> toggleInstances = query.asList();
 //        return ok(Json.toJson(toggleInstances));
 //    }
 
     public Result get () {
         try {
-            ConfigChange latestConfigChange = ConfigChange.getLatestConfig();
+            Config latestConfigChange = Config.getLatestConfig();
             if(latestConfigChange == null)
             {
                 return notFound(Json.toJson("No configuration is set"));
@@ -65,10 +65,9 @@ public class ConfigsController {
     public Result update (Http.Request request) {
 
         try {
-            ConfigChange newConfigChange = request.body().parseJson(ConfigChange.class).get();
+            Config newConfigChange = request.body().parseJson(Config.class).get();
 
             MongoConfig.datastore().save(newConfigChange);
-            newConfigChange.apply();
 
             return ok(Json.toJson(newConfigChange));
         }

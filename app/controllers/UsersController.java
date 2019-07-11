@@ -1,8 +1,7 @@
 package controllers;
 
-import com.google.inject.Inject;
 import database.MongoConfig;
-import models.User;
+import models.roles.User;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
