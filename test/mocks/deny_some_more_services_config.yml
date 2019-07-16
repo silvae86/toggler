@@ -1,0 +1,16 @@
+---
+toggles:
+  - name: isButtonBlue
+    - deny:
+      - name: ABC
+        value: false
+      unless:
+        - allow:
+            - name: ABC
+              value: false
+            - name: ABC
+              version: 1.0.1
+              value: false
+            - name: ABC
+              version: 1.0.1
+              value: false
