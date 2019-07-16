@@ -1,22 +1,25 @@
 package models.concepts;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
+import models.ConfigNode;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Entity("services")
 @Indexes(@Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)))
 @Getter
 @Setter
-public class Service implements Comparable<Service> {
+public class Service {
     @Id
     private ObjectId id;
 
@@ -25,6 +28,16 @@ public class Service implements Comparable<Service> {
 
     @Property("version")
     private String version;
+
+    @Reference("value")
+    private boolean value;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @Reference("permission_nodes")
+    private HashSet<ConfigNode> toggles;
+
+    public Service(String name) {
+        this.name = name;
+    }
 
     public Service(String name, String version) {
         this.name = name;
@@ -52,11 +65,38 @@ public class Service implements Comparable<Service> {
     }
 
     @Override
-    public int compareTo(Service s) {
+    public int hashCode() {
+        return this.toString().hashCode();
+    }
+
+    public Boolean equals(Service s) {
         if (this.name.equals(s.name)) {
-            return this.version.compareTo(s.version);
-        } else
-            return this.name.compareTo(s.name);
+            if (this.version != null) {
+                if (s.version != null) {
+                    return this.version.equals(s.version);
+                } else {
+                    return false;
+                }
+            } else {
+                return s.version == null;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public boolean moreSpecificThan(Service service) {
+        if (this.getName().equals(service.getName())) {
+            if (this.getVersion() == null && service.getVersion() != null) {
+                return false;
+            } else if (this.getVersion() != null && service.getVersion() == null) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     public String toString() {

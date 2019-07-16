@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="" />
+    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/play2_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/play2_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/concepts/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/concepts/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/PermissionsMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/PermissionsMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/mocks/simple_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/mocks/simple_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/utils/PermissionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/utils/PermissionsTest.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
     <ignored path="$PROJECT_DIR$/project/target/" />
@@ -69,13 +79,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="752">
-              <caret line="151" column="24" lean-forward="true" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
+            <state relative-caret-position="480">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5733#5734#0" expanded="true" />
                 <element signature="e#5760#5761#0" expanded="true" />
               </folding>
             </state>
@@ -85,17 +96,54 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+            <state relative-caret-position="467">
+              <caret line="127" column="5" lean-forward="true" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+              <folding>
+                <element signature="e#719#720#0" expanded="true" />
+                <element signature="e#751#752#0" expanded="true" />
+                <element signature="e#1474#1475#0" expanded="true" />
+                <element signature="e#1504#1505#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/TogglesController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-405">
+              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/ServiceInstance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-298">
-              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+            <state relative-caret-position="45">
+              <caret line="35" selection-start-line="35" selection-end-line="40" selection-end-column="40" />
+              <folding>
+                <element signature="e#1304#1305#0" expanded="true" />
+                <element signature="e#1347#1348#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jrt:///Applications/IntelliJ IDEA.app/Contents/jdk/Contents/Home!/java.base/java/util/HashMap.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.9.9-sources.jar!/com/fasterxml/jackson/databind/deser/std/CollectionDeserializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -103,8 +151,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/ConfigNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="35" column="43" lean-forward="true" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+            <state relative-caret-position="105">
+              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -112,8 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="164">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
@@ -121,17 +169,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+            <state relative-caret-position="390">
+              <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/Config.java">
+        <entry file="file://$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="150">
+              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -159,6 +207,10 @@
       <find>mergePermissions</find>
       <find>base_config.</find>
       <find>applied</find>
+      <find>system.out</find>
+      <find>service</find>
+      <find>pm</find>
+      <find>json</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -190,11 +242,14 @@
         <option value="$PROJECT_DIR$/test/utils/GatekeeperTest.java" />
         <option value="$PROJECT_DIR$/app/models/ConfigNode.java" />
         <option value="$PROJECT_DIR$/test/mocks/base_config.yml" />
-        <option value="$PROJECT_DIR$/app/models/ServiceInstance.java" />
+        <option value="$PROJECT_DIR$/ClassDiagram" />
         <option value="$PROJECT_DIR$/test/mocks/simple_config.yml" />
-        <option value="$PROJECT_DIR$/app/utils/PermissionsMap.java" />
+        <option value="$PROJECT_DIR$/test/mocks/deny_some_more_services.yml" />
+        <option value="$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml" />
         <option value="$PROJECT_DIR$/test/utils/PermissionsTest.java" />
+        <option value="$PROJECT_DIR$/app/utils/PermissionsMap.java" />
         <option value="$PROJECT_DIR$/app/models/concepts/Service.java" />
+        <option value="$PROJECT_DIR$/app/models/ServiceInstance.java" />
       </list>
     </option>
   </component>
@@ -226,8 +281,8 @@
         <option value="java.lang._" />
         <option value="play.mvc._" />
         <option value="_root_.play.twirl.api.Txt" />
-        <option value="play.data._" />
         <option value="play.api.data.Field" />
+        <option value="play.data._" />
         <option value="play.api.templates.PlayMagic._" />
         <option value="_root_.play.twirl.api.JavaScript" />
         <option value="play.core.j.PlayMagicForJava._" />
@@ -240,7 +295,7 @@
       </array>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="853" />
     <option name="height" value="777" />
@@ -251,24 +306,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="toggler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="toggler" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
               <item name="toggler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
@@ -280,6 +334,18 @@
               <item name="toggler" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="mocks" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="toggler" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="toggler" type="2674bda8:ScopeViewTreeModel$GroupNode" />
             </path>
           </expand>
           <select />
@@ -300,21 +366,21 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/mocks" />
+      <recent name="$PROJECT_DIR$/gatekeeper/src/test/mocks" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="controllers" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/test/mocks" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="utils" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/test/mocks" />
-      <recent name="$PROJECT_DIR$/gatekeeper/src/test/mocks" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -487,7 +553,10 @@
       <workItem from="1562695575048" duration="650000" />
       <workItem from="1562762638534" duration="2950000" />
       <workItem from="1562770149167" duration="694000" />
-      <workItem from="1562851120905" duration="9101000" />
+      <workItem from="1562851120905" duration="9195000" />
+      <workItem from="1563290209710" duration="324000" />
+      <workItem from="1563290575982" duration="896000" />
+      <workItem from="1563296638379" duration="6657000" />
     </task>
     <task id="LOCAL-00001" summary="Work in progress in the Configs Controller">
       <created>1562347712262</created>
@@ -535,67 +604,78 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 52m 16s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 15m 37s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 55m 13s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 17m 29s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 56m 23s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 19m 27s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 57m 35s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 19m 34s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 58m 03s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 23m 00s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 59m 27s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 23m 52s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 18h 59m 40s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 24m 40s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 19h 00m 45s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 27m 20s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 19h 00m 50s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 28m 50s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.11 at 19h 00m 58s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 29m 32s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46441000" />
+    <option name="totallyTimeSpent" value="54412000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="853" height="777" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" weight="0.26263872" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" weight="0.16719915" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" sideWeight="0.5042463" side_tool="true" weight="0.16719915" />
+      <window_info id="Favorites" order="6" sideWeight="0.5042463" side_tool="true" weight="0.16639742" />
+      <window_info id="simpleUML" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3280255" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.59874606" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39811912" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32779455" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5987261" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.39728096" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32779455" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3275862" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32908705" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.32779455" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3269639" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50061655" side_tool="true" weight="0.3275862" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.39808917" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" weight="0.3275862" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="13" />
       <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="bottom" id="Messages" order="15" weight="0.32779455" />
+      <window_info anchor="right" x="0" y="0" width="430" height="857" id="Documentation" side_tool="true" weight="0.32960597" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -611,42 +691,44 @@
       <window_info anchor="right" id="Mongo Explorer" order="12" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" weight="0.26263872" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" weight="0.16719915" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" sideWeight="0.5042463" side_tool="true" weight="0.16719915" />
+      <window_info active="true" id="Favorites" order="6" sideWeight="0.5042463" side_tool="true" visible="true" weight="0.16639742" />
+      <window_info id="simpleUML" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3280255" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.59874606" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39811912" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32779455" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5987261" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.39728096" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32779455" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3275862" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32908705" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.32779455" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3269639" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50061655" side_tool="true" visible="true" weight="0.3275862" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.39808917" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" visible="true" weight="0.3275862" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" weight="0.3275862" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="13" />
       <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="bottom" id="Messages" order="15" weight="0.32779455" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Gradle" order="6" />
-      <window_info anchor="right" id="Database" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="sbt" order="10" weight="0.32995737" />
-      <window_info anchor="right" id="Bean Validation" order="11" />
-      <window_info anchor="right" id="Mongo Explorer" order="12" />
+      <window_info anchor="right" x="0" y="0" width="430" height="857" id="Documentation" order="0" side_tool="true" weight="0.32960597" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Gradle" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
+      <window_info anchor="right" id="sbt" order="11" weight="0.32995737" />
+      <window_info anchor="right" id="Bean Validation" order="12" />
+      <window_info anchor="right" id="Mongo Explorer" order="13" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,26 +784,45 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/models/concepts/Service.java</url>
-          <line>55</line>
+          <dependency id="0" />
+          <url>file://$PROJECT_DIR$/test/utils/PermissionsTest.java</url>
+          <line>56</line>
           <properties />
-          <option name="timeStamp" value="22" />
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/utils/PermissionsMap.java</url>
+          <line>148</line>
+          <properties />
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
-        <watch expression="data.get(&quot;value&quot;)" language="JAVA" />
-        <watch expression="data.get(param)" language="JAVA" />
-        <watch expression="data.get(param).length" language="JAVA" />
-        <watch expression="data.get(param)" language="JAVA" />
-        <watch expression="data.get(param)[0]" language="JAVA" />
-        <watch expression="data.get(param)" language="JAVA" />
+        <watch expression="t.getService()" language="JAVA" />
+        <watch expression="service" language="JAVA" />
+        <watch expression="this.toString()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>this.toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>service</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>t.getService()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>data.get(param)</expression-string>
         <language-id>JAVA</language-id>
@@ -849,13 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/TogglesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/roles/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -888,13 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/junit/junit/srcs/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.webjars/npm/jars/npm-4.2.0.jar!/META-INF/resources/webjars/npm/4.2.0/lib/config.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -902,13 +989,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
@@ -926,13 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ConfigNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="35" column="43" lean-forward="true" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/net.sourceforge.htmlunit/htmlunit/jars/htmlunit-2.33.jar!/com/gargoylesoftware/htmlunit/javascript/host/PermissionStatus.class">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -942,44 +1015,317 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ClassDiagram">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+        <state relative-caret-position="165">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ServiceInstance.java">
+    <entry file="file:///private/var/folders/dq/_vfds3wn0v34sh0sw_45dvn80000gn/T/modules.uml">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MODULES</ID>
+          <OriginalElement />
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="0.0" y="0.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement />
+          <nodes>
+            <node x="1134.0" y="481.0">com</node>
+            <node x="498.0" y="481.0">play</node>
+            <node x="657.0" y="481.0">trax</node>
+            <node x="134.0" y="126.0">sbt</node>
+            <node x="187.0" y="339.0">project</node>
+            <node x="589.0" y="268.0">grizzled</node>
+            <node x="1119.0" y="197.0">javascripts</node>
+            <node x="1267.0" y="339.0">router</node>
+            <node x="883.0" y="197.0">groovyjarjarasm</node>
+            <node x="816.0" y="481.0">java</node>
+            <node x="1038.0" y="410.0">javax</node>
+            <node x="367.0" y="339.0">okhttp3</node>
+            <node x="1698.0" y="126.0">sbinary</node>
+            <node x="1204.0" y="410.0">utils</node>
+            <node x="547.0" y="339.0">startup</node>
+            <node x="1515.0" y="126.0">controllers</node>
+            <node x="201.0" y="268.0">fastparse</node>
+            <node x="1370.0" y="410.0">mocks</node>
+            <node x="1440.0" y="339.0">javafx</node>
+            <node x="1286.0" y="481.0">net</node>
+            <node x="1613.0" y="339.0">secondaryLoading.SCL.lombok</node>
+            <node x="0.0" y="410.0">models</node>
+            <node x="173.0" y="410.0">images</node>
+            <node x="1536.0" y="410.0">spray</node>
+            <node x="152.0" y="552.0">io</node>
+            <node x="727.0" y="339.0">mozilla</node>
+            <node x="346.0" y="410.0">google</node>
+            <node x="22.09981684981676" y="0.0">xsbti</node>
+            <node x="1226.0" y="126.0">akka</node>
+            <node x="776.0" y="268.0">META-INF</node>
+            <node x="907.0" y="339.0">license</node>
+            <node x="1327.0" y="197.0">stylesheets</node>
+            <node x="519.0" y="410.0">groovy</node>
+            <node x="0.0" y="126.0">xsbt</node>
+            <node x="975.0" y="481.0">okio</node>
+            <node x="348.0" y="197.0">groovyjarjarcommonscli</node>
+            <node x="633.0" y="197.0">groovyjarjarantlr</node>
+            <node x="0.0" y="268.0">test_utils</node>
+            <node x="963.0" y="268.0">netscape</node>
+            <node x="395.0" y="268.0">relocated</node>
+            <node x="778.5" y="0.0">scala</node>
+            <node x="0.0" y="197.0">groverconfig8491016507689653801</node>
+            <node x="1438.0" y="481.0">sun</node>
+            <node x="1535.0" y="197.0">macrocompat</node>
+            <node x="429.99999999999994" y="126.0">sourcecode</node>
+            <node x="1702.0" y="410.0">apple</node>
+            <node x="1150.0" y="268.0">database</node>
+            <node x="692.0" y="410.0">native</node>
+            <node x="0.0" y="481.0">jline</node>
+            <node x="1078.0" y="126.0">giter8</node>
+            <node x="261.0" y="126.0">gigahorse</node>
+            <node x="1360.0" y="126.0">scalapb</node>
+            <node x="166.0" y="481.0">views</node>
+            <node x="332.0" y="481.0">junit</node>
+            <node x="1590.0" y="481.0">org</node>
+            <node x="297.0" y="552.0">ch</node>
+            <node x="1337.0" y="268.0">OSGI-OPT</node>
+            <node x="1087.0" y="339.0">Class50</node>
+            <node x="916.0" y="126.0">sjsonnew</node>
+            <node x="0.0" y="552.0">jdk</node>
+            <node x="865.0" y="410.0">better</node>
+            <node x="1524.0" y="268.0">licenses</node>
+            <node x="606.0" y="126.0">scalacache</node>
+            <node x="0.0" y="339.0">java_cup</node>
+            <node x="782.0" y="126.0">jawn</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="gigahorse" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="335.5" y="86.0" />
+              <point x="811.0769230769231" y="86.0" />
+              <point x="-27.923076923076906" y="13.0" />
+            </edge>
+            <edge source="sbinary" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="1765.5" y="56.0" />
+              <point x="894.8461538461538" y="56.0" />
+              <point x="55.84615384615381" y="13.0" />
+            </edge>
+            <edge source="xsbt" target="scala">
+              <point x="28.5" y="-13.0" />
+              <point x="85.5" y="56.0" />
+              <point x="783.1538461538462" y="56.0" />
+              <point x="-55.84615384615381" y="13.0" />
+            </edge>
+            <edge source="akka" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="1283.0" y="86.0" />
+              <point x="866.9230769230769" y="86.0" />
+              <point x="27.923076923076906" y="13.0" />
+            </edge>
+            <edge source="xsbt" target="xsbti">
+              <point x="-28.5" y="-13.0" />
+              <point x="28.5" y="106.0" />
+              <point x="52.34981684981676" y="106.0" />
+              <point x="-30.25" y="13.0" />
+            </edge>
+            <edge source="scalacache" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="684.0" y="106.0" />
+              <point x="829.6923076923076" y="106.0" />
+              <point x="-9.307692307692264" y="13.0" />
+            </edge>
+            <edge source="giter8" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="1142.0" y="96.0" />
+              <point x="857.6153846153845" y="96.0" />
+              <point x="18.61538461538464" y="13.0" />
+            </edge>
+            <edge source="sbt" target="xsbti">
+              <point x="-35.66666666666666" y="-13.0" />
+              <point x="151.83333333333337" y="46.0" />
+              <point x="112.84981684981676" y="46.0" />
+              <point x="30.25" y="13.0" />
+            </edge>
+            <edge source="sourcecode" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="507.99999999999994" y="96.0" />
+              <point x="820.3846153846152" y="96.0" />
+              <point x="-18.61538461538464" y="13.0" />
+            </edge>
+            <edge source="sjsonnew" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="987.0" y="106.0" />
+              <point x="848.3076923076922" y="106.0" />
+              <point x="9.307692307692264" y="13.0" />
+            </edge>
+            <edge source="scalapb" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="1427.5" y="76.0" />
+              <point x="876.2307692307693" y="76.0" />
+              <point x="37.23076923076928" y="13.0" />
+            </edge>
+            <edge source="controllers" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="1596.5" y="66.0" />
+              <point x="885.5384615384614" y="66.0" />
+              <point x="46.53846153846155" y="13.0" />
+            </edge>
+            <edge source="sbt" target="scala">
+              <point x="35.66666666666666" y="-13.0" />
+              <point x="223.16666666666663" y="76.0" />
+              <point x="801.7692307692307" y="76.0" />
+              <point x="-37.23076923076928" y="13.0" />
+            </edge>
+            <edge source="jawn" target="scala">
+              <point x="0.0" y="-13.0" />
+              <point x="0.0" y="13.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.4900161899622234" x="480.0" y="377.0" />
+          <SelectedNodes>
+            <node>com</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/controllers.ConfigsController">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>controllers.ConfigsController</OriginalElement>
+          <nodes>
+            <node x="0.0" y="76.0">controllers.ConfigsController</node>
+            <node x="38.5" y="0.0">java.lang.Object</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="controllers.ConfigsController" target="java.lang.Object">
+              <point x="0.0" y="-13.0" />
+              <point x="0.0" y="13.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="83.0" y="13.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-298">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="195">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/junit/junit/srcs/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="164">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
+    <entry file="jrt:///Applications/IntelliJ IDEA.app/Contents/jdk/Contents/Home!/java.base/java/util/HashMap.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+        <state relative-caret-position="180">
+          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.9.9-sources.jar!/com/fasterxml/jackson/databind/deser/std/CollectionDeserializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ConfigNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/TogglesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-405">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="151" column="24" lean-forward="true" selection-start-line="151" selection-start-column="24" selection-end-line="151" selection-end-column="24" />
+        <state relative-caret-position="480">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5733#5734#0" expanded="true" />
             <element signature="e#5760#5761#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="127" column="5" lean-forward="true" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+          <folding>
+            <element signature="e#719#720#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#1474#1475#0" expanded="true" />
+            <element signature="e#1504#1505#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ServiceInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="35" selection-start-line="35" selection-end-line="40" selection-end-column="40" />
+          <folding>
+            <element signature="e#1304#1305#0" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1072,5 +1418,55 @@
         </settings>
       </state>
     </states>
+  </component>
+  <component name="simpleUML.UMLToolWindowPlugin">
+    <General>
+      <option name="birdViewUpdateDelay" value="2000" />
+      <option name="defaultFileLocation" value="file://$PROJECT_DIR$/.." />
+    </General>
+    <Classdiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="defaultFieldsExpanded" value="false" />
+      <option name="defaultContructorsExpanded" value="false" />
+      <option name="defaultMethodsExpanded" value="false" />
+      <option name="showParameters" value="true" />
+      <option name="showTooltip" value="true" />
+      <option name="showReturnValues" value="true" />
+      <option name="longModifier" value="true" />
+      <option name="implementsBehaviour" value="1" />
+      <option name="extendsBehaviour" value="1" />
+      <option name="compartmentBehaviour" value="1" />
+      <option name="interfaceBackgroundColor" value="-6494306" />
+      <option name="abstractClassBackgroundColor" value="-1580132" />
+      <option name="classBackgroundColor" value="-6508057" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="quickSourceLinkColor" value="-16776961" />
+      <option name="quickDiagramLinkColor" value="-8454144" />
+      <option name="drawDecorations" value="false" />
+      <option name="hideFieldList" value="" />
+      <option name="showFieldList" value="" />
+      <option name="hideConstructorList" value="" />
+      <option name="showConstructorList" value="" />
+      <option name="hideMethodList" value="" />
+      <option name="showMethodList" value="" />
+      <option name="minimumFigureSize" value="0,0" />
+    </Classdiagram>
+    <Dependencydiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="0" />
+    </Dependencydiagram>
+    <Packagediagram>
+      <option name="diagramTitleFont" value="SansSerif,0,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="packageBackgroundColor" value="-4144960" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="2" />
+    </Packagediagram>
   </component>
 </project>

@@ -127,7 +127,7 @@ public class PermissionsMap {
             this.apply(node);
         }
 
-        System.out.println(this);
+        // System.out.println(this);
 
         return this;
     }
@@ -145,20 +145,20 @@ public class PermissionsMap {
             return false;
         } else if (this.allAllowed) {
             for (ServiceInstance t : this.denied) {
-                if (service == t.getService()) {
+                if (service.equals(t.getService())) {
                     return false;
                 }
             }
             return true;
         } else {
             for (ServiceInstance t : this.allowed) {
-                if (service == t.getService()) {
+                if (service.equals(t.getService())) {
                     return true;
                 }
             }
 
             for (ServiceInstance t : this.denied) {
-                if (service == t.getService()) {
+                if (service.equals(t.getService())) {
                     return true;
                 }
             }

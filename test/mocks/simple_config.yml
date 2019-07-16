@@ -27,6 +27,11 @@ toggles:
               - allow: []
                 deny:
                   - name: K20
+                    value: false
+                  - name: K20
+                    version: 1.0.1
+                    value: false
+                  - name: EG6
                     version: 1.0.1
                     value: false
               

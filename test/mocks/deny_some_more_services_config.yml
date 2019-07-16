@@ -1,16 +1,21 @@
 ---
 toggles:
   - name: isButtonBlue
-    - deny:
+    deny:
       - name: ABC
         value: false
-      unless:
-        - allow:
-            - name: ABC
-              value: false
-            - name: ABC
-              version: 1.0.1
-              value: false
-            - name: ABC
-              version: 1.0.1
-              value: false
+      - name: K20
+        value: false
+    unless:
+      - allow:
+          - name: ABC
+            value: true
+          - name: ABC
+            version: 1.0.1
+            value: false
+          - name: ABC
+            version: 1.0.2
+            value: false
+          - name: K20
+            version: 1.0.2
+            value: false
