@@ -2,9 +2,9 @@ package utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import models.Config;
-import models.concepts.Service;
-import models.concepts.Toggle;
+import models.exchange.Config;
+import models.database.Service;
+import models.database.Toggle;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,41 +23,53 @@ public class PermissionsTest {
             String simpleConfig = simpleConfigPath.toAbsolutePath().toString();
 
             Config config = mapper.readValue(new File(simpleConfig), Config.class);
-            PermissionsMap pm = new PermissionsMap();
-            pm.apply(config);
+            config.apply();
             System.out.println("Applied " + simpleConfigPath);
-            System.out.println("\n\n" + pm);
+            System.out.println("\n\n" + config);
+
+            Service abc = new Service("ABC");
+            Service abc100 = new Service("ABC", "1.0.0");
+            Service abc101 = new Service("ABC", "1.0.1");
+            Service abc102 = new Service("ABC", "1.0.2");
+            Service abc103 = new Service("ABC", "1.0.3");
+
+            Service eg6101 = new Service("EG6", "1.0.1");
+            Service k20 = new Service("K20");
+            Service k20103 = new Service("K20", "1.0.3");
+
+            Service iDontExist101new = new Service("IDONTEXIST", "1.0.1");
+            Service iDontExist = new Service("IDONTEXIST");
 
             HashSet<Service> servicesThatShouldBeAllowed = new HashSet<>();
-            servicesThatShouldBeAllowed.add(new Service("ABC", "1.0.0"));
-            servicesThatShouldBeAllowed.add(new Service("ABC"));
 
-            Toggle isButtonBlue = new Toggle("isButtonBlue");
+            servicesThatShouldBeAllowed.add(abc100);
+            servicesThatShouldBeAllowed.add(abc);
+
+            Toggle isButtonBlue = new Toggle("isButtonBlue", abc, true);
 
             for (Service s : servicesThatShouldBeAllowed) {
-                Assert.assertTrue(pm.canAccess(s, isButtonBlue));
+                Assert.assertTrue(s.canAccess(isButtonBlue));
             }
 
             HashSet<Service> servicesThatShouldBeDenied = new HashSet<>();
-            servicesThatShouldBeDenied.add(new Service("EG6", "1.0.1"));
-            servicesThatShouldBeDenied.add(new Service("K20"));
+            servicesThatShouldBeDenied.add(eg6101);
+            servicesThatShouldBeDenied.add(k20);
 
-            Toggle isButtonRed = new Toggle("isButtonRed");
+            Toggle isButtonRed = new Toggle("isButtonBlue", abc, true);
 
 
             for (Service s : servicesThatShouldBeDenied) {
-                Assert.assertFalse("Service " + s + " was able to access toggle " + isButtonRed + " when the spec says otherwise", pm.canAccess(s, isButtonRed));
+                Assert.assertFalse("Service " + s + " was able to access toggle " + isButtonRed + " when the spec says otherwise", s.canAccess(isButtonRed));
             }
 
 
             HashSet<Service> servicesThatDontExist = new HashSet<>();
-            servicesThatDontExist.add(new Service("IDONTEXIST", "1.0.1"));
-            servicesThatDontExist.add(new Service("IDONTEXIST"));
+            servicesThatDontExist.add(iDontExist);
+            servicesThatDontExist.add(iDontExist101new);
 
             for (Service s : servicesThatDontExist) {
-                Assert.assertTrue(pm.canAccess(s, isButtonRed));
+                Assert.assertTrue(s.canAccess(isButtonRed));
             }
-
 
             Path denySomeMoreServicesConfigPath = Paths.get("test/mocks/deny_some_more_services_config.yml");
             String denySomeMoreServicesConfig = denySomeMoreServicesConfigPath.toAbsolutePath().toString();
@@ -65,28 +77,28 @@ public class PermissionsTest {
             servicesThatShouldBeDenied.clear();
             servicesThatShouldBeAllowed.clear();
 
-            servicesThatShouldBeDenied.add(new Service("K20"));
-            servicesThatShouldBeDenied.add(new Service("EG6", "1.0.1"));
-            servicesThatShouldBeAllowed.add(new Service("ABC", "1.0.3"));
+            servicesThatShouldBeDenied.add(k20);
+            servicesThatShouldBeDenied.add(eg6101);
 
-            servicesThatShouldBeAllowed.add(new Service("ABC"));
-            servicesThatShouldBeAllowed.add(new Service("ABC", "1.0.1"));
-            servicesThatShouldBeAllowed.add(new Service("ABC", "1.0.2"));
-            servicesThatShouldBeAllowed.add(new Service("K20", "1.0.2"));
+            servicesThatShouldBeAllowed.add(abc);
+            servicesThatShouldBeAllowed.add(abc101);
+            servicesThatShouldBeAllowed.add(abc102);
+            servicesThatShouldBeAllowed.add(abc103);
+            servicesThatShouldBeAllowed.add(k20103);
 
             config = mapper.readValue(new File(denySomeMoreServicesConfig), Config.class);
-            pm.apply(config);
+            config.apply();
 
             System.out.println("Applied " + denySomeMoreServicesConfigPath);
-            System.out.println("\n\n" + pm);
+            System.out.println("\n\n" + config);
 
 
             for (Service s : servicesThatShouldBeDenied) {
-                Assert.assertFalse(pm.canAccess(s, isButtonRed));
+                Assert.assertFalse(s.canAccess(isButtonRed));
             }
 
             for (Service s : servicesThatShouldBeAllowed) {
-                Assert.assertTrue(pm.canAccess(s, isButtonBlue));
+                Assert.assertTrue(s.canAccess(isButtonBlue));
             }
 
 

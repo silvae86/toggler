@@ -1,22 +1,22 @@
-package models.concepts;
+package models.database;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.MongoConfig;
 import lombok.Getter;
 import lombok.Setter;
-import models.ConfigNode;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.*;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.List;
 
 @Entity("services")
-@Indexes(@Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)))
+@Indexes(@Index(fields = {@Field("toggleName"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)))
 @Getter
 @Setter
 public class Service {
@@ -29,11 +29,9 @@ public class Service {
     @Property("version")
     private String version;
 
-    @Reference("value")
-    private boolean value;
     @JsonIgnoreProperties(ignoreUnknown = true)
-    @Reference("permission_nodes")
-    private HashSet<ConfigNode> toggles;
+    @Reference("toggles")
+    private List<Toggle> toggles;
 
     public Service(String name) {
         this.name = name;
@@ -89,11 +87,7 @@ public class Service {
         if (this.getName().equals(service.getName())) {
             if (this.getVersion() == null && service.getVersion() != null) {
                 return false;
-            } else if (this.getVersion() != null && service.getVersion() == null) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return this.getVersion() != null && service.getVersion() == null;
         } else {
             return false;
         }
@@ -106,5 +100,10 @@ public class Service {
         } catch (JsonProcessingException e) {
             return ("Unable to serialize Service: " + e.getMessage());
         }
+    }
+
+    public boolean canAccess(Toggle t)
+    {
+        return true;
     }
 }

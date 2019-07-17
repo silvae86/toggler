@@ -4,7 +4,7 @@ db.auth('admin', '34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p9287
 //
 // db.getCollection('toggleInstances').insert([
 //     {
-//         name: "isButtonBlue",
+//         toggleName: "isButtonBlue",
 //         value: true
 //     }
 // ]);

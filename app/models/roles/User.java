@@ -8,6 +8,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 import java.util.HashSet;
+import java.util.List;
 
 @Entity("users")
 @Getter
@@ -18,7 +19,7 @@ public class User {
     private String username;
     private String password;
     private String salt;
-    public HashSet<String> roles;
+    public List<String> roles;
 
     public boolean auth(String password)
     {

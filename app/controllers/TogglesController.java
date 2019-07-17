@@ -3,8 +3,8 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import database.MongoConfig;
 import io.swagger.annotations.Api;
-import models.ConfigNode;
-import models.concepts.Service;
+import models.exchange.ConfigNode;
+import models.database.Service;
 import org.mongodb.morphia.query.Query;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -35,7 +35,7 @@ public class TogglesController extends Controller {
                     MongoConfig.datastore().delete(permissionNode);
                 }
 
-                return ok(Json.toJson("All toggleInstances with name " + name + " deleted."));
+                return ok(Json.toJson("All toggleInstances with toggleName " + name + " deleted."));
             }
         }
         catch(Exception e)
@@ -70,13 +70,13 @@ public class TogglesController extends Controller {
             permissionNodeToChange = ConfigNode.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion);
         } catch (Exception e)
         {
-            return notFound("ConfigNode with name " + toggleName + " does not exist.");
+            return notFound("ConfigNode with toggleName " + toggleName + " does not exist.");
         }
 
         try {
             Service.findByNameAndVersion(toggleName, serviceVersion);
         } catch (Exception e) {
-            return notFound("Service with name " + serviceName + " does not exist.");
+            return notFound("Service with toggleName " + serviceName + " does not exist.");
         }
 
 
@@ -90,7 +90,7 @@ public class TogglesController extends Controller {
         boolean newValue = Boolean.parseBoolean(data.get("value"));
 
         if (permissionNodeToChange != null) {
-            permissionNodeToChange.setDefaultValue(newValue);
+            permissionNodeToChange.setValue(newValue);
             MongoConfig.datastore().save(permissionNodeToChange);
         }
 
@@ -112,12 +112,12 @@ public class TogglesController extends Controller {
         }
 
         JsonNode newToggleDataJson = Json.parse(newToggleData.get("new_toggle_data"));
-        String toggleName = newToggleData.get("name");
+        String toggleName = newToggleData.get("toggleName");
         String services = newToggleData.get("services");
         String decision = newToggleData.get("decision");
 
         final ConfigNode permissionNodeWithSameName = MongoConfig.datastore().createQuery(ConfigNode.class)
-                .field("name").equal(toggleName)
+                .field("toggleName").equal(toggleName)
                 .get();
 
         // toggle already exists

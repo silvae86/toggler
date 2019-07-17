@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/play2_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/play2_settings.xml" afterDir="false" />
+    <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="Merge branch 'master' of https://github.com/silvae86/toggler&#10;&#10;# Conflicts:&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.bin&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.lock&#10;#&#9;.idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/app/models/database/Toggle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/concepts/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/concepts/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/PermissionsMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/PermissionsMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ConfigsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ConfigsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/ServicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ServicesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/TogglesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/TogglesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database/MongoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/database/MongoConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/exchange/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ConfigNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/exchange/ConfigNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/ServiceInstance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/concepts/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/database/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/concepts/Toggle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/roles/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/roles/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils/PermissionsMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/routes" beforeDir="false" afterPath="$PROJECT_DIR$/conf/routes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/swagger.yml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/swagger.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mongo/init/002_toggles.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/mongo/init/002_toggles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mongo/init/003_permissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/data/mongo/init/003_permissions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/TogglesControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/TogglesControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/mocks/simple_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/mocks/simple_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/utils/PermissionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/utils/PermissionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toggler/.g8/form/app/views/$model__camel$/form.scala.html" beforeDir="false" afterPath="$PROJECT_DIR$/toggler/.g8/form/app/views/$model__camel$/form.scala.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -79,89 +92,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/exchange/ConfigNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="334">
+              <caret line="80" column="66" lean-forward="true" selection-start-line="80" selection-start-column="66" selection-end-line="80" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5733#5734#0" expanded="true" />
-                <element signature="e#5760#5761#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
+        <entry file="file://$PROJECT_DIR$/app/models/database/Toggle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="127" column="5" lean-forward="true" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+            <state relative-caret-position="150">
+              <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/database/Service.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
               <folding>
-                <element signature="e#719#720#0" expanded="true" />
-                <element signature="e#751#752#0" expanded="true" />
-                <element signature="e#1474#1475#0" expanded="true" />
-                <element signature="e#1504#1505#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2949#2950#0" expanded="true" />
+                <element signature="e#2974#2975#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/TogglesController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-405">
-              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/ServiceInstance.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="35" selection-start-line="35" selection-end-line="40" selection-end-column="40" />
-              <folding>
-                <element signature="e#1304#1305#0" expanded="true" />
-                <element signature="e#1347#1348#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jrt:///Applications/IntelliJ IDEA.app/Contents/jdk/Contents/Home!/java.base/java/util/HashMap.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.9.9-sources.jar!/com/fasterxml/jackson/databind/deser/std/CollectionDeserializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/ConfigNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
@@ -169,17 +130,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+            <state relative-caret-position="150">
+              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml">
+        <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="732">
+              <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -197,11 +158,9 @@
     <findStrings>
       <find>configChange</find>
       <find>allow</find>
-      <find>LinkedList</find>
       <find>.combine(</find>
       <find>defaultValu</find>
       <find>defaultValue</find>
-      <find>overrides</find>
       <find>System.out.print</find>
       <find>Current relative path is</find>
       <find>mergePermissions</find>
@@ -209,9 +168,27 @@
       <find>applied</find>
       <find>system.out</find>
       <find>service</find>
-      <find>pm</find>
+      <find>ervice..toogle</find>
       <find>json</find>
+      <find>getToggles()</find>
+      <find>getToggles</find>
+      <find>pm</find>
+      <find>ServiceInstance</find>
+      <find>HashSet&lt;</find>
+      <find>HashSet</find>
+      <find>LinkedList</find>
+      <find>Config</find>
+      <find>overrides</find>
+      <find>Morphia</find>
     </findStrings>
+    <replaceStrings>
+      <replace>List</replace>
+      <replace>Service</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/app/models/database</dir>
+      <dir>$PROJECT_DIR$/app</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -224,32 +201,39 @@
         <option value="$PROJECT_DIR$/gatekeeper/pom.xml" />
         <option value="$PROJECT_DIR$/gatekeeper/src/main/java/Gatekeeper.java" />
         <option value="$PROJECT_DIR$/test/utils/HomeControllerTest.java" />
-        <option value="$PROJECT_DIR$/app/models/concepts/Toggle.java" />
         <option value="$PROJECT_DIR$/app/models/ToggleInstance.java" />
         <option value="$PROJECT_DIR$/app/models/ToggleSetting.java" />
         <option value="$PROJECT_DIR$/app/models/ToggleValue.java" />
-        <option value="$PROJECT_DIR$/app/models/Toggle.java" />
         <option value="$PROJECT_DIR$/app/models/ServiceToggle.java" />
         <option value="$PROJECT_DIR$/app/models/roles/Admin.java" />
         <option value="$PROJECT_DIR$/app/controllers/TogglesController.java" />
         <option value="$PROJECT_DIR$/app/models/ConfigChange.java" />
         <option value="$PROJECT_DIR$/app/models/PermissionNode.java" />
         <option value="$PROJECT_DIR$/app/models/Config.java" />
-        <option value="$PROJECT_DIR$/app/models/Service.java" />
         <option value="$PROJECT_DIR$/app/models/ServiceAndValue.java" />
         <option value="$PROJECT_DIR$/app/controllers/ConfigsController.java" />
         <option value="$PROJECT_DIR$/app/utils/GateKeeper.java" />
         <option value="$PROJECT_DIR$/test/utils/GatekeeperTest.java" />
-        <option value="$PROJECT_DIR$/app/models/ConfigNode.java" />
         <option value="$PROJECT_DIR$/test/mocks/base_config.yml" />
         <option value="$PROJECT_DIR$/ClassDiagram" />
-        <option value="$PROJECT_DIR$/test/mocks/simple_config.yml" />
         <option value="$PROJECT_DIR$/test/mocks/deny_some_more_services.yml" />
         <option value="$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml" />
-        <option value="$PROJECT_DIR$/test/utils/PermissionsTest.java" />
-        <option value="$PROJECT_DIR$/app/utils/PermissionsMap.java" />
         <option value="$PROJECT_DIR$/app/models/concepts/Service.java" />
         <option value="$PROJECT_DIR$/app/models/ServiceInstance.java" />
+        <option value="$PROJECT_DIR$/app/models/concepts/Toggle.java" />
+        <option value="$PROJECT_DIR$/app/models/Service.java" />
+        <option value="$PROJECT_DIR$/app/models/Toggle.java" />
+        <option value="$PROJECT_DIR$/app/models/ConfigNode.java" />
+        <option value="$PROJECT_DIR$/test/mocks/simple_config.yml" />
+        <option value="$PROJECT_DIR$/app/models/roles/User.java" />
+        <option value="$PROJECT_DIR$/app/database/MongoConfig.java" />
+        <option value="$PROJECT_DIR$/app/utils/PermissionsMap.java" />
+        <option value="$PROJECT_DIR$/app/utils/PermissionsMapFactory.java" />
+        <option value="$PROJECT_DIR$/app/models/exchange/Config.java" />
+        <option value="$PROJECT_DIR$/app/models/database/Service.java" />
+        <option value="$PROJECT_DIR$/test/utils/PermissionsTest.java" />
+        <option value="$PROJECT_DIR$/app/models/exchange/ConfigNode.java" />
+        <option value="$PROJECT_DIR$/app/models/database/Toggle.java" />
       </list>
     </option>
   </component>
@@ -295,9 +279,9 @@
       </array>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="853" />
+    <option name="width" value="1280" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectId" id="1NYWpRFq3Kq59hjjkF56BpFygFo" />
@@ -322,18 +306,69 @@
               <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
               <item name="toggler" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="exchange" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="roles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="startup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="toggler" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
               <item name="toggler" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="mocks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="toggler" type="b2602c69:ProjectViewProjectNode" />
               <item name="toggler" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="mocks" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -361,7 +396,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/test/mocks" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -556,7 +591,7 @@
       <workItem from="1562851120905" duration="9195000" />
       <workItem from="1563290209710" duration="324000" />
       <workItem from="1563290575982" duration="896000" />
-      <workItem from="1563296638379" duration="6657000" />
+      <workItem from="1563296638379" duration="21937000" />
     </task>
     <task id="LOCAL-00001" summary="Work in progress in the Configs Controller">
       <created>1562347712262</created>
@@ -600,43 +635,57 @@
       <option name="project" value="LOCAL" />
       <updated>1562868130040</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Improvements to permissions map">
+      <created>1563310469880</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1563310469880</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Merge branch 'master' of https://github.com/silvae86/toggler&#10;&#10;# Conflicts:&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.bin&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.lock&#10;#&#9;.idea/workspace.xml">
+      <created>1563310527953</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1563310527953</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 15m 37s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 03m 08s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 17m 29s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 04m 23s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 19m 27s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 04m 48s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 19m 34s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 05m 19s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 23m 00s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 05m 35s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 23m 52s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 07m 06s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 24m 40s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 08m 49s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 27m 20s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 09m 22s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 28m 50s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 01h 11m 11s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.16 at 19h 29m 32s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.17 at 18h 56m 56s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54412000" />
+    <option name="totallyTimeSpent" value="69692000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -648,10 +697,50 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="777" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" weight="0.16719915" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4939577" visible="true" weight="0.16639742" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" sideWeight="0.5060423" side_tool="true" weight="0.16639742" />
+      <window_info id="simpleUML" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32779455" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5981873" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.30966768" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32908705" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.32779455" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3269639" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.39808917" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" weight="0.326284" />
+      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="13" />
+      <window_info anchor="bottom" id="Spring" order="14" />
+      <window_info anchor="bottom" id="Messages" order="15" weight="0.32779455" />
+      <window_info anchor="right" x="0" y="0" width="430" height="857" id="Documentation" order="0" side_tool="true" weight="0.21728595" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Gradle" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
+      <window_info anchor="right" id="sbt" order="11" weight="0.32995737" />
+      <window_info anchor="right" id="Bean Validation" order="12" />
+      <window_info anchor="right" id="Mongo Explorer" order="13" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" visible="true" weight="0.16639742" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -660,9 +749,9 @@
       <window_info id="Favorites" order="6" sideWeight="0.5042463" side_tool="true" weight="0.16639742" />
       <window_info id="simpleUML" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32779455" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5987261" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.39728096" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32779455" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5981873" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.30966768" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32908705" />
@@ -671,51 +760,11 @@
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.39808917" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" weight="0.3275862" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" weight="0.326284" />
       <window_info anchor="bottom" id="sbt-shell-toolwindow" order="13" />
       <window_info anchor="bottom" id="Spring" order="14" />
       <window_info anchor="bottom" id="Messages" order="15" weight="0.32779455" />
-      <window_info anchor="right" x="0" y="0" width="430" height="857" id="Documentation" side_tool="true" weight="0.32960597" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Gradle" order="6" />
-      <window_info anchor="right" id="Database" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info anchor="right" id="sbt" order="10" weight="0.32995737" />
-      <window_info anchor="right" id="Bean Validation" order="11" />
-      <window_info anchor="right" id="Mongo Explorer" order="12" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957537" weight="0.16719915" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info active="true" id="Favorites" order="6" sideWeight="0.5042463" side_tool="true" visible="true" weight="0.16639742" />
-      <window_info id="simpleUML" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32779455" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5987261" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.39728096" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32908705" />
-      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.32779455" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3269639" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.39808917" />
-      <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49938348" weight="0.3275862" />
-      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="13" />
-      <window_info anchor="bottom" id="Spring" order="14" />
-      <window_info anchor="bottom" id="Messages" order="15" weight="0.32779455" />
-      <window_info anchor="right" x="0" y="0" width="430" height="857" id="Documentation" order="0" side_tool="true" weight="0.32960597" />
+      <window_info anchor="right" x="0" y="0" width="430" height="857" id="Documentation" order="0" side_tool="true" weight="0.21728595" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -775,39 +824,79 @@
     <MESSAGE value="Removed GateKeeper class" />
     <MESSAGE value="Test calling config apply functions" />
     <MESSAGE value="Improvements to permissions map" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improvements to permissions map" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/silvae86/toggler&#10;&#10;# Conflicts:&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.bin&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.lock&#10;#&#9;.idea/workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/silvae86/toggler&#10;&#10;# Conflicts:&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.bin&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.lock&#10;#&#9;.idea/workspace.xml" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <dependency id="0" />
-          <url>file://$PROJECT_DIR$/test/utils/PermissionsTest.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/utils/PermissionsMap.java</url>
-          <line>148</line>
-          <properties />
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties>
+            <option name="NOTIFY_CAUGHT" value="false" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
-        <watch expression="t.getService()" language="JAVA" />
-        <watch expression="service" language="JAVA" />
-        <watch expression="this.toString()" language="JAVA" />
+        <watch expression="node.get(&quot;allow&quot;).textValue()" language="JAVA" />
+        <watch expression="node.get(&quot;allow&quot;)" language="JAVA" />
+        <watch expression="node.get(&quot;allow&quot;).toString()" language="JAVA" custom="com.fasterxml.jackson.databind.node.ArrayNode" />
+        <watch expression="node.get(&quot;allow&quot;).asText()" language="JAVA" />
+        <watch expression="node.get(&quot;allow&quot;)." language="JAVA" />
+        <watch expression="node.get(&quot;allow&quot;).textValue()" language="JAVA" />
+        <watch expression="node" language="JAVA" />
+        <watch expression="config" language="JAVA" />
+        <watch expression="config.toString()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>config.toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>config</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node.get(&quot;allow&quot;).toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>com.fasterxml.jackson.databind.node.ArrayNode</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node.get(&quot;allow&quot;).textValue()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node.get(&quot;allow&quot;).</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node.get(&quot;allow&quot;).asText()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node.get(&quot;allow&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>this.toString()</expression-string>
         <language-id>JAVA</language-id>
@@ -815,31 +904,6 @@
       </expression>
       <expression>
         <expression-string>service</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>t.getService()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>data.get(param)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>data.get(param)[0]</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>data.get(param).length</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>data.get(&quot;value&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -899,21 +963,7 @@
     <entry file="file://$PROJECT_DIR$/gatekeeper/src/main.java" />
     <entry file="file://$PROJECT_DIR$/gatekeeper/pom.xml" />
     <entry file="file://$PROJECT_DIR$/gatekeeper/src/test/mocks/edit_toggle_values_correct.yml" />
-    <entry file="file://$PROJECT_DIR$/app/utils/RequestProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gatekeeper/src/main/java/Gatekeeper.java" />
-    <entry file="file://$PROJECT_DIR$/test/test_utils/Permutation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_utils/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -926,13 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="26" selection-start-line="26" selection-end-line="39" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/MongoConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -950,21 +993,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/roles/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/utils/GateKeeper.java" />
-    <entry file="file://$PROJECT_DIR$/app/models/concepts/Toggle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ConfigsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
@@ -989,13 +1018,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/mocks/base_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1231,24 +1253,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/junit/junit/srcs/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
         </state>
       </provider>
     </entry>
@@ -1259,73 +1267,169 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.9.9-sources.jar!/com/fasterxml/jackson/databind/deser/std/CollectionDeserializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ConfigNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/mocks/deny_some_more_services_config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/TogglesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5733#5734#0" expanded="true" />
-            <element signature="e#5760#5761#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/concepts/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="127" column="5" lean-forward="true" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
-          <folding>
-            <element signature="e#719#720#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#1474#1475#0" expanded="true" />
-            <element signature="e#1504#1505#0" expanded="true" />
-          </folding>
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ServiceInstance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="35" selection-start-line="35" selection-end-line="40" selection-end-column="40" />
+        <state relative-caret-position="345">
+          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/TogglesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="110" column="32" lean-forward="true" selection-start-line="110" selection-start-column="32" selection-end-line="110" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.9.9-sources.jar!/com/fasterxml/jackson/databind/deser/BeanDeserializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="288" selection-start-line="288" selection-end-line="288" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/controllers/TogglesControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/roles/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
           <folding>
-            <element signature="e#1304#1305#0" expanded="true" />
-            <element signature="e#1347#1348#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/MongoConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.9.9-sources.jar!/com/fasterxml/jackson/databind/deser/std/CollectionDeserializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="297" selection-start-line="297" selection-end-line="297" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jrt:///Applications/IntelliJ IDEA.app/Contents/jdk/Contents/Home!/java.base/java/lang/Boolean.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+          <folding>
+            <element signature="e#911#912#0" expanded="true" />
+            <element signature="e#963#964#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMapFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/mocks/base_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/PermissionsMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/RequestProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_utils/Permutation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/exchange/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="50" column="83" selection-start-line="50" selection-start-column="83" selection-end-line="50" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="732">
+          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/database/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2949#2950#0" expanded="true" />
+            <element signature="e#2974#2975#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/database/Toggle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/exchange/ConfigNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="80" column="66" lean-forward="true" selection-start-line="80" selection-start-column="66" selection-end-line="80" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1383,7 +1487,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>gatekeeper</last-edited>
+          <last-edited>toggler</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

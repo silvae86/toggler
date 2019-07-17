@@ -1,7 +1,7 @@
 package controllers;
 
 import database.MongoConfig;
-import models.concepts.Service;
+import models.database.Service;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;

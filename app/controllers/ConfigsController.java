@@ -1,7 +1,7 @@
 package controllers;
 
 import database.MongoConfig;
-import models.Config;
+import models.exchange.Config;
 import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -10,7 +10,7 @@ import static play.mvc.Results.*;
 
 public class ConfigsController {
 
-//    public Result create (Http.Request request, String name) {
+//    public Result create (Http.Request request, String toggleName) {
 //        Map<String, String> data;
 //        try{
 //            data = RequestProcessor.extractSingleValueParameters(request, "value");
@@ -23,18 +23,18 @@ public class ConfigsController {
 //        boolean value = Boolean.parseBoolean(data.get("value"));
 //
 //        final ConfigNode toggleWithSameName = MongoConfig.datastore().createQuery(ConfigNode.class)
-//                .field("name").equal(name).get();
+//                .field("toggleName").equal(toggleName).get();
 //
 //        // toggle already exists
 //        if (toggleWithSameName != null)
 //        {
-//            return status(409, Json.toJson("A toggle with id " + name + " already exists."));
+//            return status(409, Json.toJson("A toggle with id " + toggleName + " already exists."));
 //        }
 //        else
 //        {
-//            ConfigNode newToggle = new ConfigNode(name, value);
+//            ConfigNode newToggle = new ConfigNode(toggleName, value);
 //            MongoConfig.datastore().save(newToggle);
-//            return ok(Json.toJson("New toggle with " + name + " created."));
+//            return ok(Json.toJson("New toggle with " + toggleName + " created."));
 //        }
 //    }
 //

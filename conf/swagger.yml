@@ -25,7 +25,7 @@ securityDefinitions:
 #        toggleInstances:
 #          - isButtonBlue:
 #              value: true
-#        decision: deny
+#        decision: denied
 
 definitions:
   Toggle:

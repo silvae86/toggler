@@ -1,6 +1,7 @@
 ---
 toggles:
   - name: isButtonBlue
+    value: true
     allow: []
     unless:
       - deny: []
@@ -35,6 +36,7 @@ toggles:
                     version: 1.0.1
                     value: false
   - name: isButtonRed
+    value: true
     allow: []
     unless:
       - deny: []
@@ -64,6 +66,7 @@ toggles:
                     version: 1.0.1
                     value: false
   - name: isButtonGreen
+    value: true
     allow: []
     unless:
       - deny: []

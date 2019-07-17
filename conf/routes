@@ -26,14 +26,14 @@ GET     /                           controllers.HomeController.index
 #    - application/json
 #  parameters:
 #    - in: formData
-#      name: username
+#      toggleName: username
 #      required: true
 #      type: string
 #      example: demouser1
 #      default: demouser1
 #      description: Username of the user or service
 #    - in: formData
-#      name: password
+#      toggleName: password
 #      required: true
 #      type: string
 #      example: s3cretP4ssword
@@ -51,21 +51,21 @@ GET     /login                    controllers.UsersController.login(request: Req
 
 ###
 #  summary: Creates a new permissionNode
-#  description: Creates a new permissionNode with name "name" in the system, and value specified as the "value" field in the PUT request body.
+#  description: Creates a new permissionNode with toggleName "toggleName" in the system, and value specified as the "value" field in the PUT request body.
 #  tags:
 #    - Toggles
 #  produces:
 #    - application/json
 #  parameters:
 #    - in: body
-#      name: new_toggle_data
+#      toggleName: new_toggle_data
 #      required: true
 #      type: string
 #      example: 1.0.0
 #      default: 1.0.0
 #      description: New permissionNode configuration
 #    - in: formData
-#      name: value
+#      toggleName: value
 #      required: true
 #      type: boolean
 #      example: true
@@ -77,32 +77,32 @@ GET     /login                    controllers.UsersController.login(request: Req
 #    200:
 #       description: ConfigNode created
 #    409:
-#       description: A permissionNode with that name already exists
+#       description: A permissionNode with that toggleName already exists
 ###
 PUT     /permissionNodes                    controllers.TogglesController.create(request: Request)
 
 ###
 #  summary: Get permissionNode value for a specific version of a service
-#  description: Retrieves the value (true/false) of the permissionNode with name "name", when applied to version "version" of service "service"
+#  description: Retrieves the value (true/false) of the permissionNode with toggleName "toggleName", when applied to version "version" of service "service"
 #  tags:
 #    - Toggles
 #  parameters:
 #    - in: path
-#      name: name
+#      toggleName: toggleName
 #      required: true
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
 #      description: Name of the permissionNode to retrieve.
 #    - in: path
-#      name: service
+#      toggleName: service
 #      required: true
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Unique name of the service
+#      description: Unique toggleName of the service
 #    - in: path
-#      name: version
+#      toggleName: version
 #      required: true
 #      type: string
 #      example: 1.0.0
@@ -125,21 +125,21 @@ GET     /permissionNodes/:name/:service/:version                    controllers.
 #    - application/json
 #  parameters:
 #    - in: path
-#      name: name
+#      toggleName: toggleName
 #      required: true
 #      type: string
 #      example: isButtonBlue
 #      default: isButtonBlue
 #      description: Name of the permissionNode to modify.
 #    - in: path
-#      name: service
+#      toggleName: service
 #      required: true
 #      type: string
 #      example: ABC
 #      default: ABC
 #      description: Name of the service to which the new value of the permissionNode will apply.
 #    - in: formData
-#      name: value
+#      toggleName: value
 #      required: true
 #      type: boolean
 #      example: true
@@ -151,20 +151,20 @@ GET     /permissionNodes/:name/:service/:version                    controllers.
 #    200:
 #       description: OK
 #    404:
-#       description: There is no permissionNode with that name
+#       description: There is no permissionNode with that toggleName
 ###
 POST     /permissionNodes/:name/:service/:version                    controllers.TogglesController.set(request: Request, name: String, service: String, version: String)
 
 ###
 #  summary: Delete permissionNode
-#  description: Deletes the permissionNode with name "name" if it exists in the system, for all versions of all services.
+#  description: Deletes the permissionNode with toggleName "toggleName" if it exists in the system, for all versions of all services.
 #  tags:
 #    - Toggles
 #  produces:
 #    - application/json
 #  parameters:
 #    - in: path
-#      name: name
+#      toggleName: toggleName
 #      required: true
 #      type: string
 #      example: isButtonBlue
@@ -176,7 +176,7 @@ POST     /permissionNodes/:name/:service/:version                    controllers
 #    200:
 #       description: OK
 #    404:
-#       description: There is no permissionNode with that name
+#       description: There is no permissionNode with that toggleName
 ###
 DELETE  /permissionNodes/:name                controllers.TogglesController.delete(name:String)
 
@@ -204,7 +204,7 @@ GET     /permissionNodes                    controllers.TogglesController.index(
 #    - application/json
 #  parameters:
 #    - in: body
-#      name: new_config
+#      toggleName: new_config
 #      required: true
 #      schema:
 #        $ref: '#/definitions/Config'
@@ -250,14 +250,14 @@ GET     /config                    controllers.ConfigsController.get()
 #    - application/json
 #  parameters:
 #    - in: path
-#      name: service_name
+#      toggleName: service_name
 #      required: true
 #      type: string
 #      example: ABC
 #      default: ABC
 #      description: Name of the service for whom the current permissionNode configuration should be fetched
 #    - in: path
-#      name: version
+#      toggleName: version
 #      required: true
 #      type: string
 #      example: ABC
