@@ -1,6 +1,6 @@
 ---
 toggles:
-  - name: isButtonBlue
+  isButtonBlue:
     allow: []
     value: true
     unless:
@@ -14,12 +14,12 @@ toggles:
                 version: 1.0.0
                 value: true
             value: false
-  - name: isButtonGreen
+  isButtonGreen:
     deny: []
     allow:
       - name: ABC
     value: true
-  - name: isButtonRed
+  isButtonRed:
     deny:
       - name: ABC
     allow: []

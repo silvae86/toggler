@@ -9,7 +9,6 @@ import org.mongodb.morphia.Morphia;
 
 import javax.inject.Singleton;
 import java.util.LinkedList;
-import java.util.List;
 
 @Singleton
 public class MongoConfig {

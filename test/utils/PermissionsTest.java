@@ -2,29 +2,39 @@ package utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import models.exchange.Config;
+import database.MongoConfig;
 import models.database.Service;
 import models.database.Toggle;
+import models.exchange.Config;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 
+@RunWith(JUnit4.class)
 public class PermissionsTest {
+
+    @Before
+    public void init() {
+        MongoConfig.dropDatabase();
+    }
 
     @Test
     public void testAddConfigs() {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         try {
-            Path simpleConfigPath = Paths.get("test/mocks/simple_config.yml");
-            String simpleConfig = simpleConfigPath.toAbsolutePath().toString();
+            Path baseConfigPath = Paths.get("test/mocks/base_config.yml");
+            String baseConfig = baseConfigPath.toAbsolutePath().toString();
 
-            Config config = mapper.readValue(new File(simpleConfig), Config.class);
+            Config config = mapper.readValue(new File(baseConfig), Config.class);
             config.apply();
-            System.out.println("Applied " + simpleConfigPath);
+            System.out.println("Applied " + baseConfigPath);
             System.out.println("\n\n" + config);
 
             Service abc = new Service("ABC");

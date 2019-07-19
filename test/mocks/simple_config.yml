@@ -1,6 +1,6 @@
 ---
 toggles:
-  - name: isButtonBlue
+  isButtonBlue:
     value: true
     allow: []
     unless:
@@ -35,7 +35,7 @@ toggles:
                   - name: EG6
                     version: 1.0.1
                     value: false
-  - name: isButtonRed
+  isButtonRed:
     value: true
     allow: []
     unless:
@@ -65,7 +65,7 @@ toggles:
                   - name: K20
                     version: 1.0.1
                     value: false
-  - name: isButtonGreen
+  isButtonGreen:
     value: true
     allow: []
     unless:

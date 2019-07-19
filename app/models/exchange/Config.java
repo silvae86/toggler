@@ -12,7 +12,7 @@ import org.mongodb.morphia.annotations.Property;
 import org.mongodb.morphia.annotations.Reference;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
 
 @Entity("configurations")
 @Getter
@@ -23,7 +23,7 @@ public class Config {
 
     @Property("toggles")
     @JsonAlias("toggles")
-    private List<ConfigNode> configNodes;
+    private HashMap<String, ConfigNode> configNodes;
 
     @Property("date_applied")
     private Date dateApplied;
@@ -45,42 +45,9 @@ public class Config {
                 .order("-ts").limit(1).get();
     }
 
-    private void applyHelper(ConfigNode rootNode, ConfigNode node) {
-        if(rootNode != node)
-        {
-            System.out.println("Applying node under a node for toggle " + rootNode.getToggleName());
-        }
-        else
-        {
-            System.out.println("Applying node for toggle " + node.getToggleName());
-        }
-
-        System.out.print(this);
-
-        node.applyChanges();
-
-        if (node.getOverrides() != null) {
-            for (ConfigNode override : node.getOverrides()) {
-                applyHelper(rootNode, override);
-            }
-        }
-
-        if(rootNode != node)
-        {
-            System.out.println("Applied node under a node for toggle " + rootNode.getToggleName());
-        }
-        else
-        {
-            System.out.println("Applied node for toggle " + node.getToggleName());
-        }
-
-        System.out.print("\n\n"+ this);
-    }
-
     public Config apply() {
-        for (ConfigNode node: this.getConfigNodes()) {
-            ConfigNode rootNode = node;
-            this.applyHelper(rootNode, node);
+        for (String toggleName : this.getConfigNodes().keySet()) {
+            configNodes.get(toggleName).apply(toggleName);
         }
 
         return this;
