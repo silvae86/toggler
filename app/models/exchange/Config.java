@@ -2,17 +2,18 @@ package models.exchange;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import database.MongoConfig;
+import dev.morphia.annotations.Entity;
+import dev.morphia.annotations.Id;
+import dev.morphia.annotations.Property;
 import lombok.Getter;
 import lombok.Setter;
+import models.database.Service;
 import models.roles.User;
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Property;
-import org.mongodb.morphia.annotations.Reference;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 
 @Entity("configurations")
 @Getter
@@ -31,23 +32,37 @@ public class Config {
     @Property("date_received")
     private Date dateReceived;
 
-    @Reference("user")
+    @Property("user")
     private User creator;
 
-    public Config()
-    {
+    private HashSet<Service> allServices;
+
+    public Config() {
 
     }
 
-    public static Config getLatestConfig()
-    {
+    public static Config getLatestConfig() {
         return MongoConfig.datastore().createQuery(Config.class)
                 .order("-ts").limit(1).get();
     }
 
+    public HashSet<Service> scanForServices() {
+        HashSet<Service> allServices = new HashSet<>();
+        for (ConfigNode cn : configNodes.values()) {
+            allServices.addAll(cn.scanForServices());
+        }
+
+        return allServices;
+    }
+
     public Config apply() {
+
+        allServices = scanForServices();
         for (String toggleName : this.getConfigNodes().keySet()) {
-            configNodes.get(toggleName).apply(toggleName);
+            ConfigNode node = configNodes.get(toggleName);
+            node.setOwnerConfig(this);
+            node.setToggleName(toggleName);
+            node.apply();
         }
 
         return this;

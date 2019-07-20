@@ -44,25 +44,20 @@ public class ConfigsController {
 //        return ok(Json.toJson(toggleInstances));
 //    }
 
-    public Result get () {
+    public Result get() {
         try {
             Config latestConfigChange = Config.getLatestConfig();
-            if(latestConfigChange == null)
-            {
+            if (latestConfigChange == null) {
                 return notFound(Json.toJson("No configuration is set"));
-            }
-            else
-            {
+            } else {
                 return ok(Json.toJson(latestConfigChange));
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return internalServerError(Json.toJson(e.getMessage()));
         }
     }
 
-    public Result update (Http.Request request) {
+    public Result update(Http.Request request) {
 
         try {
             Config newConfigChange = request.body().parseJson(Config.class).get();
@@ -70,9 +65,7 @@ public class ConfigsController {
             MongoConfig.datastore().save(newConfigChange);
 
             return ok(Json.toJson(newConfigChange));
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return internalServerError(Json.toJson(e.getMessage()));
         }
     }

@@ -2,11 +2,11 @@ package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import database.MongoConfig;
+import dev.morphia.query.Query;
 import io.swagger.annotations.Api;
 import models.database.Service;
 import models.database.Toggle;
 import models.exchange.ConfigNode;
-import org.mongodb.morphia.query.Query;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -24,7 +24,7 @@ import java.util.Map;
 
 @Api
 public class TogglesController extends Controller {
-    public Result delete (String name) {
+    public Result delete(String name) {
         try {
             Iterator<Toggle> allTogglesWithName = Toggle.findByName(name);
             if (!allTogglesWithName.hasNext()) {
@@ -35,27 +35,20 @@ public class TogglesController extends Controller {
             }
 
             return ok(Json.toJson("All toggleInstances with toggleName " + name + " deleted."));
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return internalServerError(Json.toJson(e.getMessage()));
         }
     }
 
-    public Result get (String name, String serviceName, String serviceVersion) {
+    public Result get(String name, String serviceName, String serviceVersion) {
         try {
             Toggle toggleInstance = Toggle.findByNameServiceNameAndVersion(name, serviceName, serviceVersion);
-            if (toggleInstance == null)
-            {
+            if (toggleInstance == null) {
                 return notFound(Json.toJson("ConfigNode with " + name + " not found."));
-            }
-            else
-            {
+            } else {
                 return ok(Json.toJson(toggleInstance));
             }
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return internalServerError(Json.toJson(e.getMessage()));
         }
     }
@@ -65,8 +58,7 @@ public class TogglesController extends Controller {
         Toggle toggleInstance;
         try {
             toggleInstance = Toggle.findByNameServiceNameAndVersion(toggleName, serviceName, serviceVersion);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return notFound("ConfigNode with toggleName " + toggleName + " does not exist.");
         }
 
@@ -100,11 +92,9 @@ public class TogglesController extends Controller {
 
     public Result create(Http.Request request) {
         Map<String, String> newToggleData;
-        try{
+        try {
             newToggleData = RequestProcessor.extractSingleValueParameters(request, "new_toggle_data");
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return badRequest(e.getMessage());
         }
 
@@ -118,12 +108,9 @@ public class TogglesController extends Controller {
                 .get();
 
         // toggle already exists
-        if (permissionNodeWithSameName != null)
-        {
+        if (permissionNodeWithSameName != null) {
             return status(409, Json.toJson("A toggle with id " + toggleName + " already exists."));
-        }
-        else
-        {
+        } else {
             ConfigNode newPermissionNode = new ConfigNode();
             //newPermissionNode.setService();
             MongoConfig.datastore().save(newPermissionNode);
@@ -131,7 +118,7 @@ public class TogglesController extends Controller {
         }
     }
 
-    public Result index () {
+    public Result index() {
         final Query<ConfigNode> query = MongoConfig.datastore().createQuery(ConfigNode.class);
         final List<ConfigNode> permissionNodes = query.asList();
         return ok(Json.toJson(permissionNodes));

@@ -1,14 +1,13 @@
 package models.roles;
 
+import dev.morphia.annotations.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import org.mongodb.morphia.annotations.Entity;
 
 @Entity("admins")
 @Getter
 @Setter
-public class Admin extends User{
-    Admin()
-    {
+public class Admin extends User {
+    Admin() {
     }
 }

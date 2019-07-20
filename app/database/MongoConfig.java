@@ -4,8 +4,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.typesafe.config.ConfigFactory;
-import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
+import dev.morphia.Datastore;
+import dev.morphia.Morphia;
 
 import javax.inject.Singleton;
 import java.util.LinkedList;
@@ -31,8 +31,7 @@ public class MongoConfig {
         return datastore;
     }
 
-    public static void dropDatabase()
-    {
+    public static void dropDatabase() {
         datastore().getDB().dropDatabase();
     }
 

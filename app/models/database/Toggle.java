@@ -1,11 +1,11 @@
 package models.database;
 
 import database.MongoConfig;
+import dev.morphia.annotations.*;
+import dev.morphia.query.Query;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.*;
-import org.mongodb.morphia.query.Query;
 
 import java.util.Iterator;
 
@@ -13,11 +13,9 @@ import java.util.Iterator;
 @Indexes({
         @Index(fields = {
                 @Field("name"),
-                @Field("service.name"),
-                @Field("service.version"),
                 @Field("value")
         },
-        options = @IndexOptions(unique = true, dropDups = true))
+                options = @IndexOptions(unique = true, dropDups = true))
 })
 @Getter
 @Setter
@@ -28,12 +26,6 @@ public class Toggle {
     @Property("name")
     private String name;
 
-    @Reference("service_name")
-    private String serviceName;
-
-    @Reference("service_version")
-    private String serviceVersion;
-
     @Property("value")
     private Boolean value;
 
@@ -42,14 +34,13 @@ public class Toggle {
 
     public Toggle(
             String name,
-            Service service,
             Boolean value
     ) {
         this.name = name;
-        this.serviceName = service.getName();
-        this.serviceVersion = service.getVersion();
         this.value = value;
     }
+
+    // for finding toggle instances inside services
 
     public static Iterator<Toggle> findByName(String name) {
         Query<Toggle> togglesByNameQuery = MongoConfig.datastore().find(Toggle.class);
@@ -76,29 +67,5 @@ public class Toggle {
         );
 
         return togglesByNameQuery.get();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (!(obj instanceof Toggle))
-            return false;
-        if (obj == this)
-            return true;
-
-        Toggle s = (Toggle) obj;
-        if (this.name.equals(s.name)) {
-            if (this.serviceName != null) {
-                if (s.serviceVersion != null) {
-                    return this.serviceVersion.equals(s.serviceVersion);
-                } else {
-                    return false;
-                }
-            } else {
-                return s.serviceVersion == null;
-            }
-        } else {
-            return false;
-        }
     }
 }

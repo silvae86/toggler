@@ -12,11 +12,9 @@ import java.util.Map;
 public class UsersController extends Controller {
     public Result login(Http.Request request) {
         Map<String, String> data;
-        try{
+        try {
             data = RequestProcessor.extractSingleValueParameters(request, "username", "password");
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             return badRequest(e.getMessage());
         }
 
@@ -27,18 +25,12 @@ public class UsersController extends Controller {
                 .field("username").equal(username)
                 .limit(1).get();
 
-        if(authenticatingUser == null)
-        {
+        if (authenticatingUser == null) {
             return notFound();
-        }
-        else
-        {
-            if(authenticatingUser.auth(password))
-            {
+        } else {
+            if (authenticatingUser.auth(password)) {
                 return ok();
-            }
-            else
-            {
+            } else {
                 return unauthorized();
             }
         }

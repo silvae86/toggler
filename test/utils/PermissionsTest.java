@@ -55,7 +55,7 @@ public class PermissionsTest {
             servicesThatShouldBeAllowed.add(abc100);
             servicesThatShouldBeAllowed.add(abc);
 
-            Toggle isButtonBlue = new Toggle("isButtonBlue", abc, true);
+            Toggle isButtonBlue = new Toggle("isButtonBlue", true);
 
             for (Service s : servicesThatShouldBeAllowed) {
                 Assert.assertTrue(s.canAccess(isButtonBlue));
@@ -65,7 +65,7 @@ public class PermissionsTest {
             servicesThatShouldBeDenied.add(eg6101);
             servicesThatShouldBeDenied.add(k20);
 
-            Toggle isButtonRed = new Toggle("isButtonBlue", abc, true);
+            Toggle isButtonRed = new Toggle("isButtonBlue", true);
 
 
             for (Service s : servicesThatShouldBeDenied) {
