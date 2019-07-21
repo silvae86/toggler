@@ -1,10 +1,10 @@
 ---
 toggles:
   isButtonBlue:
-    allow: []
+    allow: all
     value: true
     unless:
-      - deny: []
+      - deny: all
         allow:
           - name: ABC
             value: false
@@ -13,14 +13,16 @@ toggles:
               - name: BCA
                 version: 1.0.0
                 value: true
+              - name: BCA
+                version: 1.0.1
             value: false
   isButtonGreen:
-    deny: []
+    deny: all
     allow:
       - name: ABC
     value: true
   isButtonRed:
     deny:
       - name: ABC
-    allow: []
+    allow: all
     value: true

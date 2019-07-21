@@ -41,6 +41,9 @@ public class Service {
     @Property("toggles")
     private HashSet<Toggle> toggles = new HashSet<>();
 
+    @Property("value")
+    private Boolean value;
+
     public Service(String name) {
         this.name = name;
     }

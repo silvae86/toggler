@@ -55,14 +55,14 @@ public class Config {
         return allServices;
     }
 
-    public Config apply() {
+    public Config apply() throws Exception {
 
         allServices = scanForServices();
         for (String toggleName : this.getConfigNodes().keySet()) {
             ConfigNode node = configNodes.get(toggleName);
             node.setOwnerConfig(this);
             node.setToggleName(toggleName);
-            node.apply();
+            node.apply(toggleName);
         }
 
         return this;

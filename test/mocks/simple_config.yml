@@ -2,9 +2,9 @@
 toggles:
   isButtonBlue:
     value: true
-    allow: []
+    allow: all
     unless:
-      - deny: []
+      - deny: all
         allow:
           - name: ABC
             value: false
@@ -25,7 +25,7 @@ toggles:
                 value: false
             value: false
             unless:
-              - allow: []
+              - allow: all
                 deny:
                   - name: K20
                     value: false
@@ -37,9 +37,9 @@ toggles:
                     value: false
   isButtonRed:
     value: true
-    allow: []
+    allow: all
     unless:
-      - deny: []
+      - deny: all
         allow:
           - name: ABC
             value: false
@@ -60,16 +60,16 @@ toggles:
                 value: false
             value: false
             unless:
-              - allow: []
+              - allow: all
                 deny:
                   - name: K20
                     version: 1.0.1
                     value: false
   isButtonGreen:
     value: true
-    allow: []
+    allow: all
     unless:
-      - deny: []
+      - deny: all
         allow:
           - name: ABC
             value: false
@@ -90,7 +90,7 @@ toggles:
                 value: false
             value: false
             unless:
-              - allow: []
+              - allow: all
                 deny:
                   - name: K20
                     version: 1.0.1

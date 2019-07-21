@@ -2,26 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce3261ba-7e7e-457f-9a49-905c811ffa30" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.9/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/play2_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/play2_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ConfigsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ConfigsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/ServicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/ServicesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/TogglesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/TogglesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/database/MongoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/database/MongoConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/database/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/database/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/database/Toggle.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/database/Toggle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/exchange/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/exchange/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/exchange/ConfigNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/exchange/ConfigNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/roles/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/roles/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/roles/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/roles/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/RequestProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/RequestProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/index.scala.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/index.scala.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/main.scala.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/main.scala.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/utils/PermissionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/utils/PermissionsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/mocks/base_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/mocks/base_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/mocks/simple_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/test/mocks/simple_config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -93,24 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/exchange/ConfigNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2882#2883#0" expanded="true" />
-                <element signature="e#2919#2920#0" expanded="true" />
-                <element signature="e#5784#5785#0" expanded="true" />
-                <element signature="e#5831#5832#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/exchange/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+            <state relative-caret-position="106">
+              <caret line="173" selection-start-line="173" selection-end-line="173" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,10 +89,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/exchange/Config.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/database/Toggle.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/mocks/base_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+            <state relative-caret-position="90">
+              <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -130,22 +124,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/database/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+            <state relative-caret-position="-1">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2648#2649#0" expanded="true" />
-                <element signature="e#2743#2744#0" expanded="true" />
+                <element signature="method#getToggleValue#0;class#Service#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/utils/PermissionsTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -161,10 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>base_config.</find>
-      <find>applied</find>
-      <find>system.out</find>
-      <find>service</find>
       <find>ervice..toogle</find>
       <find>json</find>
       <find>getToggles()</find>
@@ -187,14 +167,19 @@
       <find>.save</find>
       <find>findMyToggle</find>
       <find>.delete</find>
-      <find>apply</find>
       <find>createUpdateOperations</find>
       <find>overrides</find>
       <find>allServices</find>
+      <find>[]</find>
+      <find>apply</find>
+      <find>size()</find>
+      <find>Toggle</find>
+      <find>value</find>
     </findStrings>
     <replaceStrings>
       <replace>List</replace>
       <replace>Service</replace>
+      <replace>all</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app/models/database</dir>
@@ -234,9 +219,7 @@
         <option value="$PROJECT_DIR$/app/models/ConfigNode.java" />
         <option value="$PROJECT_DIR$/app/utils/PermissionsMap.java" />
         <option value="$PROJECT_DIR$/app/utils/PermissionsMapFactory.java" />
-        <option value="$PROJECT_DIR$/test/mocks/simple_config.yml" />
         <option value="$PROJECT_DIR$/conf/application.conf" />
-        <option value="$PROJECT_DIR$/test/mocks/base_config.yml" />
         <option value="$PROJECT_DIR$/test/utils/PermissionsTest.java" />
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/app/database/MongoConfig.java" />
@@ -244,9 +227,11 @@
         <option value="$PROJECT_DIR$/app/controllers/TogglesController.java" />
         <option value="$PROJECT_DIR$/app/models/roles/Admin.java" />
         <option value="$PROJECT_DIR$/app/models/roles/User.java" />
+        <option value="$PROJECT_DIR$/test/mocks/simple_config.yml" />
         <option value="$PROJECT_DIR$/app/models/database/Service.java" />
-        <option value="$PROJECT_DIR$/app/models/exchange/ConfigNode.java" />
         <option value="$PROJECT_DIR$/app/models/exchange/Config.java" />
+        <option value="$PROJECT_DIR$/app/models/exchange/ConfigNode.java" />
+        <option value="$PROJECT_DIR$/test/mocks/base_config.yml" />
       </list>
     </option>
   </component>
@@ -292,7 +277,7 @@
       </array>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="777" />
@@ -303,6 +288,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -355,7 +341,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -382,7 +367,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -576,7 +561,8 @@
       <workItem from="1563449465410" duration="535000" />
       <workItem from="1563480453004" duration="14673000" />
       <workItem from="1563497586230" duration="2747000" />
-      <workItem from="1563569845873" duration="25554000" />
+      <workItem from="1563569845873" duration="25991000" />
+      <workItem from="1563663255152" duration="3835000" />
     </task>
     <task id="LOCAL-00001" summary="Work in progress in the Configs Controller">
       <created>1562347712262</created>
@@ -641,43 +627,50 @@
       <option name="project" value="LOCAL" />
       <updated>1563495429953</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Detecting all services before applying changes to the permissions">
+      <created>1563662713166</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1563662713166</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 19h 28m 29s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 33m 06s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 19h 35m 57s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 34m 12s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 19h 41m 54s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 35m 43s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 21h 51m 08s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 37m 24s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 21h 52m 10s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 39m 23s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 21h 57m 23s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 39m 56s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 22h 51m 48s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 40m 40s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 22h 52m 14s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 43m 40s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 22h 54m 43s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 44m 08s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Test_GateKeeper - 2019.07.20 at 23h 43m 58s.xml">
+    <history-entry file="Test_GateKeeper - 2019.07.21 at 00h 52m 55s.xml">
       <configuration name="Test GateKeeper" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127274000" />
+    <option name="totallyTimeSpent" value="131546000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -689,10 +682,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1280" height="777" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4939577" visible="true" weight="0.17124394" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4939577" weight="0.1736672" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -733,7 +726,7 @@
       <window_info anchor="right" id="Mongo Explorer" order="13" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4939577" weight="0.17124394" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4939577" weight="0.1736672" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -744,7 +737,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49919224" weight="0.32779455" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3897281" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4983845" visible="true" weight="0.4244713" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4983845" visible="true" weight="0.4244713" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32908705" />
@@ -829,7 +822,8 @@
     <MESSAGE value="Test calling config apply functions" />
     <MESSAGE value="Improvements to permissions map" />
     <MESSAGE value="Merge branch 'master' of https://github.com/silvae86/toggler&#10;&#10;# Conflicts:&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.bin&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.lock&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/silvae86/toggler&#10;&#10;# Conflicts:&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.bin&#10;#&#9;.gradle/4.9/fileHashes/fileHashes.lock&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Detecting all services before applying changes to the permissions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Detecting all services before applying changes to the permissions" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -843,6 +837,18 @@
           <properties />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/models/exchange/ConfigNode.java</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/models/exchange/ConfigNode.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" type="java-exception">
@@ -852,9 +858,37 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="node.get(&quot;allow&quot;).toString()" language="JAVA" />
+        <watch expression="allowedService.getValue()" language="JAVA" />
+        <watch expression="toggleToAdd.getValue()" language="JAVA" />
+        <watch expression="toggleToAdd" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>toggleToAdd</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>toggleToAdd.getValue()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>allowedService.getValue()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>node.get(&quot;allow&quot;).toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>serviceWithNameAndToggleQuery.find().hasNext()</expression-string>
         <language-id>JAVA</language-id>
@@ -882,26 +916,6 @@
       </expression>
       <expression>
         <expression-string>ctxt.getAttribute(&quot;toggleName&quot;).toString()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>ctxt</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>jp.getParsingContext().getParent()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>jp.getParsingContext().getParent().getCurrentValue()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>config.toString()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1293,13 +1307,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-188">
-          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/MongoConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1334,41 +1341,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/database/Toggle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="51" column="70" selection-start-line="51" selection-start-column="70" selection-end-line="51" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/TogglesController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/mocks/base_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/database/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3">
-          <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2648#2649#0" expanded="true" />
-            <element signature="e#2743#2744#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1380,27 +1358,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/exchange/ConfigNode.java">
+    <entry file="file://$PROJECT_DIR$/test/mocks/simple_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+        <state relative-caret-position="293">
+          <caret line="39" column="14" lean-forward="true" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/database/Toggle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2882#2883#0" expanded="true" />
-            <element signature="e#2919#2920#0" expanded="true" />
-            <element signature="e#5784#5785#0" expanded="true" />
-            <element signature="e#5831#5832#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/database/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getToggleValue#0;class#Service#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/exchange/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="65" column="25" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="25" />
+        <state relative-caret-position="154">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/exchange/ConfigNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="173" selection-start-line="173" selection-end-line="173" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/mocks/base_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
         </state>
       </provider>
     </entry>
