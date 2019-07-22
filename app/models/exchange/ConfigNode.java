@@ -1,7 +1,6 @@
 package models.exchange;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,7 +15,6 @@ import dev.morphia.annotations.Embedded;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Property;
 import dev.morphia.query.Query;
-import dev.morphia.query.UpdateOperations;
 import lombok.Getter;
 import lombok.Setter;
 import models.database.Service;
@@ -51,7 +49,7 @@ public class ConfigNode {
 
     @Embedded("overrides")
     @JsonAlias("unless")
-    private HashSet<ConfigNode> overrides;
+    private ConfigNode override;
 
     @Property("all_allowed")
     private boolean allAllowed;
@@ -61,37 +59,36 @@ public class ConfigNode {
 
     @JsonProperty("value")
     @Property("value")
-    private Boolean value;
-
-    @JsonIgnore
-    private Config ownerConfig;
-
-    @JsonIgnore
-    private String toggleName;
-
-    public ConfigNode(Config ownerConfig, String toggleName) {
-        this.ownerConfig = ownerConfig;
-        this.toggleName = toggleName;
-    }
+    private Boolean defaultValue;
 
     public ConfigNode() {
     }
 
+    private Toggle createToggleWithValue(Toggle toggleWithDefaultValue, Service serviceWithSpecificValue) {
+        Toggle newToggle = new Toggle(toggleWithDefaultValue.getName());
+
+        if (serviceWithSpecificValue.getValue() == null) {
+            newToggle.setValue(toggleWithDefaultValue.getValue());
+        } else {
+            newToggle.setValue(serviceWithSpecificValue.getValue());
+        }
+
+        return newToggle;
+    }
+
     private void addToggleToServices(Toggle toggleToAdd, Iterator<Service> services) {
         while (services != null && services.hasNext()) {
-            Service allowedService = Service.find(services.next());
-            MongoConfig.datastore().save(allowedService);
-            Toggle newAllowedToggle = new Toggle(toggleToAdd.getName(), (allowedService.getValue() == null) ? toggleToAdd.getValue() : allowedService.getValue());
-            allowedService.addOrUpdateToggle(newAllowedToggle);
+            Service serviceBeingAdded = services.next();
+            Service.createOrUpdateService(serviceBeingAdded);
+            serviceBeingAdded.addOrUpdateToggle(createToggleWithValue(toggleToAdd, serviceBeingAdded));
         }
     }
 
     private void removeToggleFromServices(Toggle toggleToRemove, Iterator<Service> services) {
         while (services != null && services.hasNext()) {
             Service deniedService = Service.find(services.next());
-            MongoConfig.datastore().save(deniedService);
-            Toggle newDeniedToggle = new Toggle(toggleToRemove.getName(), (deniedService.getValue() == null) ? toggleToRemove.getValue() : deniedService.getValue());
-            deniedService.removeToggle(newDeniedToggle);
+            if (deniedService != null)
+                deniedService.removeToggle(createToggleWithValue(toggleToRemove, deniedService));
         }
     }
 
@@ -108,32 +105,34 @@ public class ConfigNode {
         if (nodeToScan.denied != null)
             allServices.addAll(nodeToScan.denied);
 
-        if (nodeToScan.getOverrides() != null) {
-            for (ConfigNode override : nodeToScan.getOverrides()) {
-                allServices.addAll(override.scanForServices());
-            }
+        if (nodeToScan.getOverride() != null) {
+            allServices.addAll(override.scanForServices());
         }
 
         return allServices;
     }
 
-    public void apply(String toggleName) throws Exception {
-        System.out.println("Applying node for toggle " + toggleName);
-        System.out.println(this);
+    public void apply(ParsingContext context) throws Exception {
+        System.out.println("Applying node for toggle " + context.getToggleName());
+        // System.out.println(this);
 
-        Toggle toggle = new Toggle(toggleName, value);
+        Toggle toggle = new Toggle(context.getToggleName());
 
         Query<Service> allServicesQuery = MongoConfig.datastore().find(Service.class);
         Iterator<Service> servicesToAddToggleTo = null;
         Iterator<Service> servicesToRemoveToggleFrom = null;
 
-        // 1. Set value of all instances of this toggle in every service if there is a default
-        if (value != null) {
-            Query<Toggle> allInstancesOfToggleQuery = MongoConfig.datastore().find(Toggle.class);
-            allInstancesOfToggleQuery.criteria("name").equal(toggleName);
+        // 1. Set defaultValue of all instances of this toggle in every service if there is a default
+        if (defaultValue != null) {
+            /*Query<Toggle> allInstancesOfToggleQuery = MongoConfig.datastore().find(Toggle.class);
+            allInstancesOfToggleQuery.criteria("name").equal(context.getToggleName());
             UpdateOperations<Toggle> setDefaultValueOperation = MongoConfig.datastore().
-                    createUpdateOperations(Toggle.class).set("value", value);
-            MongoConfig.datastore().findAndModify(allInstancesOfToggleQuery, setDefaultValueOperation);
+                    createUpdateOperations(Toggle.class).set("defaultValue", defaultValue);
+            MongoConfig.datastore().findAndModify(allInstancesOfToggleQuery, setDefaultValueOperation);*/
+            context.setToggleValue(defaultValue);
+            toggle.setValue(defaultValue);
+        } else if (context.getToggleValue() != null) {
+            toggle.setValue(context.getToggleValue());
         }
 
         // 2. if we have both allowed and denied services
@@ -150,7 +149,7 @@ public class ConfigNode {
                 servicesToRemoveToggleFrom = allServicesQuery.iterator();
                 servicesToAddToggleTo = allowed.iterator();
             } else if (allDenied && allAllowed) {
-                throw new Exception("Cannot deny and allow all services to access toggle " + getToggleName());
+                throw new Exception("Cannot deny and allow all services to access toggle " + context.getToggleName());
             }
         }
         // 3. Remove toggle from every service that is denied
@@ -173,14 +172,12 @@ public class ConfigNode {
         addToggleToServices(toggle, servicesToAddToggleTo);
         removeToggleFromServices(toggle, servicesToRemoveToggleFrom);
 
-        if (this.getOverrides() != null) {
-            for (ConfigNode override : this.getOverrides()) {
-                override.apply(toggleName);
-            }
+        if (this.getOverride() != null) {
+            override.apply(context);
         }
 
-        System.out.println("Applied node for toggle " + toggleName);
-        System.out.println(this);
+        System.out.println("Applied node for toggle " + context.getToggleName());
+        // System.out.println(this);
     }
 
     public String toString() {
@@ -207,7 +204,7 @@ public class ConfigNode {
             ConfigNode cn = new ConfigNode();
 
             if (node.has("value")) {
-                cn.setValue(Boolean.parseBoolean(node.get("value").textValue()));
+                cn.setDefaultValue(node.get("value").booleanValue());
             }
 
             if (node.has("allow")) {
@@ -230,9 +227,9 @@ public class ConfigNode {
             }
 
             if (node.has("unless")) {
-                HashSet<ConfigNode> overrides = mapper.readValue(node.get("unless").toString(), new TypeReference<HashSet<ConfigNode>>() {
+                ConfigNode override = mapper.readValue(node.get("unless").toString(), new TypeReference<ConfigNode>() {
                 });
-                cn.setOverrides(overrides);
+                cn.setOverride(override);
             }
 
 

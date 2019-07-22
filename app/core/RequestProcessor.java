@@ -1,4 +1,4 @@
-package utils;
+package core;
 
 import play.mvc.Http;
 
@@ -17,7 +17,7 @@ public class RequestProcessor {
                 if (data.get(param).length == 1) {
                     extractedParameters.put(param, data.get(param)[0]);
                 } else {
-                    throw new Exception(param + " can only have a single value.");
+                    throw new Exception(param + " can only have a single defaultValue.");
                 }
             } else {
                 throw new Exception(param + " is required but is not present in the request body.");

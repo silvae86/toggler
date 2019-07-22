@@ -1,11 +1,11 @@
 package controllers;
 
+import core.RequestProcessor;
 import database.MongoConfig;
 import models.roles.User;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
-import utils.RequestProcessor;
 
 import java.util.Map;
 

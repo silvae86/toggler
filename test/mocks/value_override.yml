@@ -1,0 +1,11 @@
+---
+toggles:
+  isButtonGreen:
+    deny:
+      - name: ABC
+    value: true
+    unless:
+      allow:
+        - name: ABC
+          value: true
+      value: false

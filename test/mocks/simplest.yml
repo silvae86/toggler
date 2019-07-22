@@ -1,0 +1,5 @@
+---
+toggles:
+  isButtonBlue:
+    allow: all
+    value: true

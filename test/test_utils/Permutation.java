@@ -34,7 +34,7 @@ public class Permutation {
     /**
      * Swap Characters at position
      *
-     * @param a string value
+     * @param a string defaultValue
      * @param i position 1
      * @param j position 2
      * @return swapped string

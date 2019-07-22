@@ -5,6 +5,6 @@ db.auth('admin', '34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p9287
 // db.getCollection('permissions').insert([
 //     {
 //         toggleName: "isButtonBlue",
-//         value: true
+//         defaultValue: true
 //     }
 // ]);

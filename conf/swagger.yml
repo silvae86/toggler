@@ -24,7 +24,7 @@ securityDefinitions:
 #        services: []
 #        toggleInstances:
 #          - isButtonBlue:
-#              value: true
+#              defaultValue: true
 #        decision: denied
 
 definitions:

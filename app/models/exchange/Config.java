@@ -35,8 +35,6 @@ public class Config {
     @Property("user")
     private User creator;
 
-    private HashSet<Service> allServices;
-
     public Config() {
 
     }
@@ -51,18 +49,14 @@ public class Config {
         for (ConfigNode cn : configNodes.values()) {
             allServices.addAll(cn.scanForServices());
         }
-
         return allServices;
     }
 
     public Config apply() throws Exception {
-
-        allServices = scanForServices();
         for (String toggleName : this.getConfigNodes().keySet()) {
             ConfigNode node = configNodes.get(toggleName);
-            node.setOwnerConfig(this);
-            node.setToggleName(toggleName);
-            node.apply(toggleName);
+            ParsingContext context = new ParsingContext(toggleName, node.getDefaultValue());
+            node.apply(context);
         }
 
         return this;

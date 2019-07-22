@@ -13,14 +13,14 @@ public class ConfigsController {
 //    public Result create (Http.Request request, String toggleName) {
 //        Map<String, String> data;
 //        try{
-//            data = RequestProcessor.extractSingleValueParameters(request, "value");
+//            data = RequestProcessor.extractSingleValueParameters(request, "defaultValue");
 //        }
 //        catch(Exception e)
 //        {
 //            return badRequest(e.getMessage());
 //        }
 //
-//        boolean value = Boolean.parseBoolean(data.get("value"));
+//        boolean defaultValue = Boolean.parseBoolean(data.get("defaultValue"));
 //
 //        final ConfigNode toggleWithSameName = MongoConfig.datastore().createQuery(ConfigNode.class)
 //                .field("toggleName").equal(toggleName).get();
@@ -32,7 +32,7 @@ public class ConfigsController {
 //        }
 //        else
 //        {
-//            ConfigNode newToggle = new ConfigNode(toggleName, value);
+//            ConfigNode newToggle = new ConfigNode(toggleName, defaultValue);
 //            MongoConfig.datastore().save(newToggle);
 //            return ok(Json.toJson("New toggle with " + toggleName + " created."));
 //        }

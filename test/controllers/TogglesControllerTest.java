@@ -64,7 +64,7 @@ public class TogglesControllerTest extends WithApplication {
 
                     HashMap<String, String> payload = new HashMap<>();
 
-                    payload.put("value", "true");
+                    payload.put("defaultValue", "true");
                     request.bodyForm(payload);
 
                     result = route(fakeApp, request);
@@ -79,7 +79,7 @@ public class TogglesControllerTest extends WithApplication {
                     result = route(fakeApp, request);
                     o = Json.parse(contentAsString(result));
 
-                    assertEquals("true", o.get("value").asText());
+                    assertEquals("true", o.get("defaultValue").asText());
                 }
 
             }
@@ -129,7 +129,7 @@ public class TogglesControllerTest extends WithApplication {
 
                     HashMap<String, String> payload = new HashMap<>();
 
-                    payload.put("value", "true");
+                    payload.put("defaultValue", "true");
                     request.bodyForm(payload);
 
                     result = route(fakeApp, request);
@@ -144,7 +144,7 @@ public class TogglesControllerTest extends WithApplication {
                     result = route(fakeApp, request);
                     o = Json.parse(contentAsString(result));
 
-                    assertEquals("true", o.get("value").asText());
+                    assertEquals("true", o.get("defaultValue").asText());
                 }
 
             }

@@ -20,7 +20,7 @@ import java.util.List;
 @Indexes(
         {
                 @Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)),
-                @Index(fields = {@Field("toggles.name"), @Field("toggles.value")}, options = @IndexOptions(unique = true, dropDups = true))
+                @Index(fields = {@Field("toggles.name"), @Field("toggles.defaultValue")}, options = @IndexOptions(unique = true, dropDups = true))
         })
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
@@ -38,10 +38,10 @@ public class Service {
     private String version;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    @Property("toggles")
+    @Embedded("toggles")
     private HashSet<Toggle> toggles = new HashSet<>();
 
-    @Property("value")
+    @Transient
     private Boolean value;
 
     public Service(String name) {
@@ -69,7 +69,7 @@ public class Service {
         if (persistedService != null)
             return persistedService;
         else
-            return service;
+            return null;
     }
 
     public static Service findByNameAndVersion(String name, String version) {
@@ -126,29 +126,16 @@ public class Service {
         }
     }
 
-    public void addOrUpdateToggle(Toggle toggle) {
+    public static Service createOrUpdateService(Service transientService) {
+        Service existingService = find(transientService);
 
-        // Get query to retrieve this service
-        Query<Service> serviceWithNameAndToggleQuery = MongoConfig.datastore().createQuery(Service.class)
-                .field("name").equal(this.getName());
-
-        if (this.getVersion() != null) {
-            serviceWithNameAndToggleQuery.field("version").equal(this.version);
-        }
-
-        if (toggleExists(toggle)) {
-            serviceWithNameAndToggleQuery.field("toggles.name").equal(toggle.getName());
-
-            UpdateOperations<Service> setToggleValueOperation = MongoConfig.datastore().
-                    createUpdateOperations(Service.class).set("value", toggle.getValue());
-
-            MongoConfig.datastore().findAndModify(serviceWithNameAndToggleQuery, setToggleValueOperation);
+        if (existingService == null) {
+            MongoConfig.datastore().save(transientService);
+            return find(transientService);
         } else {
-            final UpdateOperations<Service> toggleInsertOperation = MongoConfig.datastore()
-                    .createUpdateOperations(Service.class)
-                    .push("toggles", toggle);
-
-            MongoConfig.datastore().findAndModify(serviceWithNameAndToggleQuery, toggleInsertOperation);
+            existingService.setValue(transientService.value);
+            MongoConfig.datastore().save(existingService);
+            return existingService;
         }
     }
 
@@ -189,48 +176,110 @@ public class Service {
         }
     }
 
+    public void addOrUpdateToggle(Toggle toggle) {
+
+        // Get query to retrieve this service
+        Query<Service> serviceWithNameAndToggleQuery = MongoConfig.datastore().createQuery(Service.class)
+                .field("name").equal(this.getName());
+
+        if (this.getVersion() != null) {
+            serviceWithNameAndToggleQuery.field("version").equal(this.version);
+        }
+
+        if (toggleExists(toggle)) {
+            serviceWithNameAndToggleQuery.field("toggles.name").equal(toggle.getName());
+
+            UpdateOperations<Service> setToggleValueOperation = MongoConfig.datastore().
+                    createUpdateOperations(Service.class).set("defaultValue", toggle.getValue());
+
+            MongoConfig.datastore().findAndModify(serviceWithNameAndToggleQuery, setToggleValueOperation);
+        } else {
+            final UpdateOperations<Service> toggleInsertOperation = MongoConfig.datastore()
+                    .createUpdateOperations(Service.class)
+                    .push("toggles", toggle);
+
+            MongoConfig.datastore().findAndModify(serviceWithNameAndToggleQuery, toggleInsertOperation);
+        }
+    }
+
     public boolean canAccess(Toggle t) {
-        return toggleExists(t);
+        return (toggleExistsForServiceNameAndVersion(t) || toggleExistsForServiceName(t));
     }
 
-    private boolean toggleExists(Toggle toggle) {
-        Query<Service> serviceWithNameAndToggleQuery = MongoConfig.datastore().find(Service.class);
-        serviceWithNameAndToggleQuery
-                .filter("toggles.name", toggle.getName())
-                .filter("name", this.name);
-
-        if (this.version != null) {
-            serviceWithNameAndToggleQuery.filter("version", this.version);
-        }
-
-        return serviceWithNameAndToggleQuery.find().hasNext();
+    private boolean toggleExists(Toggle t) {
+        return toggleExistsForServiceNameAndVersion(t);
     }
 
-    private Boolean getToggleValue(Toggle toggle) {
-        Query<Service> getToggleValueQuery = MongoConfig.datastore().find(Service.class);
+    public Boolean getToggleValue(Toggle t) {
+        Toggle fetchedToggle = fetchToggleForServiceNameAndVersion(t);
 
-        getToggleValueQuery
-                .filter("toggles.name", toggle.getName())
-                .filter("name", this.name);
+        if (fetchedToggle != null) {
+            return fetchedToggle.getValue();
+        } else {
+            fetchedToggle = fetchToggleForServiceName(t);
 
-        if (this.version != null) {
-            getToggleValueQuery.filter("version", this.version);
+            if (fetchedToggle != null) {
+                return fetchedToggle.getValue();
+            } else {
+                return null;
+            }
         }
+    }
 
-        getToggleValueQuery.project("toggles.$", true);
+    private Toggle fetchToggleFromService(Service s, Toggle t) {
+        Iterator<Toggle> serviceToggles = s.getToggles().iterator();
+        while (serviceToggles.hasNext()) {
+            Toggle fetchedToggle = serviceToggles.next();
 
-        Service service = getToggleValueQuery.first();
-
-        if (service != null) {
-            for (Iterator<Toggle> toggles = service.getToggles().iterator(); toggles.hasNext(); ) {
-                Toggle fetchedToggle = toggles.next();
-
-                if (toggle.getName().equals(fetchedToggle.getName())) {
-                    return fetchedToggle.getValue();
-                }
+            if (t.getName().equals(fetchedToggle.getName())) {
+                return fetchedToggle;
             }
         }
 
         return null;
+    }
+
+    private Toggle fetchToggleForServiceName(Toggle toggle) {
+        Query<Service> serviceWithNameAndToggleQuery = MongoConfig.datastore().find(Service.class);
+        serviceWithNameAndToggleQuery
+                .criteria("toggles.name").equal(toggle.getName())
+                .criteria("name").equal(this.name);
+
+        Service service = serviceWithNameAndToggleQuery.first();
+
+        if (service != null) {
+            return fetchToggleFromService(service, toggle);
+        }
+
+        return null;
+    }
+
+    private Toggle fetchToggleForServiceNameAndVersion(Toggle toggle) {
+        Query<Service> serviceWithNameAndToggleQuery = MongoConfig.datastore().find(Service.class);
+        serviceWithNameAndToggleQuery
+                .criteria("toggles.name").equal(toggle.getName())
+                .criteria("name").equal(this.name);
+
+        if (this.version != null) {
+            serviceWithNameAndToggleQuery.criteria("version").equal(this.version);
+        }
+
+        Service service = serviceWithNameAndToggleQuery.first();
+
+        if (service != null) {
+            return fetchToggleFromService(service, toggle);
+        }
+
+        return null;
+    }
+
+    private boolean toggleExistsForServiceName(Toggle toggle) {
+        Toggle t = fetchToggleForServiceName(toggle);
+        return (t != null);
+    }
+
+    private boolean toggleExistsForServiceNameAndVersion(Toggle toggle) {
+        Toggle t = fetchToggleForServiceNameAndVersion(toggle);
+        return (t != null);
     }
 }

@@ -51,7 +51,7 @@ GET     /login                    controllers.UsersController.login(request: Req
 
 ###
 #  summary: Creates a new permissionNode
-#  description: Creates a new permissionNode with toggleName "toggleName" in the system, and value specified as the "value" field in the PUT request body.
+#  description: Creates a new permissionNode with toggleName "toggleName" in the system, and defaultValue specified as the "defaultValue" field in the PUT request body.
 #  tags:
 #    - Toggles
 #  produces:
@@ -65,7 +65,7 @@ GET     /login                    controllers.UsersController.login(request: Req
 #      default: 1.0.0
 #      description: New permissionNode configuration
 #    - in: formData
-#      toggleName: value
+#      toggleName: defaultValue
 #      required: true
 #      type: boolean
 #      example: true
@@ -82,8 +82,8 @@ GET     /login                    controllers.UsersController.login(request: Req
 PUT     /permissionNodes                    controllers.TogglesController.create(request: Request)
 
 ###
-#  summary: Get permissionNode value for a specific version of a service
-#  description: Retrieves the value (true/false) of the permissionNode with toggleName "toggleName", when applied to version "version" of service "service"
+#  summary: Get permissionNode defaultValue for a specific version of a service
+#  description: Retrieves the defaultValue (true/false) of the permissionNode with toggleName "toggleName", when applied to version "version" of service "service"
 #  tags:
 #    - Toggles
 #  parameters:
@@ -117,8 +117,8 @@ PUT     /permissionNodes                    controllers.TogglesController.create
 GET     /permissionNodes/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
 
 ###
-#  summary: Set permissionNode value for a specific version of a service
-#  description: Sets the value (true/false) of a permissionNode in the system, for a specific service
+#  summary: Set permissionNode defaultValue for a specific version of a service
+#  description: Sets the defaultValue (true/false) of a permissionNode in the system, for a specific service
 #  tags:
 #    - Toggles
 #  produces:
@@ -137,14 +137,14 @@ GET     /permissionNodes/:name/:service/:version                    controllers.
 #      type: string
 #      example: ABC
 #      default: ABC
-#      description: Name of the service to which the new value of the permissionNode will apply.
+#      description: Name of the service to which the new defaultValue of the permissionNode will apply.
 #    - in: formData
-#      toggleName: value
+#      toggleName: defaultValue
 #      required: true
 #      type: boolean
 #      example: true
 #      default: true
-#      description: New value for the permissionNode
+#      description: New defaultValue for the permissionNode
 #  security:
 #    - APIKeyQueryParam: []
 #  responses:
@@ -208,7 +208,7 @@ GET     /permissionNodes                    controllers.TogglesController.index(
 #      required: true
 #      schema:
 #        $ref: '#/definitions/Config'
-#      description: The configuration for the permissionNodes and services that can access their value
+#      description: The configuration for the permissionNodes and services that can access their defaultValue
 #  responses:
 #    200:
 #      description: OK

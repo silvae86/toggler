@@ -1,6 +1,7 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import core.RequestProcessor;
 import database.MongoConfig;
 import dev.morphia.query.Query;
 import io.swagger.annotations.Api;
@@ -11,7 +12,6 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
-import utils.RequestProcessor;
 
 import java.util.Iterator;
 import java.util.List;
@@ -71,12 +71,12 @@ public class TogglesController extends Controller {
 
         Map<String, String> data;
         try {
-            data = RequestProcessor.extractSingleValueParameters(request, "value");
+            data = RequestProcessor.extractSingleValueParameters(request, "defaultValue");
         } catch (Exception e) {
             return badRequest(e.getMessage());
         }
 
-        boolean newValue = Boolean.parseBoolean(data.get("value"));
+        boolean newValue = Boolean.parseBoolean(data.get("defaultValue"));
 
         if (toggleInstance != null) {
             toggleInstance.setValue(newValue);
