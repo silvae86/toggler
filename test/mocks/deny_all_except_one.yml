@@ -1,0 +1,7 @@
+---
+toggles:
+  isButtonRed:
+    deny: all
+    allow:
+      - name: ABC
+    value: true

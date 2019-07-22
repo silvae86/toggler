@@ -1,0 +1,18 @@
+---
+toggles:
+  isButtonGreen:
+    allow:
+      - name: CDE
+        value: true
+      - name: BCA
+        value: true
+      - name: ABC
+        value: true
+    unless:
+      allow: all
+      unless:
+        deny:
+          - name: ABC
+            version: 1.0.0
+          - name: ABC
+            version: 1.0.1
