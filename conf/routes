@@ -1,3 +1,4 @@
+
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
@@ -196,8 +197,8 @@ DELETE  /permissionNodes/:name                controllers.TogglesController.dele
 GET     /permissionNodes                    controllers.TogglesController.index()
 
 ###
-#  summary: Edit service permissionNode configuration
-#  description: Edits the permissionNodes (and respective values) available to each service version
+#  summary: Edit service configuration
+#  description: Edits the configuration of the toggles available to each service
 #  tags:
 #    - Configurations
 #  produces:
@@ -208,42 +209,22 @@ GET     /permissionNodes                    controllers.TogglesController.index(
 #      required: true
 #      schema:
 #        $ref: '#/definitions/Config'
-#      description: The configuration for the permissionNodes and services that can access their defaultValue
+#      description: The configuration for each toggle and the services that are allowed to access it.
 #  responses:
 #    200:
 #      description: OK
 #    403:
-#      description: You have no permission to access this endpoint. Only Admins can retrieve this data.
-#    404:
-#      description: Service and/or version of service not found
+#      description: You do not have permission to access this endpoint. Only Admins can edit toggle configurations.
 #    400:
-#      description: New service configuration is invalid
+#      description: New configuration is invalid
 ###
 POST     /config                    controllers.ConfigsController.update(request: Request)
 
 
 ###
-#  summary: Fetch configuration of all permissionNodes for all services and versions
-#  description: Retrieves the configuration of all the permissionNodes (and respective values), for all services and versions
-#  tags:
-#    - Configurations
-#  produces:
-#    - application/json
-#  responses:
-#    200:
-#      description: OK
-#    403:
-#      description: You have no permission to access this endpoint. Only Admins can retrieve this data.
-#    404:
-#      description: Service and/or version of service not found
-#    400:
-#      description: New service configuration is invalid
-###
-GET     /config                    controllers.ConfigsController.get()
-
-###
-#  summary: Fetch permissionNodes for service version
-#  description: Fetch configuration of all permissionNodes for version "version" of a service "service_name",
+#  summary: Fetch toggles for service
+#  description: Fetch all toggles available to version "version" of service "service_name".
+#               If the "version" argument is not provided, the system will return the toggles available by default to all versions of the service.
 #  tags:
 #    - Services
 #  produces:
@@ -258,7 +239,7 @@ GET     /config                    controllers.ConfigsController.get()
 #      description: Name of the service for whom the current permissionNode configuration should be fetched
 #    - in: path
 #      toggleName: version
-#      required: true
+#      required: false
 #      type: string
 #      example: ABC
 #      default: ABC

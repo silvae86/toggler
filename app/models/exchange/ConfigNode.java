@@ -86,9 +86,13 @@ public class ConfigNode {
 
     private void removeToggleFromServices(Toggle toggleToRemove, Iterator<Service> services) {
         while (services != null && services.hasNext()) {
-            Service deniedService = Service.find(services.next());
+            Service transientService = services.next();
+            Service deniedService = Service.find(transientService);
             if (deniedService != null)
                 deniedService.removeToggle(createToggleWithValue(toggleToRemove, deniedService));
+            else {
+                Service.createOrUpdateService(transientService);
+            }
         }
     }
 

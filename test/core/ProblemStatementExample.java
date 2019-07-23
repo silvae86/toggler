@@ -25,33 +25,46 @@ public class ProblemStatementExample {
     }
 
     @Test
-    public void testAddConfig() {
+    public void testAddConfig() throws Exception {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        try {
-            Path baseConfigPath = Paths.get("test/mocks/problem_statement.yml");
-            String baseConfig = baseConfigPath.toAbsolutePath().toString();
+        Toggle isButtonGreen = new Toggle("isButtonGreen");
+        Toggle isButtonBlue = new Toggle("isButtonBlue");
+        Toggle isButtonRed = new Toggle("isButtonRed");
 
-            Config config = mapper.readValue(new File(baseConfig), Config.class);
-            config.apply();
-            System.out.println("Applied " + baseConfigPath);
-            System.out.println("\n\n" + config);
 
-            Toggle isButtonGreen = new Toggle("isButtonGreen", true);
+        Service abc = new Service("ABC");
+        Service abc100 = new Service("ABC", "1.0.0");
 
-            Service abc = new Service("ABC");
-            Assert.assertFalse(abc.canAccess(isButtonGreen));
+        Service bca = new Service("BCA");
+        Service bca101 = new Service("BCA", "1.0.0");
+        MongoConfig.datastore().save(bca);
+        MongoConfig.datastore().save(bca101);
 
-            Service abc100 = new Service("ABC", "1.0.0");
-            Assert.assertFalse(abc100.canAccess(isButtonGreen));
+        Path baseConfigPath = Paths.get("test/mocks/problem_statement.yml");
+        String baseConfig = baseConfigPath.toAbsolutePath().toString();
 
-            Service bca = new Service("BCA");
-            Assert.assertTrue(bca.canAccess(isButtonGreen));
+        Config config = mapper.readValue(new File(baseConfig), Config.class);
+        config.apply();
+        System.out.println("Applied " + baseConfigPath);
+        System.out.println("\n\n" + config);
 
-            Service bca101 = new Service("BCA", "1.0.0");
-            Assert.assertTrue(bca101.canAccess(isButtonGreen));
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        // isButtonBlue toggle
+        Assert.assertTrue(abc.canAccess(isButtonBlue));
+        Assert.assertTrue(abc100.canAccess(isButtonBlue));
+        Assert.assertFalse(bca.canAccess(isButtonBlue));
+        Assert.assertFalse(bca101.canAccess(isButtonBlue));
+
+        // isButtonGreen toggle
+        Assert.assertTrue(abc.canAccess(isButtonGreen));
+        Assert.assertTrue(abc100.canAccess(isButtonGreen));
+        Assert.assertFalse(bca.canAccess(isButtonGreen));
+        Assert.assertFalse(bca101.canAccess(isButtonGreen));
+
+        // isButtonRed toggle
+        Assert.assertFalse(bca.canAccess(isButtonRed));
+        Assert.assertFalse(bca101.canAccess(isButtonRed));
+        Assert.assertFalse(abc.canAccess(isButtonRed));
+        Assert.assertFalse(abc100.canAccess(isButtonRed));
     }
 }
+

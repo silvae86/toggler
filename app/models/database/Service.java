@@ -203,7 +203,15 @@ public class Service {
     }
 
     public boolean canAccess(Toggle t) {
-        return (toggleExistsForServiceNameAndVersion(t) || toggleExistsForServiceName(t));
+        if (this.version != null) {
+            Service existingService = Service.findByNameAndVersion(this.name, this.version);
+            if (existingService != null)
+                return toggleExistsForServiceNameAndVersion(t);
+            else
+                return toggleExistsForServiceName(t);
+        } else {
+            return toggleExistsForServiceName(t);
+        }
     }
 
     private boolean toggleExists(Toggle t) {
