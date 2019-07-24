@@ -211,16 +211,21 @@ public class ConfigNode {
                 cn.setDefaultValue(node.get("value").booleanValue());
             }
 
-            if (node.has("allow")) {
-                if (node.get("allow").textValue() != null && node.get("allow").textValue().equals("all")) {
+            if (node.has("allow_all")) {
+                if (node.get("allow_all").textValue() != null && node.get("allow_all").textValue().equals("true")) {
                     cn.setAllAllowed(true);
-                } else {
+                }
+            } else if (node.has("allow")) {
+
                     HashSet<Service> allowed = new HashSet<>(Arrays.asList(mapper.readValue(node.get("allow").toString(), Service[].class)));
                     cn.setAllowed(allowed);
-                }
             }
 
-            if (node.has("deny")) {
+            if (node.has("deny_all")) {
+                if (node.get("deny_all").textValue() != null && node.get("deny_all").textValue().equals("true")) {
+                    cn.setAllDenied(true);
+                }
+            } else if (node.has("deny")) {
                 if (node.get("deny").textValue() != null && node.get("deny").textValue().equals("all")) {
                     cn.setAllDenied(true);
                 } else {

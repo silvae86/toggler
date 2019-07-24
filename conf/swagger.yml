@@ -19,59 +19,70 @@ securityDefinitions:
     in: header
     name: X-API-Key
 
-#
-#    - default:
-#        services: []
-#        toggleInstances:
-#          - isButtonBlue:
-#              defaultValue: true
-#        decision: denied
-
 definitions:
-  Toggle:
+  Config:
     type: object
     properties:
-      name:
-        type: string
+      toggles:
+        type: object
+        additionalProperties:
+          type: array
+          items: '#/definitions/ConfigNode'
+    example:
+      toggles:
+        isButtonBlue:
+          allow_all: true
+          value: true
+          unless:
+            deny_all: true
+            allow:
+              - name: ABC
+                value: false
+        isButtonGreen:
+          deny_all: true
+          allow:
+            - name: ABC
+              value: false
+        isButtonRed:
+          allow_all: true
+          deny:
+            - name: ABC
+  ConfigNode:
+    type: object
+    properties:
+      deny_all:
+        type: boolean
+      allow_all:
+        type: boolean
+      allow:
+        type: array
+        items: '#/definitions/Service'
+      deny:
+        type: array
+        items: '#/definitions/Service'
       value:
         type: boolean
+      unless:
+        type: array
+        items: '#/definitions/ConfigNode'
+    example:
+      isButtonBlue:
+        allow_all: true
+        value: true
+        unless:
+          deny_all: true
+          allow:
+            - name: ABC
+              value: false
   Service:
     type: object
+    required:
+      - name
+      - value
     properties:
       name:
         type: string
       version:
         type: string
-  Config:
-    type: object
-    required:
-      - services
-      - toggleInstances
-      - decision
-    properties:
-      services:
-        type: array
-        items:
-          type: object
-          schema:
-            $ref: '#/definitions/Service'
-      toggles:
-        type: array
-        items:
-          type: object
-          schema:
-            $ref: '#/definitions/ConfigNode'
-      allow_access:
+      value:
         type: boolean
-    example:
-      services:
-        - name: "ABC"
-          version: "1.0.0"
-        - name: "BCA"
-          version: "1.0.1"
-      toggles:
-        - name: "isButtonBlue"
-          value: "false"
-        - name: "isButtonGreen"
-          value: "true"
-      allow_access: true

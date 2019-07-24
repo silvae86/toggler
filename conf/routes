@@ -46,169 +46,21 @@ GET     /                           controllers.HomeController.index
 #    401:
 #      description: Invalid username or password
 ###
-GET     /login                    controllers.UsersController.login(request: Request)
-
-# Toggles
+POST     /login                    controllers.UsersController.login(request: Request)
 
 ###
-#  summary: Creates a new permissionNode
-#  description: Creates a new permissionNode with toggleName "toggleName" in the system, and defaultValue specified as the "defaultValue" field in the PUT request body.
-#  tags:
-#    - Toggles
-#  produces:
-#    - application/json
-#  parameters:
-#    - in: body
-#      toggleName: new_toggle_data
-#      required: true
-#      type: string
-#      example: 1.0.0
-#      default: 1.0.0
-#      description: New permissionNode configuration
-#    - in: formData
-#      toggleName: defaultValue
-#      required: true
-#      type: boolean
-#      example: true
-#      default: true
-#      description: Name of the permissionNode to modify.
-#  security:
-#    - APIKeyQueryParam: []
-#  responses:
-#    200:
-#       description: ConfigNode created
-#    409:
-#       description: A permissionNode with that toggleName already exists
-###
-PUT     /permissionNodes                    controllers.TogglesController.create(request: Request)
-
-###
-#  summary: Get permissionNode defaultValue for a specific version of a service
-#  description: Retrieves the defaultValue (true/false) of the permissionNode with toggleName "toggleName", when applied to version "version" of service "service"
-#  tags:
-#    - Toggles
-#  parameters:
-#    - in: path
-#      toggleName: toggleName
-#      required: true
-#      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
-#      description: Name of the permissionNode to retrieve.
-#    - in: path
-#      toggleName: service
-#      required: true
-#      type: string
-#      example: ABC
-#      default: ABC
-#      description: Unique toggleName of the service
-#    - in: path
-#      toggleName: version
-#      required: true
-#      type: string
-#      example: 1.0.0
-#      default: 1.0.0
-#      description: Unique version of the service
-#  responses:
-#    200:
-#      description: OK
-#    404:
-#      description: Service and/or version of service not found
-###
-GET     /permissionNodes/:name/:service/:version                    controllers.TogglesController.get(name: String, service: String, version: String)
-
-###
-#  summary: Set permissionNode defaultValue for a specific version of a service
-#  description: Sets the defaultValue (true/false) of a permissionNode in the system, for a specific service
-#  tags:
-#    - Toggles
-#  produces:
-#    - application/json
-#  parameters:
-#    - in: path
-#      toggleName: toggleName
-#      required: true
-#      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
-#      description: Name of the permissionNode to modify.
-#    - in: path
-#      toggleName: service
-#      required: true
-#      type: string
-#      example: ABC
-#      default: ABC
-#      description: Name of the service to which the new defaultValue of the permissionNode will apply.
-#    - in: formData
-#      toggleName: defaultValue
-#      required: true
-#      type: boolean
-#      example: true
-#      default: true
-#      description: New defaultValue for the permissionNode
-#  security:
-#    - APIKeyQueryParam: []
-#  responses:
-#    200:
-#       description: OK
-#    404:
-#       description: There is no permissionNode with that toggleName
-###
-POST     /permissionNodes/:name/:service/:version                    controllers.TogglesController.set(request: Request, name: String, service: String, version: String)
-
-###
-#  summary: Delete permissionNode
-#  description: Deletes the permissionNode with toggleName "toggleName" if it exists in the system, for all versions of all services.
-#  tags:
-#    - Toggles
-#  produces:
-#    - application/json
-#  parameters:
-#    - in: path
-#      toggleName: toggleName
-#      required: true
-#      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
-#      description: Name of the permissionNode to modify.
-#  security:
-#    - APIKeyQueryParam: []
-#  responses:
-#    200:
-#       description: OK
-#    404:
-#       description: There is no permissionNode with that toggleName
-###
-DELETE  /permissionNodes/:name                controllers.TogglesController.delete(name:String)
-
-###
-#  summary: Get all permissionNodes
-#  description: Retrieves all permissionNodes present in the system
-#  tags:
-#    - Toggles
-#  produces:
-#    - application/json
-#  security:
-#    - APIKeyQueryParam: []
-#  responses:
-#    200:
-#       description: OK
-###
-GET     /permissionNodes                    controllers.TogglesController.index()
-
-###
-#  summary: Edit service configuration
-#  description: Edits the configuration of the toggles available to each service
+#  summary: Edit toggle and service configuration
+#  description: Edits the configuration of the toggles available to each service. The
 #  tags:
 #    - Configurations
 #  produces:
 #    - application/json
 #  parameters:
 #    - in: body
-#      toggleName: new_config
+#      name: new_config
 #      required: true
 #      schema:
-#        $ref: '#/definitions/Config'
+#        $ref: #/definitions/Config
 #      description: The configuration for each toggle and the services that are allowed to access it.
 #  responses:
 #    200:
@@ -220,38 +72,63 @@ GET     /permissionNodes                    controllers.TogglesController.index(
 ###
 POST     /config                    controllers.ConfigsController.update(request: Request)
 
-
 ###
-#  summary: Fetch toggles for service
+#  summary: Fetch toggles for a service and a specific version
 #  description: Fetch all toggles available to version "version" of service "service_name".
-#               If the "version" argument is not provided, the system will return the toggles available by default to all versions of the service.
 #  tags:
 #    - Services
 #  produces:
 #    - application/json
 #  parameters:
 #    - in: path
-#      toggleName: service_name
+#      name: service_name
 #      required: true
 #      type: string
-#      example: ABC
-#      default: ABC
-#      description: Name of the service for whom the current permissionNode configuration should be fetched
+#      example: isButtonBlue
+#      default: isButtonBlue
+#      description: Name of the service for whom the current toggle configuration should be fetched
 #    - in: path
-#      toggleName: version
+#      name: version
 #      required: false
 #      type: string
-#      example: ABC
-#      default: ABC
-#      description: Name of the service for whom the current permissionNode configuration should be fetched
+#      example: 1.0.0
+#      default: 1.0.0
+#      description: Name of the service for whom the current toggle configuration should be fetched
 #  responses:
 #    200:
 #      description: OK
 #    403:
-#      description: You have no permission to access this endpoint. Only Admins can retrieve this data.
+#      description: You have no permission to access this endpoint. You need to authenticate into the system first.
 #    404:
-#      description: Service and/or version of service not found
+#      description: Service with name `name` and version `version` not found.
 #    400:
 #      description: New service configuration is invalid
 ###
-GET     /service/:service_name/:version                    controllers.ServicesController.get(service_name: String, version: String)
+GET     /service/:service_name/:version                 controllers.ServicesController.getServiceByNameAndVersion(service_name: String, version: String)
+
+###
+#  summary: Fetch default toggles for a service, without considering the specific version
+#  description: Fetch all toggles available to version "version" of service "service_name".
+#  tags:
+#    - Services
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: service_name
+#      required: true
+#      type: string
+#      example: isButtonBlue
+#      default: isButtonBlue
+#      description: Name of the service for whom the current toggle configuration should be fetched
+#  responses:
+#    200:
+#      description: OK
+#    403:
+#      description: You have no permission to access this endpoint. You need to authenticate into the system first.
+#    404:
+#      description: Service with name not found.
+#    400:
+#      description: New service configuration is invalid
+###
+GET     /service/:service_name                          controllers.ServicesController.getServiceByName(service_name: String)

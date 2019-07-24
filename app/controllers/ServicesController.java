@@ -26,11 +26,31 @@ public class ServicesController extends Controller {
         }
     }
 
-    public Result get(String name, String version) {
+    public Result getServiceByNameAndVersion(String name, String version) {
         try {
-            Service service = Service.findByNameAndVersion(name, version);
+            Service service;
+            if (version != null) {
+                service = Service.findByNameAndVersion(name, version);
+            } else {
+                service = Service.findByName(name);
+            }
+
             if (service == null) {
                 return notFound(Json.toJson("Service with " + name + " and version " + version + " not found."));
+            } else {
+                return ok(Json.toJson(service));
+            }
+        } catch (Exception e) {
+            return internalServerError(Json.toJson(e.getMessage()));
+        }
+    }
+
+    public Result getServiceByName(String name) {
+        try {
+            Service service = Service.findByName(name);
+
+            if (service == null) {
+                return notFound(Json.toJson("Service with " + name + " not found."));
             } else {
                 return ok(Json.toJson(service));
             }

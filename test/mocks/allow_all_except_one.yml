@@ -9,7 +9,7 @@ toggles:
       - name: ABC
         value: true
     unless:
-      allow: all
+      allow_all: true
       unless:
         deny:
           - name: ABC

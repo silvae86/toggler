@@ -14,7 +14,6 @@ import play.libs.Json;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 
 @Entity("services")
 @Indexes(
@@ -82,10 +81,10 @@ public class Service {
         return query.get();
     }
 
-    public static List<Service> findByName(String name) {
+    public static Service findByName(String name) {
         Query<Service> query = MongoConfig.datastore().find(Service.class);
         query.criteria("name").equal(name);
-        return query.asList();
+        return query.first();
     }
 
     @Override

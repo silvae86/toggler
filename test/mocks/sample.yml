@@ -1,10 +1,10 @@
 ---
 toggles:
   isButtonBlue:
-    allow: all
+    allow_all: true
     value: true
     unless:
-      deny: all
+      deny_all: true
       allow:
         - name: ABC
           value: false
@@ -17,12 +17,12 @@ toggles:
               version: 1.0.1
           value: false
   isButtonGreen:
-    deny: all
+    deny_all: true
     allow:
       - name: ABC
     value: true
   isButtonRed:
-    allow: all
+    allow_all: true
     deny:
       - name: ABC
     value: true
