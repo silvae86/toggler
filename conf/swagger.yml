@@ -27,7 +27,8 @@ definitions:
         type: object
         additionalProperties:
           type: array
-          items: '#/definitions/ConfigNode'
+          items:
+            $ref: '#/definitions/ConfigNode'
     example:
       toggles:
         isButtonBlue:
@@ -56,15 +57,18 @@ definitions:
         type: boolean
       allow:
         type: array
-        items: '#/definitions/Service'
+        items:
+          $ref: '#/definitions/Service'
       deny:
         type: array
-        items: '#/definitions/Service'
+        items:
+          $ref: '#/definitions/Service'
       value:
         type: boolean
       unless:
         type: array
-        items: '#/definitions/ConfigNode'
+        items:
+          $ref: '#/definitions/ConfigNode'
     example:
       isButtonBlue:
         allow_all: true

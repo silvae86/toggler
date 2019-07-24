@@ -27,14 +27,14 @@ GET     /                           controllers.HomeController.index
 #    - application/json
 #  parameters:
 #    - in: formData
-#      toggleName: username
+#      name: username
 #      required: true
 #      type: string
 #      example: demouser1
 #      default: demouser1
 #      description: Username of the user or service
 #    - in: formData
-#      toggleName: password
+#      name: password
 #      required: true
 #      type: string
 #      example: s3cretP4ssword
@@ -50,7 +50,7 @@ POST     /login                    controllers.UsersController.login(request: Re
 
 ###
 #  summary: Edit toggle and service configuration
-#  description: Edits the configuration of the toggles available to each service. The
+#  description: Edits the configuration of the toggles available to each service.
 #  tags:
 #    - Configurations
 #  produces:
@@ -60,7 +60,7 @@ POST     /login                    controllers.UsersController.login(request: Re
 #      name: new_config
 #      required: true
 #      schema:
-#        $ref: #/definitions/Config
+#        $ref: '#/definitions/Config'
 #      description: The configuration for each toggle and the services that are allowed to access it.
 #  responses:
 #    200:
