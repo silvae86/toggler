@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="root [file:/home/joaorocha/Desktop/toggler/]" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="SBT" type="JAVA_MODULE" version="4">
+  <component name="ExternalSystem" externalSystem="SBT" linkedProjectId="root [file:/Users/joaorocha/Desktop/Dendro/toggler/]" linkedProjectPath="$MODULE_DIR$" rootProjectPath="$MODULE_DIR$" />
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
     <output url="file://$MODULE_DIR$/target/scala-2.12/classes" />
     <output-test url="file://$MODULE_DIR$/target/scala-2.12/test-classes" />
@@ -21,7 +27,7 @@
       <excludeFolder url="file://$MODULE_DIR$/target/universal" />
       <excludeFolder url="file://$MODULE_DIR$/target/web" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="11.0.2" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: aopalliance:aopalliance:1.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.slf4j:slf4j-api:1.8.0-beta2:jar" level="project" />

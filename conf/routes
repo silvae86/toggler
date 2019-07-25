@@ -62,9 +62,14 @@ POST     /login                    controllers.UsersController.login(request: Re
 #      schema:
 #        $ref: '#/definitions/Config'
 #      description: The configuration for each toggle and the services that are allowed to access it.
+#  security:
+#    - JWT: []
 #  responses:
 #    200:
 #      description: OK
+#    401:
+#      description: Not authenticated
+#    403:
 #    403:
 #      description: You do not have permission to access this endpoint. Only Admins can edit toggle configurations.
 #    400:
@@ -94,11 +99,15 @@ POST     /config                    controllers.ConfigsController.update(request
 #      example: 1.0.0
 #      default: 1.0.0
 #      description: Name of the service for whom the current toggle configuration should be fetched
+#  security:
+#    - JWT: []
 #  responses:
 #    200:
 #      description: OK
+#    401:
+#      description: Not authenticated
 #    403:
-#      description: You have no permission to access this endpoint. You need to authenticate into the system first.
+#      description: You have no permission to access this method, even though you are authenticated.
 #    404:
 #      description: Service with name `name` and version `version` not found.
 #    400:
@@ -121,11 +130,15 @@ GET     /service/:service_name/:version                 controllers.ServicesCont
 #      example: ABC
 #      default: ABC
 #      description: Name of the service for whom the current toggle configuration should be fetched
+#  security:
+#    - JWT: []
 #  responses:
 #    200:
 #      description: OK
+#    401:
+#      description: Not authenticated
 #    403:
-#      description: You have no permission to access this endpoint. You need to authenticate into the system first.
+#      description: You have no permission to access this method, even though you are authenticated.
 #    404:
 #      description: Service with name not found.
 #    400:

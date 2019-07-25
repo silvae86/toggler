@@ -30,5 +30,7 @@ libraryDependencies += "org.mindrot" % "jbcrypt" % "0.4"
 libraryDependencies += "org.pac4j" % "pac4j" % "3.7.0"
 libraryDependencies += "org.pac4j" % "pac4j-http" % "3.7.0"
 
+//JWT authentication support
+libraryDependencies += "com.jason-goodwin" %% "authentikat-jwt" % "0.4.5"
 
 
