@@ -84,12 +84,12 @@ POST     /config                    controllers.ConfigsController.update(request
 #      name: service_name
 #      required: true
 #      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
+#      example: ABC
+#      default: ABC
 #      description: Name of the service for whom the current toggle configuration should be fetched
 #    - in: path
 #      name: version
-#      required: false
+#      required: true
 #      type: string
 #      example: 1.0.0
 #      default: 1.0.0
@@ -118,8 +118,8 @@ GET     /service/:service_name/:version                 controllers.ServicesCont
 #      name: service_name
 #      required: true
 #      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
+#      example: ABC
+#      default: ABC
 #      description: Name of the service for whom the current toggle configuration should be fetched
 #  responses:
 #    200:

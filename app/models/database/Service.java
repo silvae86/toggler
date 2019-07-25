@@ -1,6 +1,7 @@
 package models.database;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.MongoConfig;
@@ -19,13 +20,14 @@ import java.util.Iterator;
 @Indexes(
         {
                 @Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)),
-                @Index(fields = {@Field("toggles.name"), @Field("toggles.defaultValue")}, options = @IndexOptions(unique = true, dropDups = true))
+                @Index(fields = {@Field("toggles.name"), @Field("toggles.value")}, options = @IndexOptions(unique = true, dropDups = true))
         })
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 public class Service {
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Id
     private ObjectId id;
@@ -40,6 +42,7 @@ public class Service {
     @Embedded("toggles")
     private HashSet<Toggle> toggles = new HashSet<>();
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Transient
     private Boolean value;
 
@@ -189,9 +192,12 @@ public class Service {
             serviceWithNameAndToggleQuery.field("toggles.name").equal(toggle.getName());
 
             UpdateOperations<Service> setToggleValueOperation = MongoConfig.datastore().
-                    createUpdateOperations(Service.class).set("defaultValue", toggle.getValue());
+                    createUpdateOperations(Service.class)
+                    .disableValidation()
+                    .set("toggles.$.value", toggle.getValue())
+                    .enableValidation();
 
-            MongoConfig.datastore().findAndModify(serviceWithNameAndToggleQuery, setToggleValueOperation);
+            MongoConfig.datastore().update(serviceWithNameAndToggleQuery, setToggleValueOperation);
         } else {
             final UpdateOperations<Service> toggleInsertOperation = MongoConfig.datastore()
                     .createUpdateOperations(Service.class)

@@ -1,7 +1,9 @@
 package models.exchange;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import database.MongoConfig;
+import dev.morphia.annotations.Embedded;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import dev.morphia.annotations.Property;
@@ -19,11 +21,12 @@ import java.util.HashSet;
 @Getter
 @Setter
 public class Config {
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Id
     private ObjectId id;
 
-    @Property("toggles")
     @JsonAlias("toggles")
+    @Embedded("toggles")
     private HashMap<String, ConfigNode> configNodes;
 
     @Property("date_applied")

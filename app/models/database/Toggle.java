@@ -1,5 +1,6 @@
 package models.database;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import database.MongoConfig;
 import dev.morphia.annotations.*;
 import dev.morphia.query.Query;
@@ -21,6 +22,7 @@ import java.util.Iterator;
 @Setter
 public class Toggle {
     @Id
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ObjectId id;
 
     @Property("name")

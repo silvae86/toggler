@@ -28,12 +28,7 @@ public class ServicesController extends Controller {
 
     public Result getServiceByNameAndVersion(String name, String version) {
         try {
-            Service service;
-            if (version != null) {
-                service = Service.findByNameAndVersion(name, version);
-            } else {
-                service = Service.findByName(name);
-            }
+            Service service = Service.findByNameAndVersion(name, version);
 
             if (service == null) {
                 return notFound(Json.toJson("Service with " + name + " and version " + version + " not found."));
