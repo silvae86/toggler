@@ -19,10 +19,10 @@ GET     /                           controllers.HomeController.index
 # Users and Authentication
 
 ###
-#  summary: Authenticate user or service
-#  description: Authenticates a user or a service
+#  summary: Create a new user
+#  description: Allows administrators to create a new user by providing both a username and a password
 #  tags:
-#    - Authentication
+#    - Users and Authentication
 #  produces:
 #    - application/json
 #  parameters:
@@ -32,21 +32,56 @@ GET     /                           controllers.HomeController.index
 #      type: string
 #      example: demouser1
 #      default: demouser1
-#      description: Username of the user or service
+#      description: Username of the new user
 #    - in: formData
 #      name: password
 #      required: true
 #      type: string
 #      example: s3cretP4ssword
 #      default: s3cretP4ssword
-#      description: Password of the user or service
+#      description: Password of the new user
+#  responses:
+#    200:
+#      description: OK
+#    409:
+#      description: User with same username already exists
+#    400:
+#      description: Malformed request. Either username or password parameter was invalid
+#    401:
+#      description: Invalid username or password
+###
+PUT     /users/new                    controllers.UsersController.registerUser(request: Request)
+
+###
+#  summary: Retrieve an authentication token for interacting with the API
+#  description: Allows users to retrieve a token to use the API methods via basic authentication.
+#               After the first authentication, users should not use this endpoint, and use the authentication tokens instead, on every request.
+#  tags:
+#    - Users and Authentication
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: formData
+#      name: username
+#      required: true
+#      type: string
+#      example: demouser1
+#      default: demouser1
+#      description: Username of the user
+#    - in: formData
+#      name: password
+#      required: true
+#      type: string
+#      example: s3cretP4ssword
+#      default: s3cretP4ssword
+#      description: Password of the user
 #  responses:
 #    200:
 #      description: OK
 #    401:
 #      description: Invalid username or password
 ###
-POST     /login                    controllers.UsersController.login(request: Request)
+POST     /auth                    controllers.UsersController.auth(request: Request)
 
 ###
 #  summary: Edit toggle and service configuration

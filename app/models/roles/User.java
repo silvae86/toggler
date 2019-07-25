@@ -1,7 +1,10 @@
 package models.roles;
 
-import dev.morphia.annotations.Entity;
-import dev.morphia.annotations.Id;
+import auth.APIToken;
+import com.typesafe.config.ConfigFactory;
+import database.MongoConfig;
+import dev.morphia.annotations.*;
+import dev.morphia.query.Query;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -10,15 +13,30 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.util.List;
 
 @Entity("users")
+@Indexes(
+        {
+                @Index(fields = {@Field("username")}, options = @IndexOptions(unique = true, dropDups = true)),
+        })
 @Getter
 @Setter
 public class User {
     @Id
     private ObjectId id;
-    private String username;
-    private String password;
-    private String salt;
+
+    @Property
     public List<String> roles;
+    @Property
+    public List<String> JWTTokens;
+    @Property
+    private String username;
+    @Property
+    private String password;
+    @Property
+    private String salt;
+
+    public User() {
+
+    }
 
     public User(String username, String plainTextPassword) {
         this.username = username;
@@ -26,12 +44,43 @@ public class User {
         this.password = BCrypt.hashpw(plainTextPassword, BCrypt.gensalt(12));
     }
 
-    public User() {
+    public static User findByUsername(String username) {
+        Query<User> findByUsernameQuery = MongoConfig.datastore().find(User.class);
+        findByUsernameQuery.criteria("username").equal(username);
 
+        return findByUsernameQuery.first();
     }
 
-    public boolean auth(String password) {
-        String hashedPassword = BCrypt.hashpw(password, this.salt);
-        return hashedPassword.equals(this.password);
+    public static APIToken auth(String username, String password) {
+
+        User existingUser = findByUsername(username);
+
+        if (existingUser == null)
+            return null;
+        else {
+            String hashedPassword = BCrypt.hashpw(password, existingUser.salt);
+
+            Query<User> findByUsernameAndPasswordQuery = MongoConfig.datastore().find(User.class);
+
+            findByUsernameAndPasswordQuery.and(
+                    findByUsernameAndPasswordQuery.criteria("username").equal(username),
+                    findByUsernameAndPasswordQuery.criteria("password").equal(hashedPassword)
+            );
+
+            User authenticatedUser = findByUsernameAndPasswordQuery.first();
+            if (authenticatedUser != null) {
+                APIToken token = APIToken.getLastValidTokenForUser(authenticatedUser);
+                if (token != null) {
+                    return token;
+                } else {
+                    APIToken newToken = new APIToken(ConfigFactory.load().getInt("auth.token_validity_secs"), authenticatedUser);
+                    MongoConfig.datastore().save(newToken);
+
+                    return newToken;
+                }
+            } else {
+                return null;
+            }
+        }
     }
 }

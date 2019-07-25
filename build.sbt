@@ -9,6 +9,8 @@ scalaVersion := "2.12.8"
 
 libraryDependencies += guice
 
+libraryDependencies += filters
+
 // https://mvnrepository.com/artifact/io.swagger/swagger-play2
 libraryDependencies += "io.swagger" %% "swagger-play2" % "1.7.1"
 
@@ -31,6 +33,8 @@ libraryDependencies += "org.pac4j" % "pac4j" % "3.7.0"
 libraryDependencies += "org.pac4j" % "pac4j-http" % "3.7.0"
 
 //JWT authentication support
-libraryDependencies += "com.jason-goodwin" %% "authentikat-jwt" % "0.4.5"
+// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+libraryDependencies += "io.jsonwebtoken" % "jjwt" % "0.9.1"
+
 
 

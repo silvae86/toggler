@@ -26,4 +26,13 @@ public class RequestProcessor {
 
         return extractedParameters;
     }
+
+    public static String extractSingleValue(Http.Request request, String... parameters) throws Exception {
+        if (parameters.length == 1) {
+            String parameterToGet = parameters[0];
+            return extractSingleValueParameters(request, parameterToGet).get(parameterToGet);
+        } else {
+            throw new Exception("More than one parameter requested!");
+        }
+    }
 }
