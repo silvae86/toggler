@@ -17,7 +17,6 @@ GET     /                           controllers.HomeController.index
 
 
 # Users and Authentication
-
 ###
 #  summary: Create a new user
 #  description: Allows administrators to create a new user by providing both a username and a password
