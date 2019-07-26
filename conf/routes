@@ -15,13 +15,13 @@ GET   /assets/*file                 controllers.Assets.versioned(path="/public",
 ### NoDocs ###
 GET     /                           controllers.HomeController.index
 
-
 # Users and Authentication
+
 ###
 #  summary: Create a new user
 #  description: Allows administrators to create a new user by providing both a username and a password
 #  tags:
-#    - Users and Authentication
+#    - "Users and Authentication"
 #  produces:
 #    - application/json
 #  parameters:
@@ -39,6 +39,8 @@ GET     /                           controllers.HomeController.index
 #      example: s3cretP4ssword
 #      default: s3cretP4ssword
 #      description: Password of the new user
+#  security:
+#    - JWT: []
 #  responses:
 #    200:
 #      description: OK
@@ -56,7 +58,7 @@ PUT     /users/new                    controllers.UsersController.registerUser(r
 #  description: Allows users to retrieve a token to use the API methods via basic authentication.
 #               After the first authentication, users should not use this endpoint, and use the authentication tokens instead, on every request.
 #  tags:
-#    - Users and Authentication
+#    - "Users and Authentication"
 #  produces:
 #    - application/json
 #  parameters:
@@ -80,7 +82,7 @@ PUT     /users/new                    controllers.UsersController.registerUser(r
 #    401:
 #      description: Invalid username or password
 ###
-POST     /auth                    controllers.UsersController.auth(request: Request)
+POST     /users/login                    controllers.UsersController.auth(request: Request)
 
 ###
 #  summary: Edit toggle and service configuration

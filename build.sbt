@@ -36,5 +36,11 @@ libraryDependencies += "org.pac4j" % "pac4j-http" % "3.7.0"
 // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
 libraryDependencies += "io.jsonwebtoken" % "jjwt" % "0.9.1"
 
+// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-1.2-api
+libraryDependencies += "org.apache.logging.log4j" % "log4j-1.2-api" % "2.12.0"
+
+// https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.26"
+
 
 

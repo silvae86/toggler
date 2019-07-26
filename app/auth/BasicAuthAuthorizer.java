@@ -1,6 +1,7 @@
 package auth;
 
 import core.RequestProcessor;
+import models.roles.Admin;
 import models.roles.User;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -20,6 +21,8 @@ public class BasicAuthAuthorizer extends Security.Authenticator {
             String password = RequestProcessor.extractSingleValue(req, "password");
 
             if (User.auth(username, password) != null) {
+                return Optional.of(username);
+            } else if (Admin.auth(username, password) != null) {
                 return Optional.of(username);
             } else {
                 return Optional.empty();

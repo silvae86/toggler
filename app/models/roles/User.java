@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity("users")
@@ -26,22 +27,34 @@ public class User {
     @Property
     public List<String> roles;
     @Property
-    public List<String> JWTTokens;
-    @Property
     private String username;
     @Property
     private String password;
     @Property
     private String salt;
 
+    public static String USER = "user";
+    public static String ADMIN = "admin";
+
     public User() {
 
     }
 
+    public User(String username, String plainTextPassword, List<String> roles) {
+        this.username = username;
+        this.salt = BCrypt.gensalt(4);
+        this.password = BCrypt.hashpw(plainTextPassword, this.salt);
+        this.roles = roles;
+    }
+
     public User(String username, String plainTextPassword) {
         this.username = username;
-        this.salt = BCrypt.gensalt(12);
-        this.password = BCrypt.hashpw(plainTextPassword, BCrypt.gensalt(12));
+        this.salt = BCrypt.gensalt(4);
+        this.password = BCrypt.hashpw(plainTextPassword, this.salt);
+
+        LinkedList<String> userRoles = new LinkedList<>();
+        userRoles.add(USER);
+        this.roles = userRoles;
     }
 
     public static User findByUsername(String username) {
