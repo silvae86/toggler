@@ -64,6 +64,16 @@ public class User {
         return findByUsernameQuery.first();
     }
 
+    public static User findByUsernameWithRole(String username, String role) {
+        Query<User> findByUsernameQuery = MongoConfig.datastore().find(User.class);
+        findByUsernameQuery.and(
+                findByUsernameQuery.criteria("username").equal(username),
+                findByUsernameQuery.criteria("roles").equal(role)
+        );
+
+        return findByUsernameQuery.first();
+    }
+
     public static APIToken auth(String username, String password) {
 
         User existingUser = findByUsername(username);

@@ -13,10 +13,8 @@ import java.util.Iterator;
 @Entity("toggles")
 @Indexes({
         @Index(fields = {
-                @Field("name"),
-                @Field("defaultValue")
-        },
-                options = @IndexOptions(unique = true, dropDups = true))
+                @Field("name")
+        }, options = @IndexOptions(unique = true, dropDups = true))
 })
 @Getter
 @Setter
