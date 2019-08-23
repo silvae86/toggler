@@ -11,14 +11,12 @@ produces:
 
 securityDefinitions:
   # username and password
-  basicAuth:
+  BasicAuth:
     type: basic
-  # X-API-Key: abcdef12345
-  APIKeyHeader:
+  JWT:
     type: apiKey
     in: header
     name: X-API-Key
-
 definitions:
   Config:
     type: object

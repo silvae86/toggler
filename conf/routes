@@ -15,14 +15,13 @@ GET   /assets/*file                 controllers.Assets.versioned(path="/public",
 ### NoDocs ###
 GET     /                           controllers.HomeController.index
 
-
 # Users and Authentication
 
 ###
-#  summary: Authenticate user or service
-#  description: Authenticates a user or a service
+#  summary: Create a new user
+#  description: Allows administrators to create a new user by providing both a username and a password
 #  tags:
-#    - Authentication
+#    - "Users and Authentication"
 #  produces:
 #    - application/json
 #  parameters:
@@ -32,21 +31,58 @@ GET     /                           controllers.HomeController.index
 #      type: string
 #      example: demouser1
 #      default: demouser1
-#      description: Username of the user or service
+#      description: Username of the new user
 #    - in: formData
 #      name: password
 #      required: true
 #      type: string
 #      example: s3cretP4ssword
 #      default: s3cretP4ssword
-#      description: Password of the user or service
+#      description: Password of the new user
+#  security:
+#    - JWT: []
+#  responses:
+#    200:
+#      description: OK
+#    409:
+#      description: User with same username already exists
+#    400:
+#      description: Malformed request. Either username or password parameter was invalid
+#    401:
+#      description: Invalid username or password
+###
+PUT     /users/new                    controllers.UsersController.registerUser(request: Request)
+
+###
+#  summary: Retrieve an authentication token for interacting with the API
+#  description: Allows users to retrieve a token to use the API methods via basic authentication.
+#               After the first authentication, users should not use this endpoint, and use the authentication tokens instead, on every request.
+#  tags:
+#    - "Users and Authentication"
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: formData
+#      name: username
+#      required: true
+#      type: string
+#      example: demouser1
+#      default: demouser1
+#      description: Username of the user
+#    - in: formData
+#      name: password
+#      required: true
+#      type: string
+#      example: s3cretP4ssword
+#      default: s3cretP4ssword
+#      description: Password of the user
 #  responses:
 #    200:
 #      description: OK
 #    401:
 #      description: Invalid username or password
 ###
-POST     /login                    controllers.UsersController.login(request: Request)
+POST     /users/login                    controllers.UsersController.auth(request: Request)
 
 ###
 #  summary: Edit toggle and service configuration
@@ -62,9 +98,14 @@ POST     /login                    controllers.UsersController.login(request: Re
 #      schema:
 #        $ref: '#/definitions/Config'
 #      description: The configuration for each toggle and the services that are allowed to access it.
+#  security:
+#    - JWT: []
 #  responses:
 #    200:
 #      description: OK
+#    401:
+#      description: Not authenticated
+#    403:
 #    403:
 #      description: You do not have permission to access this endpoint. Only Admins can edit toggle configurations.
 #    400:
@@ -84,21 +125,25 @@ POST     /config                    controllers.ConfigsController.update(request
 #      name: service_name
 #      required: true
 #      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
+#      example: ABC
+#      default: ABC
 #      description: Name of the service for whom the current toggle configuration should be fetched
 #    - in: path
 #      name: version
-#      required: false
+#      required: true
 #      type: string
 #      example: 1.0.0
 #      default: 1.0.0
 #      description: Name of the service for whom the current toggle configuration should be fetched
+#  security:
+#    - JWT: []
 #  responses:
 #    200:
 #      description: OK
+#    401:
+#      description: Not authenticated
 #    403:
-#      description: You have no permission to access this endpoint. You need to authenticate into the system first.
+#      description: You have no permission to access this method, even though you are authenticated.
 #    404:
 #      description: Service with name `name` and version `version` not found.
 #    400:
@@ -118,14 +163,18 @@ GET     /service/:service_name/:version                 controllers.ServicesCont
 #      name: service_name
 #      required: true
 #      type: string
-#      example: isButtonBlue
-#      default: isButtonBlue
+#      example: ABC
+#      default: ABC
 #      description: Name of the service for whom the current toggle configuration should be fetched
+#  security:
+#    - JWT: []
 #  responses:
 #    200:
 #      description: OK
+#    401:
+#      description: Not authenticated
 #    403:
-#      description: You have no permission to access this endpoint. You need to authenticate into the system first.
+#      description: You have no permission to access this method, even though you are authenticated.
 #    404:
 #      description: Service with name not found.
 #    400:

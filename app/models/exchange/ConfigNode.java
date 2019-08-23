@@ -36,6 +36,8 @@ import java.util.Iterator;
 @Setter
 @JsonDeserialize(using = ConfigNode.Deserializer.class)
 public class ConfigNode {
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Id
     private ObjectId id;
 
@@ -117,7 +119,7 @@ public class ConfigNode {
     }
 
     public void apply(ParsingContext context) throws Exception {
-        System.out.println("Applying node for toggle " + context.getToggleName());
+        // System.out.println("Applying node for toggle " + context.getToggleName());
         // System.out.println(this);
 
         Toggle toggle = new Toggle(context.getToggleName());
@@ -180,7 +182,7 @@ public class ConfigNode {
             override.apply(context);
         }
 
-        System.out.println("Applied node for toggle " + context.getToggleName());
+        // System.out.println("Applied node for toggle " + context.getToggleName());
         // System.out.println(this);
     }
 

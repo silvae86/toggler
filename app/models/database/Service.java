@@ -1,6 +1,7 @@
 package models.database;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.MongoConfig;
@@ -26,6 +27,7 @@ import java.util.Iterator;
 @Setter
 public class Service {
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Id
     private ObjectId id;
@@ -40,6 +42,7 @@ public class Service {
     @Embedded("toggles")
     private HashSet<Toggle> toggles = new HashSet<>();
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Transient
     private Boolean value;
 
@@ -189,9 +192,16 @@ public class Service {
             serviceWithNameAndToggleQuery.field("toggles.name").equal(toggle.getName());
 
             UpdateOperations<Service> setToggleValueOperation = MongoConfig.datastore().
+<<<<<<< HEAD
                     createUpdateOperations(Service.class).set("value", toggle.getValue());
+=======
+                    createUpdateOperations(Service.class)
+                    .disableValidation()
+                    .set("toggles.$.value", toggle.getValue())
+                    .enableValidation();
+>>>>>>> a84f840bfd2dffcfe2f03eacff6dd6cd7a0d5a58
 
-            MongoConfig.datastore().findAndModify(serviceWithNameAndToggleQuery, setToggleValueOperation);
+            MongoConfig.datastore().update(serviceWithNameAndToggleQuery, setToggleValueOperation);
         } else {
             final UpdateOperations<Service> toggleInsertOperation = MongoConfig.datastore()
                     .createUpdateOperations(Service.class)

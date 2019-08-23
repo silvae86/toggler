@@ -36,8 +36,8 @@ public class TogglesControllerTest extends WithApplication {
 
     @Override
     protected Application provideApplication() {
-        fakeApp = new GuiceApplicationBuilder().build();
         MongoConfig.dropDatabase();
+        fakeApp = new GuiceApplicationBuilder().build();
 
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .header("Accept", "application/json")
