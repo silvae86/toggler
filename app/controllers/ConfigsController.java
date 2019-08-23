@@ -1,12 +1,9 @@
 package controllers;
 
-import database.MongoConfig;
 import models.exchange.Config;
 import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
-
-import java.util.Date;
 
 import static play.mvc.Results.*;
 
@@ -63,14 +60,10 @@ public class ConfigsController {
 
         try {
             Config newConfigChange = request.body().parseJson(Config.class).get();
-            newConfigChange.setDateReceived(new Date());
-            MongoConfig.datastore().save(newConfigChange);
-
             newConfigChange.apply();
-            newConfigChange.setDateApplied(new Date());
-
             return ok(Json.toJson(newConfigChange));
         } catch (Exception e) {
+            e.printStackTrace();
             return internalServerError(Json.toJson(e.getMessage()));
         }
     }

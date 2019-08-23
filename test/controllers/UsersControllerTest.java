@@ -1,5 +1,6 @@
 package controllers;
 
+import database.MongoConfig;
 import org.junit.After;
 import org.junit.Test;
 import play.Application;
@@ -20,6 +21,7 @@ public class UsersControllerTest extends WithApplication {
 
     @Override
     protected Application provideApplication() {
+        MongoConfig.dropDatabase();
         fakeApp = new GuiceApplicationBuilder().build();
         return fakeApp;
     }

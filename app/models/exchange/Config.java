@@ -55,7 +55,7 @@ public class Config {
     public Config apply() throws Exception {
         for (String toggleName : this.getConfigNodes().keySet()) {
             ConfigNode node = configNodes.get(toggleName);
-            ParsingContext context = new ParsingContext(toggleName, node.getDefaultValue());
+            ParsingContext context = new ParsingContext(toggleName, node.getValue());
             node.apply(context);
         }
 

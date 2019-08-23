@@ -29,6 +29,8 @@ libraryDependencies += "org.mindrot" % "jbcrypt" % "0.4"
 
 libraryDependencies += "org.pac4j" % "pac4j" % "3.7.0"
 libraryDependencies += "org.pac4j" % "pac4j-http" % "3.7.0"
+libraryDependencies += "com.jayway.jsonpath" % "json-path" % "2.4.0"
+
 
 
 

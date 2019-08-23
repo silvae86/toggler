@@ -59,7 +59,7 @@ public class ConfigNode {
 
     @JsonProperty("value")
     @Property("value")
-    private Boolean defaultValue;
+    private Boolean value;
 
     public ConfigNode() {
     }
@@ -127,14 +127,14 @@ public class ConfigNode {
         Iterator<Service> servicesToRemoveToggleFrom = null;
 
         // 1. Set defaultValue of all instances of this toggle in every service if there is a default
-        if (defaultValue != null) {
+        if (value != null) {
             /*Query<Toggle> allInstancesOfToggleQuery = MongoConfig.datastore().find(Toggle.class);
             allInstancesOfToggleQuery.criteria("name").equal(context.getToggleName());
             UpdateOperations<Toggle> setDefaultValueOperation = MongoConfig.datastore().
                     createUpdateOperations(Toggle.class).set("defaultValue", defaultValue);
             MongoConfig.datastore().findAndModify(allInstancesOfToggleQuery, setDefaultValueOperation);*/
-            context.setToggleValue(defaultValue);
-            toggle.setValue(defaultValue);
+            context.setToggleValue(value);
+            toggle.setValue(value);
         } else if (context.getToggleValue() != null) {
             toggle.setValue(context.getToggleValue());
         }
@@ -208,7 +208,7 @@ public class ConfigNode {
             ConfigNode cn = new ConfigNode();
 
             if (node.has("value")) {
-                cn.setDefaultValue(node.get("value").booleanValue());
+                cn.setValue(node.get("value").booleanValue());
             }
 
             if (node.has("allow_all")) {

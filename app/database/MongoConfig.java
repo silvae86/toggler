@@ -2,6 +2,7 @@ package database;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
+import com.mongodb.MongoTimeoutException;
 import com.mongodb.ServerAddress;
 import com.typesafe.config.ConfigFactory;
 import dev.morphia.Datastore;
@@ -56,12 +57,16 @@ public class MongoConfig {
 
         MongoClient mongoClient = new MongoClient(serverAddress, credentials);
 
-        datastore = morphia.createDatastore(
-                mongoClient, ConfigFactory.load().getString("mongodb.database"));
+        try {
+            datastore = morphia.createDatastore(
+                    mongoClient, ConfigFactory.load().getString("mongodb.database"));
 
-        datastore.ensureIndexes();
-        datastore.ensureCaps();
-        System.out.println("MongoDB Connection Successfully Initialized.");
+            datastore.ensureIndexes();
+            datastore.ensureCaps();
+            System.out.println("MongoDB Connection Successfully Initialized.");
+        } catch (MongoTimeoutException exception) {
+            System.out.println("Unable to establish MongoDB Connection in time.");
+        }
     }
 
 }

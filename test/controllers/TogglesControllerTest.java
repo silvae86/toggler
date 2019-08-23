@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import database.MongoConfig;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import play.Application;
 import play.inject.guice.GuiceApplicationBuilder;
@@ -22,6 +23,7 @@ import static org.junit.Assert.assertTrue;
 import static play.mvc.Http.HttpVerbs.PUT;
 import static play.test.Helpers.*;
 
+@Ignore
 public class TogglesControllerTest extends WithApplication {
 
     private int howManyTogglesToCreate = 30;
@@ -167,8 +169,7 @@ public class TogglesControllerTest extends WithApplication {
         assertEquals(o.size(), howManyTogglesToCreate);
 
         int deletedToggles = 0;
-        for(Iterator<JsonNode> it = o.iterator(); it.hasNext() && deletedToggles < howManyTogglesToDelete; deletedToggles++)
-        {
+        for(Iterator<JsonNode> it = o.iterator(); it.hasNext() && deletedToggles < howManyTogglesToDelete; deletedToggles++) {
             JsonNode aToggle = it.next();
 
             assertTrue("Node should have a toggleName text property", aToggle.get("toggleName").isTextual());

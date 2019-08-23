@@ -13,10 +13,11 @@ import java.util.Iterator;
 @Indexes({
         @Index(fields = {
                 @Field("name"),
-                @Field("defaultValue")
+                @Field("value")
         },
                 options = @IndexOptions(unique = true, dropDups = true))
 })
+
 @Getter
 @Setter
 public class Toggle {

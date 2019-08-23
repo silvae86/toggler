@@ -19,7 +19,7 @@ import java.util.Iterator;
 @Indexes(
         {
                 @Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)),
-                @Index(fields = {@Field("toggles.name"), @Field("toggles.defaultValue")}, options = @IndexOptions(unique = true, dropDups = true))
+                @Index(fields = {@Field("toggles.name"), @Field("toggles.value")}, options = @IndexOptions(unique = true, dropDups = true))
         })
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
@@ -189,7 +189,7 @@ public class Service {
             serviceWithNameAndToggleQuery.field("toggles.name").equal(toggle.getName());
 
             UpdateOperations<Service> setToggleValueOperation = MongoConfig.datastore().
-                    createUpdateOperations(Service.class).set("defaultValue", toggle.getValue());
+                    createUpdateOperations(Service.class).set("value", toggle.getValue());
 
             MongoConfig.datastore().findAndModify(serviceWithNameAndToggleQuery, setToggleValueOperation);
         } else {
