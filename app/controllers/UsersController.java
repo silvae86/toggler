@@ -14,8 +14,7 @@ import play.mvc.Security;
 
 public class UsersController extends Controller {
 
-    @Security.Authenticated(BasicAuthAuthorizer.class)
-    public Result auth(Http.Request req) {
+    public Result login(Http.Request req) {
 
         String username;
         String password;
@@ -24,9 +23,16 @@ public class UsersController extends Controller {
             username = RequestProcessor.extractSingleValue(req, "username");
             password = RequestProcessor.extractSingleValue(req, "password");
 
-            User.auth(username, password);
+            APIToken token = User.auth(username, password);
 
-            return ok();
+            if(token != null)
+            {
+                return ok(token.getValue());
+            }
+            else
+            {
+                return unauthorized();
+            }
         } catch (Exception e) {
             return badRequest("Error interpreting username or password parameters");
         }

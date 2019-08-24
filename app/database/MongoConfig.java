@@ -1,22 +1,21 @@
 package database;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoCredential;
-import com.mongodb.MongoTimeoutException;
-import com.mongodb.ServerAddress;
+import com.mongodb.*;
 import com.typesafe.config.ConfigFactory;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
+import org.bson.BsonDocument;
+import org.bson.Document;
 
 import javax.inject.Singleton;
 import java.util.LinkedList;
+import java.util.List;
 
 @Singleton
 public class MongoConfig {
 
     private static Datastore datastore;
     private static Morphia morphia;
-
 
     public static Morphia morphia() {
         if (morphia == null) {
@@ -33,7 +32,7 @@ public class MongoConfig {
     }
 
     public static void dropDatabase() {
-        datastore().getDB().dropDatabase();
+        datastore().getDatabase().drop();
     }
 
     public static void initDatastore() {
@@ -54,13 +53,11 @@ public class MongoConfig {
         LinkedList<MongoCredential> credentials = new LinkedList<>();
         credentials.push(credential);
 
-
         MongoClient mongoClient = new MongoClient(serverAddress, credentials);
 
         try {
             datastore = morphia.createDatastore(
                     mongoClient, ConfigFactory.load().getString("mongodb.database"));
-
             datastore.ensureIndexes();
             datastore.ensureCaps();
             System.out.println("MongoDB Connection Successfully Initialized.");

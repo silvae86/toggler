@@ -82,7 +82,7 @@ PUT     /users/new                    controllers.UsersController.registerUser(r
 #    401:
 #      description: Invalid username or password
 ###
-POST     /users/login                    controllers.UsersController.auth(request: Request)
+POST     /users/login                    controllers.UsersController.login(request: Request)
 
 ###
 #  summary: Edit toggle and service configuration

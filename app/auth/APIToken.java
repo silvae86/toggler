@@ -10,13 +10,10 @@ import lombok.Setter;
 import models.roles.User;
 import org.bson.types.ObjectId;
 
+import java.security.SecureRandom;
 import java.time.Instant;
 
 @Entity("api_tokens")
-@Indexes(
-        {
-                @Index(fields = {@Field("owner.username")})
-        })
 @Getter
 @Setter
 public class APIToken {
@@ -31,14 +28,24 @@ public class APIToken {
     @Property("date_expires")
     private Instant dateExpires;
 
-    @Property("owner")
+    @Property("value")
+    private String value;
+
+    @Embedded("owner")
     private User owner;
+
+    public APIToken(){};
 
     public APIToken(int validityInSeconds, User owner) {
         Instant now = Instant.now();
         this.dateCreated = now;
         this.dateExpires = now.plusSeconds(validityInSeconds);
         this.owner = owner;
+
+        SecureRandom random = new SecureRandom();
+        byte bytes[] = new byte[20];
+        random.nextBytes(bytes);
+        this.value = bytes.toString();
     }
 
     public static APIToken getLastValidTokenForUser(User ownerUser) {

@@ -17,11 +17,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 @Entity("services")
-@Indexes(
-        {
-                @Index(fields = {@Field("name"), @Field("version")}, options = @IndexOptions(unique = true, dropDups = true)),
-                @Index(fields = {@Field("toggles.name"), @Field("toggles.value")}, options = @IndexOptions(unique = true, dropDups = true))
-        })
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
@@ -33,6 +28,7 @@ public class Service {
     private ObjectId id;
 
     @Property("name")
+    @Indexed(options = @IndexOptions(unique = true))
     private String name;
 
     @Property("version")
@@ -60,18 +56,15 @@ public class Service {
 
     public static Service find(Service service) {
         Query<Service> query = MongoConfig.datastore().find(Service.class);
-        query.criteria("name").equal(service.getName());
+
 
         if (service.getVersion() != null) {
-            query.criteria("version").equal(service.getVersion());
+            return findByNameAndVersion(service.getName(), service.getVersion());
         }
-
-        Service persistedService = query.first();
-
-        if (persistedService != null)
-            return persistedService;
         else
-            return null;
+        {
+            return findByName(service.getName());
+        }
     }
 
     public static Service findByNameAndVersion(String name, String version) {
@@ -86,7 +79,10 @@ public class Service {
 
     public static Service findByName(String name) {
         Query<Service> query = MongoConfig.datastore().find(Service.class);
-        query.criteria("name").equal(name);
+        query.and(
+                query.criteria("name").equal(name),
+                query.criteria("version").doesNotExist()
+        );
         return query.first();
     }
 

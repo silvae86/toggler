@@ -14,10 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity("users")
-@Indexes(
-        {
-                @Index(fields = {@Field("username")}, options = @IndexOptions(unique = true, dropDups = true)),
-        })
 @Getter
 @Setter
 public class User {
@@ -27,6 +23,7 @@ public class User {
     @Property
     public List<String> roles;
     @Property
+    @Indexed(options = @IndexOptions(unique = true))
     private String username;
     @Property
     private String password;
@@ -75,7 +72,6 @@ public class User {
     }
 
     public static APIToken auth(String username, String password) {
-
         User existingUser = findByUsername(username);
 
         if (existingUser == null)
