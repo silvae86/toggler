@@ -13,15 +13,9 @@ import java.util.Iterator;
 @Entity("toggles")
 @Indexes({
         @Index(fields = {
-<<<<<<< HEAD
                 @Field("name"),
                 @Field("value")
-        },
-                options = @IndexOptions(unique = true, dropDups = true))
-=======
-                @Field("name")
-        }, options = @IndexOptions(unique = true, dropDups = true))
->>>>>>> a84f840bfd2dffcfe2f03eacff6dd6cd7a0d5a58
+        })
 })
 
 @Getter

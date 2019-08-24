@@ -192,14 +192,11 @@ public class Service {
             serviceWithNameAndToggleQuery.field("toggles.name").equal(toggle.getName());
 
             UpdateOperations<Service> setToggleValueOperation = MongoConfig.datastore().
-<<<<<<< HEAD
-                    createUpdateOperations(Service.class).set("value", toggle.getValue());
-=======
-                    createUpdateOperations(Service.class)
-                    .disableValidation()
-                    .set("toggles.$.value", toggle.getValue())
-                    .enableValidation();
->>>>>>> a84f840bfd2dffcfe2f03eacff6dd6cd7a0d5a58
+
+            createUpdateOperations(Service.class)
+            .disableValidation()
+            .set("toggles.$.value", toggle.getValue())
+            .enableValidation();
 
             MongoConfig.datastore().update(serviceWithNameAndToggleQuery, setToggleValueOperation);
         } else {
