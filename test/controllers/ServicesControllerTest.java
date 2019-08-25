@@ -125,6 +125,14 @@ public class ServicesControllerTest extends WithApplication {
         JSONArray isButtonRedToggle = JsonPath.read(contentAsString(result), "$.toggles[?(@.name=='isButtonRed')]");
         assertNotNull(isButtonRedToggle);
         assertEquals(0, isButtonRedToggle.size());
+
+        // Try to access again without the API Key
+        request = new Http.RequestBuilder()
+                .method(GET)
+                .uri("/service/ABC");
+
+        result = route(app, request);
+        assertEquals(UNAUTHORIZED, result.status());
     }
 
     @After
