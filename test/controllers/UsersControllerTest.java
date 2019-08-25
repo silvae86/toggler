@@ -36,11 +36,9 @@ public class UsersControllerTest extends WithApplication {
                 .method(POST)
                 .uri("/users/login");
 
-
         HashMap<String, String> loginFormData = new HashMap<>();
 
         // invalid login
-
         loginFormData.put("username", ConfigFactory.load().getString("admin.username"));
         loginFormData.put("password", "INVALID_PASSWORD");
         request.bodyForm(loginFormData);
@@ -50,6 +48,12 @@ public class UsersControllerTest extends WithApplication {
         //valid login
         loginFormData.put("username", ConfigFactory.load().getString("admin.username"));
         loginFormData.put("password", ConfigFactory.load().getString("admin.password"));
+        request.bodyForm(loginFormData);
+        result = route(app, request);
+
+        //valid login
+        loginFormData.put("username", ConfigFactory.load().getString("user.username"));
+        loginFormData.put("password", ConfigFactory.load().getString("user.password"));
         request.bodyForm(loginFormData);
         result = route(app, request);
 

@@ -16,6 +16,7 @@ import org.bson.types.ObjectId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 @Entity("configurations")
 @Getter
@@ -60,6 +61,14 @@ public class Config {
             ConfigNode node = configNodes.get(toggleName);
             ParsingContext context = new ParsingContext(toggleName, node.getValue());
             node.apply(context);
+        }
+
+        // Notify all services mentioned in the new configuration
+        Iterator<Service> modifiedServices = scanForServices().iterator();
+        while(modifiedServices.hasNext())
+        {
+            Service aService = modifiedServices.next();
+            aService.postChangeNotification();
         }
 
         return this;

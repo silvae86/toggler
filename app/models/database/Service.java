@@ -4,17 +4,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import constants.IKafkaConstants;
 import database.MongoConfig;
 import dev.morphia.annotations.*;
 import dev.morphia.query.Query;
 import dev.morphia.query.UpdateOperations;
 import lombok.Getter;
 import lombok.Setter;
+import messaging.ProducerCreator;
+import messaging.message_types.Message;
+import messaging.message_types.ServiceModifiedMessage;
+import messaging.serializers.JsonMessageSerializer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.bson.types.ObjectId;
 import play.libs.Json;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.concurrent.ExecutionException;
 
 @Entity("services")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -291,5 +300,36 @@ public class Service {
     private boolean toggleExistsForServiceNameAndVersion(Toggle toggle) {
         Toggle t = fetchToggleForServiceNameAndVersion(toggle);
         return (t != null);
+    }
+
+    public String getHumanReadableIdentifier()
+    {
+        if(this.version != null)
+            return this.name + "_" + this.version;
+        else
+            return this.name;
+    }
+
+    public void postChangeNotification()
+    {
+        Producer<Long, Message> producer = ProducerCreator.createProducer(JsonMessageSerializer.class);
+        ProducerRecord<Long, Message> record = new ProducerRecord<Long, Message>(
+                this.getHumanReadableIdentifier(),
+                new ServiceModifiedMessage(this)
+                );
+        try {
+            RecordMetadata metadata = producer.send(record).get();
+            System.out.println("Record sent to partition " + metadata.partition() + " with offset " + metadata.offset());
+        }
+        catch (ExecutionException e) {
+            System.out.println("Error in sending record");
+            System.out.println(e);
+        }
+        catch (InterruptedException e) {
+            System.out.println("Error in sending record");
+            System.out.println(e);
+        }
+
+        producer.close();
     }
 }

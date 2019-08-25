@@ -45,4 +45,7 @@ libraryDependencies += "org.apache.logging.log4j" % "log4j-1.2-api" % "2.12.0"
 libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.26"
 
 
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % "0.10.2.0"
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.2"
+
 

@@ -1,6 +1,8 @@
 version: '3.3'
 
 services:
+#  toggler:
+#    build: .
   mongodb:
     container_name: mongo_toggles
     image: mongo:3.6.0
@@ -15,3 +17,13 @@ services:
       - ./volumes/mongo:/data/db
     command: mongod --smallfiles --bind_ip_all
     restart: always
+  kafka:
+    image: johnnypark/kafka-zookeeper:2.3.0
+    ports:
+      - 2181:2181
+      - 9092:9092
+    environment:
+      ADVERTISED_HOST: "127.0.0.1"
+      NUM_PARTITIONS: 1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

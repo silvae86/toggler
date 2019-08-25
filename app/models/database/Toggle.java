@@ -47,7 +47,6 @@ public class Toggle {
     }
 
     // for finding toggle instances inside services
-
     public static Iterator<Toggle> findByName(String name) {
         Query<Toggle> togglesByNameQuery = MongoConfig.datastore().find(Toggle.class);
         togglesByNameQuery.criteria("name").equal(name);
