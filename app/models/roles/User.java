@@ -1,6 +1,6 @@
 package models.roles;
 
-import auth.APIToken;
+import models.auth.APIToken;
 import com.typesafe.config.ConfigFactory;
 import database.MongoConfig;
 import dev.morphia.annotations.*;

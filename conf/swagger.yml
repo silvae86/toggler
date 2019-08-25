@@ -13,10 +13,10 @@ securityDefinitions:
   # username and password
   BasicAuth:
     type: basic
-  JWT:
+  APIKey:
     type: apiKey
     in: header
-    name: X-API-Key
+    name: apikey
 definitions:
   Config:
     type: object

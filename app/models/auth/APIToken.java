@@ -1,4 +1,4 @@
-package auth;
+package models.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import database.MongoConfig;
@@ -52,9 +52,15 @@ public class APIToken {
         Query<APIToken> lastAPITokenQuery = MongoConfig.datastore().find(APIToken.class);
         lastAPITokenQuery.and(
                 lastAPITokenQuery.criteria("owner.username").equal(ownerUser.getUsername()),
-                lastAPITokenQuery.criteria("date_expires").lessThan(Instant.now())
+                lastAPITokenQuery.criteria("date_expires").greaterThan(Instant.now())
         );
 
         return lastAPITokenQuery.order(Sort.descending("date_created")).first();
+    }
+
+    public static APIToken findByValue(String value) {
+        Query<APIToken> findByValueQuery = MongoConfig.datastore().find(APIToken.class);
+        findByValueQuery.criteria("value").equal(value);
+        return findByValueQuery.first();
     }
 }

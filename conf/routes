@@ -99,7 +99,7 @@ POST     /users/login                    controllers.UsersController.login(reque
 #        $ref: '#/definitions/Config'
 #      description: The configuration for each toggle and the services that are allowed to access it.
 #  security:
-#    - JWT: []
+#    - APIKey: []
 #  responses:
 #    200:
 #      description: OK
@@ -136,7 +136,7 @@ POST     /config                    controllers.ConfigsController.update(request
 #      default: 1.0.0
 #      description: Name of the service for whom the current toggle configuration should be fetched
 #  security:
-#    - JWT: []
+#    - APIKey: []
 #  responses:
 #    200:
 #      description: OK
@@ -167,7 +167,7 @@ GET     /service/:service_name/:version                 controllers.ServicesCont
 #      default: ABC
 #      description: Name of the service for whom the current toggle configuration should be fetched
 #  security:
-#    - JWT: []
+#    - APIKey: []
 #  responses:
 #    200:
 #      description: OK

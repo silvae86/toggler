@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.jayway.jsonpath.JsonPath;
+import com.typesafe.config.ConfigFactory;
 import database.MongoConfig;
 import net.minidev.json.JSONArray;
 import org.junit.After;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -41,14 +43,40 @@ public class ServicesControllerTest extends WithApplication {
     @Test
     public void testProblemExampleConfiguration() throws IOException {
 
-        // Toggle does not exist on first request, return not found
+        // User Not Authenticated, should return unauthorized
         Http.RequestBuilder request = new Http.RequestBuilder()
                 .method(GET)
                 .uri("/service/ABC");
 
         Result result = route(app, request);
-        assertEquals(NOT_FOUND, result.status());
+        assertEquals(UNAUTHORIZED, result.status());
 
+        // Authenticate as standard user
+        request = new Http.RequestBuilder()
+                .method(POST)
+                .uri("/users/login");
+
+        Map<String, String> authPayload = new HashMap<>();
+        authPayload.put("username", ConfigFactory.load().getString("user.username"));
+        authPayload.put("password", ConfigFactory.load().getString("user.password"));
+        request.bodyForm(authPayload);
+
+        result = route(app, request);
+
+        assertEquals(OK, result.status());
+        String APIKey = contentAsString(result);
+        assertNotNull(APIKey);
+
+        // Toggle does not exist on first request, return not found
+        request = new Http.RequestBuilder()
+                .method(GET)
+                .uri("/service/ABC")
+                .header("X-API-Key", APIKey);
+
+        request.headers(request.getHeaders().addHeader("X-API-Key", APIKey));
+
+        result = route(app, request);
+        assertEquals(NOT_FOUND, result.status());
 
         // Send the configuration to create several toggles
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
@@ -60,7 +88,8 @@ public class ServicesControllerTest extends WithApplication {
         request = new Http.RequestBuilder()
                 .method(POST)
                 .uri("/config")
-                .bodyJson(mapper.readTree(configFile));
+                .bodyJson(mapper.readTree(configFile))
+                .header("X-API-Key", APIKey);
 
         result = route(app, request);
         assertEquals(OK, result.status());
@@ -69,7 +98,8 @@ public class ServicesControllerTest extends WithApplication {
         // Toggle now exists, let us see if the toggle exists
         request = new Http.RequestBuilder()
                 .method(GET)
-                .uri("/service/ABC");
+                .uri("/service/ABC")
+                .header("X-API-Key", APIKey);
 
         result = route(app, request);
         assertEquals(OK, result.status());

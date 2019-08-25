@@ -1,7 +1,6 @@
 package controllers;
 
-import auth.APIToken;
-import auth.BasicAuthAuthorizer;
+import models.auth.APIToken;
 import com.typesafe.config.ConfigFactory;
 import core.RequestProcessor;
 import database.MongoConfig;
@@ -10,7 +9,6 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
-import play.mvc.Security;
 
 public class UsersController extends Controller {
 
@@ -34,7 +32,7 @@ public class UsersController extends Controller {
                 return unauthorized();
             }
         } catch (Exception e) {
-            return badRequest("Error interpreting username or password parameters");
+            return badRequest(e.getMessage());
         }
     }
 

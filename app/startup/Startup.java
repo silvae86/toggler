@@ -12,6 +12,17 @@ public class Startup {
 
         MongoConfig.initDatastore();
 
+        User normalUser = User.findByUsername(ConfigFactory.load().getString("user.username"));
+
+        if (normalUser == null) {
+            normalUser = new User(
+                    ConfigFactory.load().getString("user.username"),
+                    ConfigFactory.load().getString("user.password"),
+                    Collections.emptyList()
+            );
+            MongoConfig.datastore().save(normalUser);
+        }
+
         User admin = User.findByUsernameWithRole(ConfigFactory.load().getString("admin.username"), User.ADMIN);
 
         if (admin == null) {

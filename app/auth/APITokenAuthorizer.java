@@ -9,7 +9,7 @@ import play.mvc.Security;
 
 import java.util.Optional;
 
-public class BasicAuthAuthorizer extends Security.Authenticator {
+public class APITokenAuthorizer extends Security.Authenticator {
 
     @Override
     public Optional<String> getUsername(Http.Request req) {
@@ -17,14 +17,21 @@ public class BasicAuthAuthorizer extends Security.Authenticator {
         // Returning NULL means request in not authorized
 
         try {
-            String username = RequestProcessor.extractSingleValue(req, "username");
-            String password = RequestProcessor.extractSingleValue(req, "password");
+            Optional APIKey = req.header("X-API-Key");
 
-            APIToken token = User.auth(username, password);
-            if (token != null) {
-                return Optional.of(token.getValue());
-            } else {
+            if(APIKey.isEmpty())
+            {
                 return Optional.empty();
+            }
+            else
+            {
+                APIToken existingToken = APIToken.findByValue((String) APIKey.get());
+
+                if (existingToken != null) {
+                    return Optional.of(existingToken.getOwner().getUsername());
+                } else {
+                    return Optional.empty();
+                }
             }
         } catch (Exception e) {
             return Optional.empty();
