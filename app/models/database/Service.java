@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import constants.IKafkaConstants;
 import database.MongoConfig;
 import dev.morphia.annotations.*;
 import dev.morphia.query.Query;
@@ -14,7 +13,7 @@ import lombok.Setter;
 import messaging.ProducerCreator;
 import messaging.message_types.Message;
 import messaging.message_types.ServiceModifiedMessage;
-import messaging.serializers.JsonMessageSerializer;
+import messaging.serializers.ServiceModifiedMessageSerializer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
@@ -312,7 +311,7 @@ public class Service {
 
     public void postChangeNotification()
     {
-        Producer<Long, Message> producer = ProducerCreator.createProducer(JsonMessageSerializer.class);
+        Producer<Long, Message> producer = ProducerCreator.createProducer(ServiceModifiedMessageSerializer.class);
         ProducerRecord<Long, Message> record = new ProducerRecord<Long, Message>(
                 this.getHumanReadableIdentifier(),
                 new ServiceModifiedMessage(this)

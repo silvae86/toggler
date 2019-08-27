@@ -1,15 +1,14 @@
 package messaging.message_types;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
+import lombok.Setter;
 import models.database.Service;
-import org.apache.kafka.common.serialization.Serializer;
-import play.libs.Json;
-
-import java.util.Map;
 
 public class ServiceModifiedMessage extends Message{
 
+    @Getter
+    @Setter
     @JsonAlias("new_service_config")
     Service service;
 

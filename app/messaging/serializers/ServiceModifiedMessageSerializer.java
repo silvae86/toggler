@@ -1,21 +1,24 @@
 package messaging.serializers;
 
-import messaging.message_types.Message;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import messaging.message_types.ServiceModifiedMessage;
 import org.apache.kafka.common.serialization.Serializer;
-import play.libs.Json;
 
 import java.util.Map;
 
-public class JsonMessageSerializer implements Serializer<Message> {
-    public JsonMessageSerializer(){};
+public class ServiceModifiedMessageSerializer implements Serializer<ServiceModifiedMessage> {
+    public ServiceModifiedMessageSerializer() {
+    }
+
+    ;
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
     }
     @Override
-    public byte[] serialize(String topic, Message data) {
+    public byte[] serialize(String topic, ServiceModifiedMessage data) {
         byte[] retVal = null;
         try {
-            retVal = Json.toJson(data).textValue().getBytes();
+            retVal = new ObjectMapper().writeValueAsBytes(data);
         } catch (Exception exception) {
             System.out.println("Error in serializing object"+ data);
         }
