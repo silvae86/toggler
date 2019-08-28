@@ -181,3 +181,68 @@ GET     /service/:service_name/:version                 controllers.ServicesCont
 #      description: New service configuration is invalid
 ###
 GET     /service/:service_name                          controllers.ServicesController.getServiceByName(service_name: String)
+
+###
+#  summary: Subscribe to changes made to the configuration of all versions of service with name "service_name"
+#  description: Establishes a websocket connection to subscribe to any changes to the service with name "service_name"
+#  tags:
+#    - Services
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: service_name
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Name of the service to which you want to subscribe and get all changes as soon as they are carried out.
+#  security:
+#    - APIKey: []
+#  responses:
+#    200:
+#      description: OK
+#    401:
+#      description: Not authenticated
+#    403:
+#      description: You have no permission to access this method, even though you are authenticated.
+#    404:
+#      description: Service with name not found.
+###
+GET        /service/:service_name/subscribe             controllers.ServicesController.subscribe(request: Request, service_name: String)
+
+###
+#  summary: Subscribe to changes made to the configuration of version "version" of service with name "service_name"
+#  description: Establishes a websocket connection to subscribe to any changes to the service with name "service_name" and version "version".
+#  tags:
+#    - Services
+#  produces:
+#    - application/json
+#  parameters:
+#    - in: path
+#      name: service_name
+#      required: true
+#      type: string
+#      example: ABC
+#      default: ABC
+#      description: Name of the service to which you want to subscribe and get all changes as soon as they are carried out.
+#    - in: path
+#      name: version
+#      required: true
+#      type: string
+#      example: 1.0.0
+#      default: 1.0.0
+#      description: Name of the service for whom the current toggle configuration should be fetched
+#  security:
+#    - APIKey: []
+#  responses:
+#    200:
+#      description: OK
+#    401:
+#      description: Not authenticated
+#    403:
+#      description: You have no permission to access this method, even though you are authenticated.
+#    404:
+#      description: Service with name "name" and/or version not found.
+###
+GET        /service/:service_name/:version/subscribe        controllers.ServicesController.subscribe(request: Request, service_name: String, version: String)
