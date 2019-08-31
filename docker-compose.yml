@@ -47,4 +47,4 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "false"
       KAFKA_SUPER_USERS: User:admin
       KAFKA_OPTS: -Djava.security.auth.login.config=/etc/kafka/secrets/broker_jaas.conf
-      KAFKA_SASL_SERVER_CALLBACK_HANDLER_CLASS: com.example.AuthenticationHandler
+      KAFKA_SASL_SERVER_CALLBACK_HANDLER_CLASS: toggler.authenticator.AuthenticationHandler
