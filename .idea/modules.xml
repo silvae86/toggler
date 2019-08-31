@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/messaging/authenticator/authenticator.iml" filepath="$PROJECT_DIR$/app/messaging/authenticator/authenticator.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/toggler.iml" filepath="$PROJECT_DIR$/.idea/toggler.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/toggler-build.iml" filepath="$PROJECT_DIR$/.idea/modules/toggler-build.iml" />
     </modules>

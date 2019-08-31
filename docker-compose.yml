@@ -14,16 +14,37 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=34857q98efhlajwehrlaeroiu2yq3948q2uweoiqwherluqywioerqhw0p92874983724rhqwelrhqweiuryoiqwerhlqwhjeflkawejrp9023475823y4rjhelkjrheiouryi
     volumes:
       - ./data/mongo/init:/docker-entrypoint-initdb.d:ro
-      - ./volumes/mongo:/data/db
+      - ./volumes/data/mongo:/data/db
     command: mongod --smallfiles --bind_ip_all
     restart: always
-  kafka:
-    image: johnnypark/kafka-zookeeper:2.3.0
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.3.0
     ports:
-      - 2181:2181
-      - 9092:9092
+      - "2181:2181"
     environment:
-      ADVERTISED_HOST: "127.0.0.1"
-      NUM_PARTITIONS: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_SASL_ENABLED: "false"
+  kafka:
+    image: confluentinc/cp-kafka:5.3.0
+    depends_on:
+      - zookeeper
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/kafka/security:/etc/kafka/secrets
+      - ./data/kafka/jars:/etc/kafka/jars
+    ports:
+      - "9092:9092"
+    environment:
+      CLASSPATH: /etc/kafka/jars/*
+      ZOOKEEPER_SASL_ENABLED: "false"
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: SASL_PLAINTEXT://kafka:9092
+      KAFKA_SECURITY_INTER_BROKER_PROTOCOL: SASL_PLAINTEXT
+      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
+      KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.auth.SimpleAclAuthorizer
+      KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "false"
+      KAFKA_SUPER_USERS: User:admin
+      KAFKA_OPTS: -Djava.security.auth.login.config=/etc/kafka/secrets/broker_jaas.conf
+      KAFKA_SASL_SERVER_CALLBACK_HANDLER_CLASS: com.example.AuthenticationHandler
