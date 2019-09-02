@@ -1,12 +1,12 @@
 package models.roles;
 
-import models.auth.APIToken;
 import com.typesafe.config.ConfigFactory;
 import database.MongoConfig;
 import dev.morphia.annotations.*;
 import dev.morphia.query.Query;
 import lombok.Getter;
 import lombok.Setter;
+import models.auth.APIToken;
 import org.bson.types.ObjectId;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -92,6 +92,7 @@ public class User {
                 if (token != null) {
                     return token;
                 } else {
+
                     APIToken newToken = new APIToken(ConfigFactory.load().getInt("auth.token_validity_secs"), authenticatedUser);
                     MongoConfig.datastore().save(newToken);
 
