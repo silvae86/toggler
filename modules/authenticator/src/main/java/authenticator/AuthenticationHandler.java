@@ -38,9 +38,9 @@ public class AuthenticationHandler implements AuthenticateCallbackHandler {
 
     protected boolean authenticate(String username, char[] password) throws IOException {
         System.out.println("Authenticating with " + username);
-        MongoConfig.initDatastore("kafka-toggles", 9092);
+        MongoConfig.initDatastore("mongo-toggles", 9092);
         APIToken token = User.auth(username, new String(password));
-        return token != null;
+        return (token != null);
     }
 
     public void close() throws KafkaException {
