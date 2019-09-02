@@ -1,15 +1,15 @@
 package database;
 
-import com.mongodb.*;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.MongoTimeoutException;
+import com.mongodb.ServerAddress;
 import com.typesafe.config.ConfigFactory;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
-import org.bson.BsonDocument;
-import org.bson.Document;
 
 import javax.inject.Singleton;
 import java.util.LinkedList;
-import java.util.List;
 
 @Singleton
 public class MongoConfig {
@@ -36,13 +36,17 @@ public class MongoConfig {
     }
 
     public static void initDatastore() {
+        initDatastore(ConfigFactory.load().getString("mongodb.host"), ConfigFactory.load().getInt("mongodb.port"));
+    }
+
+    public static void initDatastore(String host, Integer port) {
         System.out.println("Initializing MongoDB Connection");
         morphia = morphia();
 
         // Tell Morphia where to find our models
         morphia.mapPackage("models");
 
-        ServerAddress serverAddress = new ServerAddress(ConfigFactory.load().getString("mongodb.host"), ConfigFactory.load().getInt("mongodb.port"));
+        ServerAddress serverAddress = new ServerAddress(host, port);
 
         MongoCredential credential = MongoCredential.createScramSha1Credential(
                 ConfigFactory.load().getString("mongodb.username"),

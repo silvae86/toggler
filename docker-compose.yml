@@ -18,6 +18,7 @@ services:
     command: mongod --smallfiles --bind_ip_all
     restart: always
   zookeeper:
+    container_name: zookeeper_toggles
     image: confluentinc/cp-zookeeper:5.3.0
     ports:
       - "2181:2181"
@@ -26,11 +27,12 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_SASL_ENABLED: "false"
   kafka:
+    container_name: kafka_toggles
     image: confluentinc/cp-kafka:5.3.0
     depends_on:
       - zookeeper
     volumes:
-      - ./data/kafka/security:/etc/kafka/secrets
+      - ./data/kafka/secrets:/etc/kafka/secrets
       - ./data/kafka/jars:/etc/kafka/jars
     ports:
       - "9092:9092"
@@ -47,4 +49,4 @@ services:
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "false"
       KAFKA_SUPER_USERS: User:admin
       KAFKA_OPTS: -Djava.security.auth.login.config=/etc/kafka/secrets/broker_jaas.conf
-      KAFKA_SASL_SERVER_CALLBACK_HANDLER_CLASS: toggler.authenticator.AuthenticationHandler
+      KAFKA_SASL_SERVER_CALLBACK_HANDLER_CLASS: authenticator.AuthenticationHandler
